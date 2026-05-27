@@ -7,13 +7,13 @@ Landing page para conectar desarrolladores en Estepona. Una comunidad local para
 ### Instalación
 
 ```bash
-npm install
+yarn install
 ```
 
 ### Desarrollo
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 La página estará disponible en `http://localhost:4321`
@@ -21,7 +21,7 @@ La página estará disponible en `http://localhost:4321`
 ### Build para producción
 
 ```bash
-npm run build
+yarn build
 ```
 
 El sitio estático se generará en la carpeta `/dist`
@@ -29,13 +29,14 @@ El sitio estático se generará en la carpeta `/dist`
 ### Vista previa del build
 
 ```bash
-npm run preview
+yarn preview
 ```
 
 ## 🛠️ Stack Tecnológico
 
 - **[Astro](https://astro.build)** - Framework web moderno
-- **[Tailwind CSS](https://tailwindcss.com)** - Framework CSS utility-first
+- **[Tailwind CSS](https://tailwindcss.com)** - Framework CSS utility-first v4 con plugin de Vite
+- **Yarn** - Gestor de paquetes del proyecto
 
 ## 📝 Estructura del Proyecto
 
@@ -43,10 +44,11 @@ npm run preview
 /
 ├── public/          # Archivos estáticos (favicon, etc.)
 ├── src/
-│   └── pages/       # Páginas del sitio
-│       └── index.astro
+│   ├── pages/       # Páginas del sitio
+│   │   └── index.astro
+│   └── styles/      # Estilos globales de Tailwind
+│       └── global.css
 ├── astro.config.mjs # Configuración de Astro
-├── tailwind.config.mjs # Configuración de Tailwind
 └── package.json
 ```
 
