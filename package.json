@@ -1,7 +1,8 @@
 {
-  "name": "estepona4devs",
+  "name": "costa-del-code",
   "type": "module",
   "version": "0.0.1",
+  "license": "MIT",
   "packageManager": "yarn@1.22.22",
   "scripts": {
     "dev": "astro dev",

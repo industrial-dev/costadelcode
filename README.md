@@ -1,4 +1,4 @@
-# Estepona4Devs
+# Costa del Code - Comunidad de Desarrolladores en Estepona
 
 Landing page para conectar desarrolladores en Estepona. Una comunidad local para compartir experiencias, colaborar en proyectos y hacer crecer nuestras habilidades técnicas juntos.
 
@@ -60,6 +60,13 @@ yarn preview
 - ✅ Tipografía monospace para elementos de código
 - ✅ Optimizado para rendimiento
 - ✅ SEO-friendly
+
+## 🤖 IA y contexto
+
+El contexto base para trabajar con IA está en:
+
+- AI_CONTEXT.md
+- .ai/README.md
 
 ## 📄 Licencia
 
