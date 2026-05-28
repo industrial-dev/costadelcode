@@ -46,6 +46,13 @@ Crear una landing page sencilla, bonita y estética para impulsar una comunidad 
 - Gestor de paquetes: Yarn v1.
 - No crear tailwind.config.\* (customización en src/styles/global.css bajo @theme).
 
+## Convención de commits
+
+- Se debe seguir `COMMIT_CONVENTION.md`.
+- Formato obligatorio: `:gitmoji: type(scope): subject`.
+- Scope obligatorio y único.
+- Se permite `BREAKING CHANGE:` en el body.
+
 ## Hosting
 
 - GitHub Pages (sitio estático).

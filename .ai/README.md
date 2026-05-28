@@ -15,3 +15,4 @@ Este directorio centraliza un único contexto para trabajar el proyecto con IA.
 
 - Mantener todo en español.
 - Evitar cambios de stack o tooling sin actualizar AI_CONTEXT.md.
+- Seguir la convención de commits en `COMMIT_CONVENTION.md`.

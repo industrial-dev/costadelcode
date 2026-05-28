@@ -68,6 +68,11 @@ El contexto base para trabajar con IA está en:
 - AI_CONTEXT.md
 - .ai/README.md
 
+## 🧾 Convención de commits
+
+Usamos Conventional Commits con Gitmoji y scope obligatorio. Consulta
+`COMMIT_CONVENTION.md` para el formato y ejemplos.
+
 ## 📄 Licencia
 
 Proyecto open source de la comunidad de desarrolladores de Estepona.
