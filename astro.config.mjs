@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://costadelcode.github.io/',
+  site: 'https://costadelcode.dev',
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],

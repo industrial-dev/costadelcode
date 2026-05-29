@@ -26,6 +26,20 @@ yarn build
 
 El sitio estático se generará en la carpeta `/dist`
 
+## 🚢 Despliegue
+
+El repositorio está configurado para desplegar automáticamente en **GitHub Pages** con el workflow:
+
+- `.github/workflows/deploy.yml`
+
+El despliegue se ejecuta cuando hay cambios en `main` (o manualmente desde Actions).
+
+### Requisitos en GitHub
+
+1. Ir a **Settings → Pages**.
+2. En **Source**, seleccionar **GitHub Actions**.
+3. Verificar que el dominio `costadelcode.dev` apunte al sitio de GitHub Pages.
+
 ### Vista previa del build
 
 ```bash
