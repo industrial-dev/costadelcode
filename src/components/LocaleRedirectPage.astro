@@ -18,6 +18,10 @@ interface Props {
 const { lang, title, description, heading, body, ctaLabel } = Astro.props;
 const redirectPath = localeConfig.paths.es;
 const currentPath = Astro.url.pathname;
+const redirectHref = `${import.meta.env.BASE_URL.replace(
+  /\/$/,
+  ''
+)}/${redirectPath.replace(/^\//, '')}`;
 ---
 
 <BaseLayout
@@ -47,7 +51,7 @@ const currentPath = Astro.url.pathname;
       </p>
       <div class="mt-6 flex">
         <a
-          href={redirectPath}
+          href={redirectHref}
           class="inline-flex items-center justify-center rounded-full border border-ink-950 bg-ink-950 px-5 py-3 text-sm font-semibold text-cream-50 transition hover:bg-[rgb(17_17_17/0.9)]"
         >
           {ctaLabel}
@@ -56,7 +60,7 @@ const currentPath = Astro.url.pathname;
     </div>
   </main>
 
-  <script is:inline define:vars={{ currentPath, redirectPath }}>
+  <script is:inline define:vars={{ currentPath, redirectHref }}>
     const normalizePathname = (pathname) => {
       const normalized = pathname
         .replace(/\/index\.html$/, '')
@@ -67,7 +71,7 @@ const currentPath = Astro.url.pathname;
 
     const sourcePath = normalizePathname(currentPath);
     const currentLocationPath = normalizePathname(window.location.pathname);
-    const targetUrl = new URL(redirectPath, window.location.origin);
+    const targetUrl = new URL(redirectHref, window.location.origin);
 
     if (
       currentLocationPath === sourcePath &&
