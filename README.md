@@ -34,11 +34,16 @@ El repositorio está configurado para desplegar automáticamente en **GitHub Pag
 
 El despliegue se ejecuta cuando hay cambios en `main` (o manualmente desde Actions).
 
+### URL publicada
+
+La web queda publicada en:
+
+- `https://industrial-dev.github.io/costadelcode/`
+
 ### Requisitos en GitHub
 
 1. Ir a **Settings → Pages**.
 2. En **Source**, seleccionar **GitHub Actions**.
-3. Verificar que el dominio `costadelcode.dev` apunte al sitio de GitHub Pages.
 
 ### Vista previa del build
 
