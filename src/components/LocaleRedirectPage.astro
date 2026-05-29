@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  redirectAlternates,
+  localeConfig,
+  type LocaleCode,
+} from '../data/i18n';
+
+interface Props {
+  lang: LocaleCode;
+  title: string;
+  description: string;
+  heading: string;
+  body: string;
+  ctaLabel: string;
+}
+
+const { lang, title, description, heading, body, ctaLabel } = Astro.props;
+const redirectPath = localeConfig.paths.es;
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={description}
+  canonicalPath={redirectPath}
+  alternates={redirectAlternates}
+  robots="noindex,follow"
+>
+  <main class="mx-auto w-[min(1120px,calc(100%-2rem))] py-20">
+    <div
+      class="mx-auto mt-16 max-w-2xl rounded-[1.75rem] border border-(--border-soft) bg-[rgb(255_255_255/0.52)] p-8 shadow-(--shadow-card) backdrop-blur-sm"
+    >
+      <p
+        class="font-display text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-stone-500"
+      >
+        Costa del Code
+      </p>
+      <h1
+        class="mt-4 font-display text-4xl leading-tight font-semibold tracking-[-0.03em] text-ink-950 md:text-5xl"
+      >
+        {heading}
+      </h1>
+      <p class="mt-4 text-[1.02rem] leading-8 text-[rgb(35_33_29/0.78)]">
+        {body}
+      </p>
+      <div class="mt-6 flex">
+        <a
+          href={redirectPath}
+          class="inline-flex items-center justify-center rounded-full border border-ink-950 bg-ink-950 px-5 py-3 text-sm font-semibold text-cream-50 transition hover:bg-[rgb(17_17_17/0.9)]"
+        >
+          {ctaLabel}
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script is:inline define:vars={{ currentPath, redirectPath }}>
+    const normalizePathname = (pathname) => {
+      const normalized = pathname
+        .replace(/\/index\.html$/, '')
+        .replace(/\/+$/, '');
+
+      return normalized === '' ? '/' : `${normalized}/`;
+    };
+
+    const sourcePath = normalizePathname(currentPath);
+    const currentLocationPath = normalizePathname(window.location.pathname);
+    const targetUrl = new URL(redirectPath, window.location.origin);
+
+    if (
+      currentLocationPath === sourcePath &&
+      currentLocationPath !== normalizePathname(targetUrl.pathname)
+    ) {
+      targetUrl.search = window.location.search;
+      targetUrl.hash = window.location.hash;
+      window.location.replace(targetUrl.toString());
+    }
+  </script>
+</BaseLayout>

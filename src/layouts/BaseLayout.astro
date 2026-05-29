@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+import { localeMeta, type LocaleCode } from '../data/i18n';
+
+interface Props {
+  lang: LocaleCode;
+  title: string;
+  description: string;
+  canonicalPath: string;
+  alternates: Record<string, string>;
+  robots?: string;
+}
+
+const {
+  lang,
+  title,
+  description,
+  canonicalPath,
+  alternates,
+  robots = 'index,follow',
+} = Astro.props;
+
+const locale = localeMeta[lang];
+const canonicalUrl = Astro.site
+  ? new URL(canonicalPath, Astro.site).href
+  : null;
+const alternateUrls = Astro.site
+  ? Object.entries(alternates).map(([hreflang, path]) => ({
+      hreflang,
+      href: new URL(path, Astro.site).href,
+    }))
+  : [];
+const ogLocale = locale.ogLocale;
+---
+
+<!doctype html>
+<html lang={locale.htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content={robots} />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    {
+      alternateUrls.map(({ hreflang, href }) => (
+        <link rel="alternate" hreflang={hreflang} href={href} />
+      ))
+    }
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="antialiased">
+    <slot />
+  </body>
+</html>

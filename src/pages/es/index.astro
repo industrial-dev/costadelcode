@@ -1,0 +1,18 @@
+---
+import HomeWireframe from '../../components/HomeWireframe.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { homeContent } from '../../data/home-content';
+import { localeAlternates, localeConfig } from '../../data/i18n';
+
+const content = homeContent.es;
+---
+
+<BaseLayout
+  lang="es"
+  title={content.meta.title}
+  description={content.meta.description}
+  canonicalPath={localeConfig.paths.es}
+  alternates={localeAlternates.es}
+>
+  <HomeWireframe locale="es" />
+</BaseLayout>

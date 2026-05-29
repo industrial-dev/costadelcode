@@ -1,5 +1,104 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=VT323&display=swap');
+@import 'tailwindcss';
 
 @theme {
-  --font-mono: Monaco, 'Courier New', monospace;
+  --font-sans: 'Manrope', 'Segoe UI', sans-serif;
+  --font-display: 'Chakra Petch', 'Segoe UI', sans-serif;
+  --font-mono: 'VT323', 'Courier New', monospace;
+
+  --color-cream-50: #f6f1e8;
+  --color-cream-100: #efe8dd;
+  --color-cream-200: #e3dacc;
+  --color-ink-950: #111111;
+  --color-ink-800: #23211d;
+  --color-stone-500: #6f675d;
+  --color-stone-300: #cfc3b2;
+  --color-accent-500: #f3d458;
+  --color-accent-600: #e7c53c;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --page-background: #f6f1e8;
+    --border-soft: rgb(35 33 29 / 0.14);
+    --shadow-soft: 0 18px 40px rgb(17 17 17 / 0.05);
+    --shadow-card: 0 12px 30px rgb(17 17 17 / 0.04);
+    --noise-lines: linear-gradient(
+      180deg,
+      rgb(17 17 17 / 0.025) 0,
+      rgb(17 17 17 / 0.025) 1px,
+      transparent 1px,
+      transparent 7px
+    );
+  }
+
+  * {
+    box-sizing: border-box;
+    border-color: var(--border-soft);
+  }
+
+  html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100%;
+    margin: 0;
+    font-family: var(--font-sans);
+    letter-spacing: -0.01em;
+    background:
+      linear-gradient(
+        180deg,
+        rgb(255 255 255 / 0.24) 0%,
+        rgb(255 255 255 / 0) 20%
+      ),
+      var(--page-background);
+    color: var(--color-ink-800);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.28), transparent 18%),
+      radial-gradient(
+        circle at top left,
+        rgb(255 255 255 / 0.36),
+        transparent 34%
+      ),
+      radial-gradient(
+        circle at 85% 12%,
+        rgb(243 212 88 / 0.09),
+        transparent 18%
+      ),
+      var(--noise-lines);
+    opacity: 0.72;
+  }
+
+  ::selection {
+    background: rgb(243 212 88 / 0.55);
+    color: var(--color-ink-950);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
