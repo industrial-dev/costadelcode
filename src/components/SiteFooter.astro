@@ -1,0 +1,78 @@
+---
+import type { NavItem, SocialLink } from '../data/site-content';
+import { withBasePath } from '../utils/paths';
+
+interface Props {
+  brand: string;
+  tagline: string;
+  nav: NavItem[];
+  social: SocialLink[];
+  footer: {
+    note: string;
+    legal: string;
+    navTitle: string;
+    socialTitle: string;
+  };
+}
+
+const { brand, tagline, nav, social, footer } = Astro.props as Props;
+---
+
+<footer class="border-t border-(--border-soft) py-12">
+  <div class="shell grid gap-10 lg:grid-cols-[1.3fr_0.9fr_0.9fr]">
+    <div class="space-y-4">
+      <p class="font-mono text-2xl text-ink-950">{brand}</p>
+      <p class="body-copy max-w-lg">{tagline}</p>
+      <p class="text-xs uppercase tracking-[0.18em] text-stone-500">
+        {footer.legal}
+      </p>
+    </div>
+
+    <div class="space-y-3">
+      <p
+        class="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500"
+      >
+        {footer.navTitle}
+      </p>
+      <div class="grid gap-2">
+        {
+          nav.map((item) => (
+            <a
+              href={withBasePath(item.href)}
+              class="text-sm font-semibold text-ink-950"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <p
+        class="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500"
+      >
+        {footer.socialTitle}
+      </p>
+      <div class="grid gap-3">
+        {
+          social.map((item) => (
+            <div class="flex items-baseline justify-between gap-4">
+              <a
+                href={withBasePath(item.href)}
+                class="text-sm font-semibold text-ink-950"
+              >
+                {item.label}
+              </a>
+              {item.note && (
+                <span class="text-xs uppercase tracking-[0.14em] text-stone-500">
+                  {item.note}
+                </span>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</footer>

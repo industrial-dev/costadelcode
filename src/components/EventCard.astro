@@ -1,0 +1,61 @@
+---
+import type { EventItem } from '../data/site-content';
+import { withBasePath } from '../utils/paths';
+
+interface Props {
+  event: EventItem;
+  variant?: 'highlight' | 'list';
+  labels?: {
+    date: string;
+    time: string;
+    location: string;
+  };
+}
+
+const { event, variant = 'list', labels } = Astro.props as Props;
+const metaLabels =
+  labels ??
+  ({ date: 'Fecha', time: 'Hora', location: 'Lugar' } satisfies NonNullable<
+    Props['labels']
+  >);
+const cardClass = variant === 'highlight' ? 'card p-8' : 'card p-6';
+const titleClass = variant === 'highlight' ? 'text-3xl' : 'text-2xl';
+---
+
+<article class={`${cardClass} space-y-5`}>
+  <div class="flex flex-wrap items-center gap-2">
+    <span class="tag">{event.meta}</span>
+    {event.tags.map((tag: string) => <span class="tag tag-accent">{tag}</span>)}
+  </div>
+  <div>
+    <h3
+      class={`font-display font-semibold tracking-[-0.03em] text-ink-950 ${titleClass}`}
+    >
+      {event.title}
+    </h3>
+    <p class="body-copy mt-3">{event.description}</p>
+  </div>
+  <div class="grid gap-3 text-sm text-stone-500 sm:grid-cols-2">
+    <div>
+      <p class="text-xs uppercase tracking-[0.18em] text-stone-500">
+        {metaLabels.date}
+      </p>
+      <p class="font-semibold text-ink-950">{event.date}</p>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-[0.18em] text-stone-500">
+        {metaLabels.time}
+      </p>
+      <p class="font-semibold text-ink-950">{event.time}</p>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-[0.18em] text-stone-500">
+        {metaLabels.location}
+      </p>
+      <p class="font-semibold text-ink-950">{event.location}</p>
+    </div>
+  </div>
+  <a href={withBasePath(event.ctaHref)} class="button button-secondary w-fit">
+    {event.ctaLabel}
+  </a>
+</article>

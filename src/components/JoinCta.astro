@@ -1,0 +1,48 @@
+---
+import type { CtaLink, SharedContent } from '../data/site-content';
+import { getButtonVariantClass } from '../utils/buttons';
+import { withBasePath } from '../utils/paths';
+
+interface Props {
+  join: SharedContent['join'];
+  links: CtaLink[];
+  align?: 'left' | 'center';
+}
+
+const { join, links, align } = Astro.props as Props;
+const alignValue = align ?? 'center';
+const alignClass = alignValue === 'center' ? 'text-center' : 'text-left';
+const containerClass =
+  alignValue === 'center' ? 'mx-auto max-w-3xl' : 'max-w-3xl';
+---
+
+<section class="section border-t border-(--border-soft)">
+  <div class="shell-narrow">
+    <div class={`${containerClass} ${alignClass}`.trim()}>
+      <p class="eyebrow">{join.eyebrow}</p>
+      <p
+        class="mt-4 inline-flex rounded-full border border-[rgb(17_17_17/0.08)] bg-[rgb(255_255_255/0.66)] px-4 py-2 font-mono text-[1.05rem] text-ink-950 shadow-(--shadow-soft)"
+      >
+        {join.code}
+      </p>
+      <h2 class="title-lg mt-6">{join.title}</h2>
+      <p class="body-copy mt-5">{join.description}</p>
+      <div
+        class={`mt-8 flex flex-col gap-3 ${
+          alignValue === 'center' ? 'items-center sm:flex-row' : 'sm:flex-row'
+        }`}
+      >
+        {
+          links.map((link: CtaLink) => (
+            <a
+              href={withBasePath(link.href)}
+              class={`button ${getButtonVariantClass(link.variant)}`}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

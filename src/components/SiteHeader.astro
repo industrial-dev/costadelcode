@@ -1,0 +1,96 @@
+---
+import type { CtaLink, NavItem } from '../data/site-content';
+import { getButtonVariantClass } from '../utils/buttons';
+import { withBasePath } from '../utils/paths';
+
+interface Props {
+  brand: string;
+  nav: NavItem[];
+  cta: CtaLink;
+  menuLabel: string;
+}
+
+const { brand, nav, cta, menuLabel } = Astro.props as Props;
+const homeHref = withBasePath(nav[0]?.href ?? '/');
+const ctaClass = getButtonVariantClass(cta.variant);
+---
+
+<header
+  class="site-header sticky top-0 z-40 border-b border-(--border-soft) bg-[rgb(246_241_232/0.92)] backdrop-blur-[18px] transition duration-180"
+  data-site-header
+  data-condensed="false"
+>
+  <nav
+    class="shell flex min-h-19 items-center justify-between gap-4 transition-[min-height] duration-180 data-[condensed=true]:min-h-16"
+    data-site-nav
+    aria-label="Primary"
+  >
+    <a
+      href={homeHref}
+      class="font-mono text-[clamp(1.5rem,1.3rem+0.6vw,2rem)] leading-none whitespace-nowrap text-ink-950"
+    >
+      {brand}
+    </a>
+
+    <div class="hidden items-center gap-6 md:flex">
+      {
+        nav.map((item) => (
+          <a href={withBasePath(item.href)} class="nav-link">
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <a
+      href={withBasePath(cta.href)}
+      class={`button ${ctaClass} hidden md:inline-flex`}
+    >
+      {cta.label}
+    </a>
+
+    <details class="relative md:hidden">
+      <summary class="button button-ghost px-4 py-2">{menuLabel}</summary>
+      <div class="menu-panel">
+        <div class="grid gap-3">
+          {
+            nav.map((item) => (
+              <a href={withBasePath(item.href)} class="menu-link">
+                {item.label}
+              </a>
+            ))
+          }
+          <a href={withBasePath(cta.href)} class={`button ${ctaClass} w-full`}>
+            {cta.label}
+          </a>
+        </div>
+      </div>
+    </details>
+  </nav>
+</header>
+
+<script>
+  const siteHeader = document.querySelector('[data-site-header]');
+  const siteNav = document.querySelector('[data-site-nav]');
+
+  if (siteHeader instanceof HTMLElement && siteNav instanceof HTMLElement) {
+    let lastCondensed = window.scrollY > 20;
+
+    const syncHeader = () => {
+      const condensed = window.scrollY > 20;
+
+      if (condensed === lastCondensed) {
+        return;
+      }
+
+      lastCondensed = condensed;
+      siteHeader.dataset.condensed = condensed ? 'true' : 'false';
+      siteNav.dataset.condensed = condensed ? 'true' : 'false';
+    };
+
+    siteHeader.dataset.condensed = lastCondensed ? 'true' : 'false';
+    siteNav.dataset.condensed = lastCondensed ? 'true' : 'false';
+    syncHeader();
+    window.addEventListener('scroll', syncHeader, { passive: true });
+  }
+</script>

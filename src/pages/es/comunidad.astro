@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import JoinCta from '../../components/JoinCta.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import { siteContent } from '../../data/site-content';
+import { pageAlternates, pagePaths } from '../../data/i18n';
+import { withBasePath } from '../../utils/paths';
+
+const content = siteContent.es;
+const { shared, pages } = content;
+const community = pages.community;
+---
+
+<BaseLayout
+  lang="es"
+  title={community.meta.title}
+  description={community.meta.description}
+  canonicalPath={pagePaths.es.community}
+  alternates={pageAlternates('community')}
+>
+  <SiteHeader
+    brand={shared.brand}
+    nav={shared.nav}
+    cta={shared.primaryCta}
+    menuLabel={shared.labels.menu}
+  />
+
+  <main class="relative">
+    <section class="section pt-14">
+      <div
+        class="shell grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]"
+      >
+        <div class="max-w-2xl">
+          <p class="eyebrow">{community.hero.eyebrow}</p>
+          <h1 class="title-xl mt-6">{community.hero.title}</h1>
+          <p class="mt-6 text-xl leading-8 text-ink-800 md:text-2xl">
+            {community.hero.intro}
+          </p>
+          <div class="body-copy mt-6 space-y-4">
+            {community.hero.description.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+        </div>
+
+        <aside class="card p-8">
+          <p class="eyebrow">{community.origin.eyebrow}</p>
+          <h2
+            class="mt-4 font-display text-2xl font-semibold tracking-[-0.03em] text-ink-950"
+          >
+            {community.origin.title}
+          </h2>
+          <p class="body-copy mt-5">{community.origin.description}</p>
+          <p
+            class="mt-6 rounded-2xl border border-[rgb(17_17_17/0.08)] bg-[rgb(255_255_255/0.7)] p-4 text-sm text-ink-950"
+          >
+            {community.origin.founderNote}
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-border">
+      <div
+        class="shell grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]"
+      >
+        <SectionHeading
+          eyebrow={community.purpose.eyebrow}
+          title={community.purpose.title}
+          body={community.purpose.description}
+        />
+        <div class="card p-6">
+          <ul class="space-y-4">
+            {
+              community.purpose.points.map((point) => (
+                <li class="flex gap-3 text-sm text-ink-950">
+                  <span class="mt-1 h-2 w-2 rounded-full bg-accent-500" />
+                  <span>{point}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell space-y-10">
+        <SectionHeading
+          eyebrow={community.pillars.eyebrow}
+          title={community.pillars.title}
+          body={community.pillars.intro}
+        />
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {
+            community.pillars.items.map((pillar, index) => (
+              <article
+                class={`card p-6 reveal ${
+                  index % 3 === 1 ? 'md:translate-y-6' : ''
+                } ${index % 3 === 2 ? 'xl:translate-y-10' : ''}`}
+              >
+                <h3 class="font-display text-2xl font-semibold tracking-[-0.03em] text-ink-950">
+                  {pillar.title}
+                </h3>
+                <p class="body-copy mt-3">{pillar.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-border">
+      <div class="shell space-y-10">
+        <SectionHeading
+          eyebrow={community.setups.eyebrow}
+          title={community.setups.title}
+          body={community.setups.intro}
+        />
+        <div class="grid gap-6 lg:grid-cols-2">
+          {
+            community.setups.items.map((setup) => (
+              <article class="card overflow-hidden">
+                <div class="bg-[rgb(255_255_255/0.7)] p-6">
+                  <figure class="space-y-3">
+                    <div class="overflow-hidden rounded-2xl border border-[rgb(17_17_17/0.08)] bg-white">
+                      <img
+                        src={withBasePath(setup.imageSrc)}
+                        alt={setup.imageAlt}
+                        class="h-56 w-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <figcaption class="text-xs uppercase tracking-[0.18em] text-stone-500">
+                      {setup.imageLabel}
+                    </figcaption>
+                  </figure>
+                  <div class="mt-6">
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                      <div>
+                        <p class="text-xs uppercase tracking-[0.18em] text-stone-500">
+                          {setup.name}
+                        </p>
+                        <h3 class="mt-2 font-display text-2xl font-semibold tracking-[-0.03em] text-ink-950">
+                          {setup.title}
+                        </h3>
+                      </div>
+                      <span class="tag">{setup.role}</span>
+                    </div>
+                    <p class="body-copy mt-4">{setup.roast}</p>
+                    <div class="mt-5 flex flex-wrap gap-2">
+                      {setup.highlights.map((item) => (
+                        <span class="tag tag-accent">{item}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+        <a
+          href={community.setups.cta.href}
+          class="button button-secondary w-fit"
+        >
+          {community.setups.cta.label}
+        </a>
+      </div>
+    </section>
+
+    <JoinCta join={shared.join} links={shared.ctaLinks} />
+  </main>
+
+  <SiteFooter
+    brand={shared.brand}
+    tagline={shared.tagline}
+    nav={shared.nav}
+    social={shared.social}
+    footer={shared.footer}
+  />
+</BaseLayout>

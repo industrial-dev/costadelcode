@@ -5,6 +5,7 @@ import {
   localeConfig,
   type LocaleCode,
 } from '../data/i18n';
+import { withBasePath } from '../utils/paths';
 
 interface Props {
   lang: LocaleCode;
@@ -18,10 +19,7 @@ interface Props {
 const { lang, title, description, heading, body, ctaLabel } = Astro.props;
 const redirectPath = localeConfig.paths.es;
 const currentPath = Astro.url.pathname;
-const redirectHref = `${import.meta.env.BASE_URL.replace(
-  /\/$/,
-  ''
-)}/${redirectPath.replace(/^\//, '')}`;
+const redirectHref = withBasePath(redirectPath);
 ---
 
 <BaseLayout
