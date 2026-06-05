@@ -228,6 +228,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     background: var(--page-background);
   }
 
@@ -264,6 +265,18 @@
       rgb(255 255 255 / 0.7),
       transparent 70%
     );
+  }
+}
+
+@media (max-width: 767px) {
+  @layer components {
+    .site-intro {
+      background: #000;
+    }
+
+    .site-intro__video {
+      object-fit: contain;
+    }
   }
 }
 
