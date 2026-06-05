@@ -57,11 +57,54 @@ yarn preview
 - **[Tailwind CSS](https://tailwindcss.com)** - Framework CSS utility-first v4 con plugin de Vite
 - **Yarn** - Gestor de paquetes del proyecto
 
+## 🎬 Video / Remotion
+
+El proyecto de Remotion vive de forma independiente dentro de `video/`, separado de la app Astro.
+
+### Abrir el editor de Remotion
+
+```bash
+cd video
+yarn install
+yarn studio
+```
+
+### Renderizar la intro base
+
+```bash
+cd video
+yarn render:intro
+```
+
+El video se genera en `video/out/CostaDelCodeIntro.mp4`.
+
+### Renderizar un frame fijo para revisar diseño
+
+```bash
+cd video
+yarn still:intro
+```
+
+La composición inicial está en:
+
+- `video/src/Root.tsx`
+- `video/src/IntroComposition.tsx`
+
+Puntos importantes al trabajar con Remotion:
+
+- No uses transiciones CSS ni clases de animación de Tailwind dentro de Remotion.
+- Anima siempre con `useCurrentFrame()`, `interpolate()` y `spring()`.
+- Si añades assets para la intro, colócalos en `public/` y cárgalos con `staticFile()`.
+
 ## 📝 Estructura del Proyecto
 
 ```
 /
 ├── public/          # Archivos estáticos (favicon, etc.)
+├── video/           # Proyecto independiente de Remotion
+│   ├── src/
+│   ├── out/
+│   └── package.json
 ├── src/
 │   ├── pages/       # Páginas del sitio
 │   │   └── index.astro
