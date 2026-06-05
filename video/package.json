@@ -1,0 +1,23 @@
+{
+  "name": "costa-del-code-video",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "yarn@1.22.22",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render:intro": "remotion render src/index.ts CostaDelCodeIntro out/CostaDelCodeIntro.mp4",
+    "still:intro": "remotion still src/index.ts CostaDelCodeIntro out/CostaDelCodeIntro.jpg --frame=45 --scale=0.5"
+  },
+  "dependencies": {
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "remotion": "^4.0.472"
+  },
+  "devDependencies": {
+    "@remotion/cli": "^4.0.472",
+    "@types/react": "^19.2.16",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^6.0.3"
+  }
+}
