@@ -31,7 +31,8 @@ const pixelShadow = [
 export const IntroComposition = ({ title }: IntroCompositionProps) => {
   const frame = useCurrentFrame();
   const { fps, width } = useVideoConfig();
-  const finalWord = title.split(' ').at(-1) ?? 'Code';
+  const titleWords = title.split(' ');
+  const finalWord = titleWords[titleWords.length - 1] ?? 'Code';
   const fontSize = Math.min(width * 0.092, 148);
   const wordGapEm = 0.28;
   const solWidthCh = 3.4;

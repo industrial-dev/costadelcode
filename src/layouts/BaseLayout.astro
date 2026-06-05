@@ -10,6 +10,7 @@ interface Props {
   canonicalPath: string;
   alternates: Record<string, string>;
   robots?: string;
+  showIntro?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   canonicalPath,
   alternates,
   robots = 'index,follow',
+  showIntro = false,
 } = Astro.props;
 
 const locale = localeMeta[lang];
@@ -33,6 +35,83 @@ const alternateUrls = Astro.site
   : [];
 const ogLocale = locale.ogLocale;
 const faviconPath = withBasePath('/favicon.svg');
+const introVideoPath = withBasePath('/intro/costa-del-code-intro.mp4');
+const introDecisionScript = `
+(() => {
+  const storageKey = 'cdc-intro-seen-v2';
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const forceIntro = new URLSearchParams(window.location.search).get('intro') === '1';
+  let hasSeenIntro = false;
+
+  try {
+    hasSeenIntro = window.localStorage.getItem(storageKey) === '1';
+  } catch {
+    hasSeenIntro = false;
+  }
+
+  if (forceIntro) {
+    document.documentElement.dataset.intro = 'pending';
+    return;
+  }
+
+  if (!prefersReducedMotion && !hasSeenIntro) {
+    document.documentElement.dataset.intro = 'pending';
+    return;
+  }
+
+  document.documentElement.dataset.intro = 'done';
+})();`;
+const introPlaybackScript = `
+(() => {
+  const storageKey = 'cdc-intro-seen-v2';
+  const root = document.documentElement;
+  const overlay = document.getElementById('site-intro');
+  const video = document.getElementById('site-intro-video');
+  const shell = document.getElementById('page-shell');
+
+  if (!overlay || !video || !shell) {
+    return;
+  }
+
+  const finishIntro = () => {
+    root.dataset.intro = 'done';
+    overlay.dataset.state = 'exiting';
+
+    try {
+      window.localStorage.setItem(storageKey, '1');
+    } catch {
+      // Ignore storage failures and just continue into the site.
+    }
+
+    window.setTimeout(() => {
+      overlay.hidden = true;
+    }, 520);
+  };
+
+  if (root.dataset.intro !== 'pending') {
+    overlay.hidden = true;
+    return;
+  }
+
+  overlay.hidden = false;
+  overlay.dataset.state = 'active';
+
+  if (!video.currentSrc && video.dataset.src) {
+    video.src = video.dataset.src;
+    video.load();
+  }
+
+  const playPromise = video.play();
+
+  if (playPromise && typeof playPromise.catch === 'function') {
+    playPromise.catch(() => {
+      finishIntro();
+    });
+  }
+
+  video.addEventListener('ended', finishIntro, { once: true });
+  video.addEventListener('error', finishIntro, { once: true });
+})();`;
 ---
 
 <!doctype html>
@@ -57,9 +136,27 @@ const faviconPath = withBasePath('/favicon.svg');
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
 
     <link rel="icon" type="image/svg+xml" href={faviconPath} />
+    {showIntro && <script is:inline set:html={introDecisionScript} />}
     <title>{title}</title>
   </head>
   <body class="antialiased">
-    <slot />
+    {
+      showIntro && (
+        <div id="site-intro" class="site-intro" hidden aria-hidden="true">
+          <video
+            id="site-intro-video"
+            class="site-intro__video"
+            data-src={introVideoPath}
+            muted
+            playsinline
+            preload="none"
+          />
+        </div>
+      )
+    }
+    <div id="page-shell" data-intro-shell>
+      <slot />
+    </div>
+    {showIntro && <script is:inline set:html={introPlaybackScript} />}
   </body>
 </html>
