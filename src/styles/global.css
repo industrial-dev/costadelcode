@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Silkscreen:wght@700&family=VT323&display=swap');
 @import 'tailwindcss';
 
 @theme {
   --font-sans: 'Manrope', 'Segoe UI', sans-serif;
   --font-display: 'Chakra Petch', 'Segoe UI', sans-serif;
   --font-mono: 'VT323', 'Courier New', monospace;
+  --font-logo: 'Silkscreen', 'VT323', 'Courier New', monospace;
 
   --color-cream-50: #f6f1e8;
   --color-cream-100: #efe8dd;
