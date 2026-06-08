@@ -1,6 +1,6 @@
 ---
 import type { CtaLink, NavItem } from '../data/site-content';
-import { getButtonVariantClass } from '../utils/buttons';
+import CtaButton from './CtaButton.astro';
 import { withBasePath } from '../utils/paths';
 
 interface Props {
@@ -12,7 +12,6 @@ interface Props {
 
 const { brand, nav, cta, menuLabel } = Astro.props as Props;
 const homeHref = withBasePath(nav[0]?.href ?? '/');
-const ctaClass = getButtonVariantClass(cta.variant);
 const firstBrandHighlight = brand.indexOf('C');
 const secondBrandHighlight = brand.indexOf('C', firstBrandHighlight + 1);
 const canHighlightBrand = firstBrandHighlight >= 0 && secondBrandHighlight >= 0;
@@ -72,12 +71,7 @@ const brandSegments = canHighlightBrand
       }
     </div>
 
-    <a
-      href={withBasePath(cta.href)}
-      class={`button ${ctaClass} hidden md:inline-flex`}
-    >
-      {cta.label}
-    </a>
+    <CtaButton link={cta} class="hidden md:inline-flex" />
 
     <details class="relative md:hidden">
       <summary class="button button-ghost px-4 py-2">{menuLabel}</summary>
@@ -90,9 +84,7 @@ const brandSegments = canHighlightBrand
               </a>
             ))
           }
-          <a href={withBasePath(cta.href)} class={`button ${ctaClass} w-full`}>
-            {cta.label}
-          </a>
+          <CtaButton link={cta} class="w-full" />
         </div>
       </div>
     </details>

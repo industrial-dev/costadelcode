@@ -149,6 +149,10 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition duration-150;
   }
 
+  .button-icon {
+    @apply h-5 w-5 shrink-0;
+  }
+
   .button-primary {
     @apply border-ink-950 bg-ink-950 text-cream-50 hover:bg-[rgb(17_17_17/0.9)];
   }
@@ -159,6 +163,37 @@
 
   .button-ghost {
     @apply border-transparent bg-[rgb(255_255_255/0.14)] text-ink-950 hover:border-(--border-soft);
+  }
+
+  .button-whatsapp {
+    @apply border-transparent bg-[#25D366] text-ink-950 shadow-(--shadow-card) hover:bg-[#1FC15D];
+  }
+
+  .button-telegram {
+    @apply border-transparent bg-[#26A5E4] text-ink-950 shadow-(--shadow-card) hover:bg-[#229ED9];
+  }
+
+  .button-instagram {
+    @apply border-transparent text-white shadow-(--shadow-card);
+    --button-instagram-gradient: linear-gradient(
+      135deg,
+      #405de6 0%,
+      #833ab4 22%,
+      #c13584 42%,
+      #e1306c 58%,
+      #fd1d1d 74%,
+      #f58529 100%
+    );
+    background:
+      linear-gradient(180deg, rgb(17 17 17 / 0.08), rgb(17 17 17 / 0.18)),
+      var(--button-instagram-gradient);
+    text-shadow: 0 1px 2px rgb(17 17 17 / 0.32);
+  }
+
+  .button-instagram:hover {
+    background:
+      linear-gradient(180deg, rgb(17 17 17 / 0.02), rgb(17 17 17 / 0.1)),
+      var(--button-instagram-gradient);
   }
 
   .nav-link {

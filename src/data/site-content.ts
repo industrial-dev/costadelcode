@@ -10,10 +10,13 @@ export type NavItem = {
   href: string;
 };
 
+export type SocialPlatform = 'whatsapp' | 'telegram' | 'instagram';
+
 export type CtaLink = {
   label: string;
   href: string;
   variant?: 'primary' | 'secondary' | 'ghost';
+  platform?: SocialPlatform;
 };
 
 export type SocialLink = {
@@ -247,6 +250,27 @@ const sharedLinks = {
   talks: 'mailto:hola@costadelcode.com',
 } as const;
 
+const buildSocialCtaLinks = (): CtaLink[] => [
+  {
+    label: 'WhatsApp',
+    href: sharedLinks.whatsapp,
+    variant: 'primary',
+    platform: 'whatsapp',
+  },
+  {
+    label: 'Telegram',
+    href: sharedLinks.telegram,
+    variant: 'secondary',
+    platform: 'telegram',
+  },
+  {
+    label: 'Instagram',
+    href: sharedLinks.instagram,
+    variant: 'ghost',
+    platform: 'instagram',
+  },
+];
+
 const navPages = [
   'home',
   'community',
@@ -277,12 +301,9 @@ const esContent: SiteContent = {
       label: 'Unirse a WhatsApp',
       href: sharedLinks.whatsapp,
       variant: 'primary',
+      platform: 'whatsapp',
     },
-    ctaLinks: [
-      { label: 'WhatsApp', href: sharedLinks.whatsapp, variant: 'primary' },
-      { label: 'Telegram', href: sharedLinks.telegram, variant: 'secondary' },
-      { label: 'Instagram', href: sharedLinks.instagram, variant: 'ghost' },
-    ],
+    ctaLinks: buildSocialCtaLinks(),
     labels: {
       date: 'Fecha',
       time: 'Hora',
@@ -345,16 +366,19 @@ const esContent: SiteContent = {
           label: 'Unirme a WhatsApp',
           href: sharedLinks.whatsapp,
           variant: 'primary',
+          platform: 'whatsapp',
         },
         secondaryCta: {
           label: 'Unirme a Telegram',
           href: sharedLinks.telegram,
           variant: 'secondary',
+          platform: 'telegram',
         },
         tertiaryCta: {
           label: 'Ver Instagram',
           href: sharedLinks.instagram,
           variant: 'ghost',
+          platform: 'instagram',
         },
         founderCard: {
           eyebrow: '¿Quién inició este proyecto?',
@@ -790,15 +814,7 @@ const esContent: SiteContent = {
         title: 'Conecta en el canal que prefieras.',
         description:
           'WhatsApp para el grupo principal, Telegram para avisos y Instagram para ver la parte humana.',
-        ctaLinks: [
-          { label: 'WhatsApp', href: sharedLinks.whatsapp, variant: 'primary' },
-          {
-            label: 'Telegram',
-            href: sharedLinks.telegram,
-            variant: 'secondary',
-          },
-          { label: 'Instagram', href: sharedLinks.instagram, variant: 'ghost' },
-        ],
+        ctaLinks: buildSocialCtaLinks(),
       },
     },
   },
@@ -819,12 +835,9 @@ const enContent: SiteContent = {
       label: 'Join WhatsApp',
       href: sharedLinks.whatsapp,
       variant: 'primary',
+      platform: 'whatsapp',
     },
-    ctaLinks: [
-      { label: 'WhatsApp', href: sharedLinks.whatsapp, variant: 'primary' },
-      { label: 'Telegram', href: sharedLinks.telegram, variant: 'secondary' },
-      { label: 'Instagram', href: sharedLinks.instagram, variant: 'ghost' },
-    ],
+    ctaLinks: buildSocialCtaLinks(),
     labels: {
       date: 'Date',
       time: 'Time',
@@ -881,16 +894,19 @@ const enContent: SiteContent = {
           label: 'Join WhatsApp',
           href: sharedLinks.whatsapp,
           variant: 'primary',
+          platform: 'whatsapp',
         },
         secondaryCta: {
           label: 'Join Telegram',
           href: sharedLinks.telegram,
           variant: 'secondary',
+          platform: 'telegram',
         },
         tertiaryCta: {
           label: 'Follow on Instagram',
           href: sharedLinks.instagram,
           variant: 'ghost',
+          platform: 'instagram',
         },
         founderCard: {
           eyebrow: 'Founder note',
@@ -1313,15 +1329,7 @@ const enContent: SiteContent = {
         title: 'Connect on the channel you prefer.',
         description:
           'WhatsApp for the main group, Telegram for updates, Instagram for the human side.',
-        ctaLinks: [
-          { label: 'WhatsApp', href: sharedLinks.whatsapp, variant: 'primary' },
-          {
-            label: 'Telegram',
-            href: sharedLinks.telegram,
-            variant: 'secondary',
-          },
-          { label: 'Instagram', href: sharedLinks.instagram, variant: 'ghost' },
-        ],
+        ctaLinks: buildSocialCtaLinks(),
       },
     },
   },
