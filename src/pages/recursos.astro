@@ -1,29 +1,28 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import JoinCta from '../../components/JoinCta.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import { siteContent } from '../../data/site-content';
-import { pageAlternates, pagePaths } from '../../data/i18n';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import JoinCta from '../components/JoinCta.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { siteContent } from '../data/site-content';
+import { pagePaths } from '../data/i18n';
 
-const content = siteContent.en;
+const content = siteContent;
 const { shared, pages } = content;
 const resources = pages.resources;
 ---
 
 <BaseLayout
-  lang="en"
   title={resources.meta.title}
   description={resources.meta.description}
-  canonicalPath={pagePaths.en.resources}
-  alternates={pageAlternates('resources')}
+  canonicalPath={pagePaths.resources}
 >
   <SiteHeader
     brand={shared.brand}
     nav={shared.nav}
     cta={shared.primaryCta}
     menuLabel={shared.labels.menu}
+    navigationLabel={shared.labels.navigation}
   />
 
   <main class="relative">
