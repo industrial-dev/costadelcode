@@ -1,0 +1,50 @@
+---
+import type { PillarIconName } from '../data/site-content';
+
+interface Props {
+  icon: PillarIconName;
+}
+
+const iconPaths: Record<PillarIconName, string[]> = {
+  networking: [
+    'M16 20a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm16 0a6 6 0 1 0 0-12 6 6 0 0 0 0 12ZM9 39v-3a7 7 0 0 1 7-7h0a7 7 0 0 1 7 7v3m2 0v-3a7 7 0 0 1 7-7h0a7 7 0 0 1 7 7v3M20 25h8',
+  ],
+  collaboration: [
+    'M8 26 20 14l8 8 4-4 8 8-12 12-8-8-4 4-8-8Z',
+    'm20 14-4-4H8v8l4 4m16 16 4 4h8v-8l-4-4',
+  ],
+  trends: [
+    'M8 36h32M12 30l8-8 7 7 11-15',
+    'M31 14h7v7M14 36V24m10 12V26m10 10V18',
+  ],
+  feedback: [
+    'M10 12h28a4 4 0 0 1 4 4v13a4 4 0 0 1-4 4H24l-10 7v-7h-4a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4Z',
+    'm16 23 5 5 11-11',
+  ],
+  opportunities: [
+    'M17 18v-4a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v4M8 22h32v16a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V22Z',
+    'M8 22c4 5 9 7 16 7s12-2 16-7M20 29h8',
+  ],
+  resources: ['M12 8h18l6 6v26H12V8Z', 'M30 8v8h8M18 23h12M18 30h12M18 37h7'],
+};
+
+const { icon } = Astro.props as Props;
+---
+
+<div
+  class="mx-auto flex h-16 w-16 items-center justify-center rounded-[1.35rem] border border-[rgb(17_17_17/0.1)] bg-cream-50 text-ink-950 shadow-[0_14px_28px_rgb(17_17_17/0.08)] transition duration-200 group-hover:-rotate-3 group-hover:scale-105"
+>
+  <svg class="h-8 w-8" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+    {
+      iconPaths[icon].map((path) => (
+        <path
+          d={path}
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      ))
+    }
+  </svg>
+</div>
