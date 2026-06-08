@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaButton from '../components/CtaButton.astro';
 import EventCard from '../components/EventCard.astro';
 import JoinCta from '../components/JoinCta.astro';
 import SectionHeading from '../components/SectionHeading.astro';
@@ -38,24 +39,30 @@ const hero = pages.home.hero;
       >
       </div>
 
-      <div
-        class="shell grid items-start gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]"
-      >
-        <div class="max-w-2xl">
+      <div class="shell">
+        <div class="mx-auto max-w-4xl text-center">
           <p
             class="mt-4 inline-flex rounded-full border border-[rgb(17_17_17/0.08)] bg-[rgb(255_255_255/0.66)] px-4 py-2 font-mono text-[1.05rem] text-ink-950 shadow-(--shadow-soft)"
           >
             {hero.code}
           </p>
           <h1 class="title-xl mt-6">{hero.title}</h1>
-          <p class="mt-6 text-xl leading-8 text-ink-800 md:text-2xl">
+          <p
+            class="mx-auto mt-6 max-w-3xl text-xl leading-8 text-ink-800 md:text-2xl"
+          >
             {hero.intro}
           </p>
-          <div class="body-copy mt-6 space-y-4">
+          <div class="body-copy mx-auto mt-6 max-w-3xl space-y-4">
             {hero.description.map((paragraph) => <p>{paragraph}</p>)}
           </div>
-          <div class="mt-8 flex flex-col gap-3 sm:flex-row"></div>
-          <div class="mt-10 grid gap-3 sm:grid-cols-3">
+          <div
+            class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"
+          >
+            <CtaButton link={hero.primaryCta} />
+            <CtaButton link={hero.secondaryCta} />
+            <CtaButton link={hero.tertiaryCta} />
+          </div>
+          <div class="mx-auto mt-10 grid max-w-4xl gap-3 sm:grid-cols-3">
             {
               hero.stats.map((stat) => (
                 <div class="card p-4">
@@ -71,7 +78,9 @@ const hero = pages.home.hero;
           </div>
         </div>
 
-        <aside class="card p-8 reveal [animation-delay:120ms]">
+        <aside
+          class="card mx-auto mt-10 max-w-3xl p-8 text-left reveal [animation-delay:120ms]"
+        >
           <p class="eyebrow">{hero.founderCard.eyebrow}</p>
           <h2
             class="mt-4 font-display text-2xl font-semibold tracking-[-0.03em] text-ink-950"
