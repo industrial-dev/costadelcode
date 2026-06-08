@@ -30,6 +30,18 @@ export type Pillar = {
   description: string;
 };
 
+export type PillarIconName =
+  | 'networking'
+  | 'collaboration'
+  | 'trends'
+  | 'feedback'
+  | 'opportunities'
+  | 'resources';
+
+export type HomePillar = Pillar & {
+  icon: PillarIconName;
+};
+
 export type ToolkitItem = {
   name: string;
   description: string;
@@ -138,8 +150,7 @@ export type HomePage = {
   pillars: {
     eyebrow: string;
     title: string;
-    intro: string;
-    items: Pillar[];
+    items: HomePillar[];
   };
   eventHighlight: {
     eyebrow: string;
@@ -358,8 +369,7 @@ const esContent: SiteContent = {
       eyebrow: 'Únete a la conversación',
       code: 'git switch -c costadelcode;',
       title: 'Una comunidad social para gente que vive en remoto.',
-      description:
-        'Comparte proyectos, enseña y aprende de otros y encuentra compañía real.',
+      description: 'Comparte, enseña y aprende con compañía real.',
     },
   },
   pages: {
@@ -431,55 +441,38 @@ const esContent: SiteContent = {
       pillars: {
         eyebrow: '¿Por qué sumarte?',
         title: 'Pilares que nos mueven.',
-        intro:
-          'Diseñamos el grupo para aportar valor real: menos ruido, más conexiones y aprendizajes útiles.',
         items: [
           {
-            title: 'Conexiones',
-            description: 'Conoce profesionales tech que trabajan cerca de ti.',
+            title: 'Networking',
+            description: 'Conoce profesionales tech de la zona.',
+            icon: 'networking',
           },
           {
             title: 'Colaboración',
-            description:
-              'Proyectos de código abierto donde practicar y mostrar talento real.',
+            description: 'Participa en proyectos de código abierto.',
+            icon: 'collaboration',
           },
           {
             title: 'Actualidad',
-            description:
-              'Charlas sobre las últimas tendencias en desarrollo de software.',
+            description: 'Comparte charlas, herramientas y tendencias.',
+            icon: 'trends',
           },
           {
-            title: 'Sintonía',
-            description:
-              'Habla de tus proyectos con gente que entiende el contexto.',
-          },
-          {
-            title: 'Descubrimiento',
-            description:
-              'Compartimos tecnologías, configuraciones, trucos de IDE y flujos eficientes.',
-          },
-          {
-            title: 'Retroalimentación',
-            description:
-              'Valida ideas y recibe opiniones sin filtros ni postureo.',
+            title: 'Feedback',
+            description: 'Valida ideas, enseña avances y recibe opiniones.',
+            icon: 'feedback',
           },
           {
             title: 'Oportunidades',
-            description: 'Acceso a ofertas locales, freelos y recomendaciones.',
-          },
-          {
-            title: 'Clientes',
             description:
-              'Conecta con negocios locales que buscan soluciones tech.',
+              'Descubre personas, colaboraciones y posibles clientes.',
+            icon: 'opportunities',
           },
           {
             title: 'Recursos',
             description:
-              'Conjunto curado de herramientas y patrones compartidos.',
-          },
-          {
-            title: 'Diversión',
-            description: 'Humor dev, setups y anécdotas que nos unen.',
+              'Conoce y accede a herramientas utilizadas por la comunidad.',
+            icon: 'resources',
           },
         ],
       },
