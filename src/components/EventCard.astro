@@ -5,7 +5,7 @@ import { withBasePath } from '../utils/paths';
 interface Props {
   event: EventItem;
   variant?: 'highlight' | 'list';
-  labels?: {
+  labels: {
     date: string;
     time: string;
     location: string;
@@ -13,11 +13,7 @@ interface Props {
 }
 
 const { event, variant = 'list', labels } = Astro.props as Props;
-const metaLabels =
-  labels ??
-  ({ date: 'Fecha', time: 'Hora', location: 'Lugar' } satisfies NonNullable<
-    Props['labels']
-  >);
+const metaLabels = labels;
 const cardClass = variant === 'highlight' ? 'card p-8' : 'card p-6';
 const titleClass = variant === 'highlight' ? 'text-3xl' : 'text-2xl';
 ---

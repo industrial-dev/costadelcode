@@ -8,9 +8,10 @@ interface Props {
   nav: NavItem[];
   cta: CtaLink;
   menuLabel: string;
+  navigationLabel: string;
 }
 
-const { brand, nav, cta, menuLabel } = Astro.props as Props;
+const { brand, nav, cta, menuLabel, navigationLabel } = Astro.props as Props;
 const homeHref = withBasePath(nav[0]?.href ?? '/');
 const firstBrandHighlight = brand.indexOf('C');
 const secondBrandHighlight = brand.indexOf('C', firstBrandHighlight + 1);
@@ -37,7 +38,7 @@ const brandSegments = canHighlightBrand
   <nav
     class="shell flex min-h-19 items-center justify-between gap-4 transition-[min-height] duration-180 data-[condensed=true]:min-h-16"
     data-site-nav
-    aria-label="Primary"
+    aria-label={navigationLabel}
   >
     <a
       href={homeHref}
