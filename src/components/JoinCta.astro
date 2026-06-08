@@ -1,7 +1,6 @@
 ---
 import type { CtaLink, SharedContent } from '../data/site-content';
-import { getButtonVariantClass } from '../utils/buttons';
-import { withBasePath } from '../utils/paths';
+import CtaButton from './CtaButton.astro';
 
 interface Props {
   join: SharedContent['join'];
@@ -28,20 +27,11 @@ const containerClass =
       <h2 class="title-lg mt-6">{join.title}</h2>
       <p class="body-copy mt-5">{join.description}</p>
       <div
-        class={`mt-8 flex flex-col gap-3 ${
+        class={`mt-8 flex flex-col gap-3 justify-center ${
           alignValue === 'center' ? 'items-center sm:flex-row' : 'sm:flex-row'
         }`}
       >
-        {
-          links.map((link: CtaLink) => (
-            <a
-              href={withBasePath(link.href)}
-              class={`button ${getButtonVariantClass(link.variant)}`}
-            >
-              {link.label}
-            </a>
-          ))
-        }
+        {links.map((link: CtaLink) => <CtaButton link={link} />)}
       </div>
     </div>
   </div>
