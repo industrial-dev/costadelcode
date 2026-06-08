@@ -1,0 +1,33 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import type { HomePage } from '../data/site-content';
+
+interface Props {
+  pillars: HomePage['pillars'];
+}
+
+const { pillars } = Astro.props as Props;
+---
+
+<section class="section section-border">
+  <div class="shell space-y-10">
+    <SectionHeading eyebrow={pillars.eyebrow} title={pillars.title} />
+
+    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {
+        pillars.items.map((pillar, index) => (
+          <article
+            class={`card p-6 reveal ${index % 3 === 1 ? 'md:translate-y-6' : ''} ${
+              index % 3 === 2 ? 'xl:translate-y-10' : ''
+            }`}
+          >
+            <h3 class="font-display text-2xl font-semibold tracking-[-0.03em] text-ink-950">
+              {pillar.title}
+            </h3>
+            <p class="body-copy mt-3">{pillar.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

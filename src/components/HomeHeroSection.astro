@@ -1,0 +1,54 @@
+---
+import CtaButton from './CtaButton.astro';
+import type { HomePage } from '../data/site-content';
+
+interface Props {
+  hero: HomePage['hero'];
+}
+
+const { hero } = Astro.props as Props;
+---
+
+<section class="section relative overflow-hidden pt-14">
+  <div
+    class="hero-glow-warm pointer-events-none absolute -right-28 top-12 h-72 w-72 rounded-full blur-3xl animate-[float-slow_10s_ease-in-out_infinite]"
+  >
+  </div>
+  <div
+    class="hero-glow-soft pointer-events-none absolute -left-24 bottom-8 h-64 w-64 rounded-full blur-2xl"
+  >
+  </div>
+
+  <div class="shell">
+    <div class="mx-auto max-w-4xl text-center">
+      <p
+        class="mt-4 inline-flex rounded-full border border-[rgb(17_17_17/0.08)] bg-[rgb(255_255_255/0.66)] px-4 py-2 font-mono text-[1.05rem] text-ink-950 shadow-(--shadow-soft)"
+      >
+        {hero.code}
+      </p>
+      <h1 class="title-xl mt-6">{hero.title}</h1>
+      <p
+        class="mx-auto mt-6 max-w-3xl text-xl leading-8 text-ink-800 md:text-2xl"
+      >
+        {hero.intro}
+      </p>
+      <div class="body-copy mx-auto mt-6 max-w-3xl space-y-4">
+        {hero.description.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <div class="mx-auto mt-10 grid max-w-4xl gap-3 sm:grid-cols-3">
+        {
+          hero.stats.map((stat) => (
+            <div class="card p-4">
+              <p class="text-xs uppercase tracking-[0.18em] text-stone-500">
+                {stat.label}
+              </p>
+              <p class="mt-2 font-display text-lg font-semibold text-ink-950">
+                {stat.value}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

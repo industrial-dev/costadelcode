@@ -16,6 +16,9 @@
   --color-stone-300: #cfc3b2;
   --color-accent-500: #f3d458;
   --color-accent-600: #e7c53c;
+  --color-code-green: #006b55;
+  --color-code-lime: #77f06a;
+  --color-code-red: #e50914;
 }
 
 @layer base {

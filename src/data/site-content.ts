@@ -114,7 +114,25 @@ export type HomePage = {
       eyebrow: string;
       title: string;
       description: string[];
-      highlights: string[];
+      highlights: {
+        offline: string;
+        sync: string;
+        push: string;
+        feedback: string;
+      };
+      mosaic: {
+        headline: string;
+        connectLabel: string;
+        connectDescription: string;
+        offlineNumber: string;
+        offlineLabel: string;
+        offlineTitle: string;
+        docTitle: string;
+        communityTitle: string;
+        communityTag: string;
+        pushCommand: string;
+        feedbackCommand: string;
+      };
     };
   };
   pillars: {
@@ -384,17 +402,30 @@ const esContent: SiteContent = {
         },
         founderCard: {
           eyebrow: '¿Quién inició este proyecto?',
-          title: 'Daniel Núñez. Desarrollador semisénior.',
+          title: 'Dani hizo el primer commit; la comunidad lo mantiene vivo.',
           description: [
-            'Costa del Code es la excusa para salir de casa y compartir lo que estamos aprendiendo con los que también viven por aquí.',
+            'Costa del Code es la excusa para salir de casa, conocer gente y compartir lo que sabemos con los demás.',
           ],
-          highlights: [
-            'Charlas cortas, configuraciones y cafés con opiniones reales.',
-            'Proyectos comunitarios para practicar y conectar.',
-            'Conocer tecnologías y casos de uso que ya están funcionando en proyectos reales.',
-            'Valida ideas y recibe opiniones honestas de compañeros que hablan el mismo idioma.',
-            'Encuentra potenciales colaboradores y/o clientes.',
-          ],
+          highlights: {
+            offline: 'Encuentra potenciales colaboradores y/o clientes.',
+            sync: 'Aprendizajes compartidos sobre stacks, herramientas y casos de uso reales.',
+            push: 'Proyectos comunitarios para practicar, colaborar y ganar visibilidad.',
+            feedback:
+              'Valida ideas y recibe feedback honesto de compañeros que hablan el mismo idioma.',
+          },
+          mosaic: {
+            headline: 'Daniel Núñez',
+            connectLabel: 'connect()',
+            connectDescription: 'Cafés cortitos y charlas distendidas',
+            offlineNumber: '01',
+            offlineLabel: 'offline',
+            offlineTitle: 'connect',
+            docTitle: 'docs',
+            communityTitle: 'gente junta',
+            communityTag: '[ costadelcode ]',
+            pushCommand: '> gh repo clone industrial-dev/costadelcode',
+            feedbackCommand: 'feedback --honesto',
+          },
         },
       },
       pillars: {

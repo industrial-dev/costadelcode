@@ -1,0 +1,27 @@
+---
+import EventCard from './EventCard.astro';
+import SectionHeading from './SectionHeading.astro';
+import type { HomePage, SharedContent } from '../data/site-content';
+
+interface Props {
+  eventHighlight: HomePage['eventHighlight'];
+  labels: SharedContent['labels'];
+}
+
+const { eventHighlight, labels } = Astro.props as Props;
+---
+
+<section class="section">
+  <div class="shell grid gap-10">
+    <SectionHeading
+      eyebrow={eventHighlight.eyebrow}
+      title={eventHighlight.title}
+      body={eventHighlight.intro}
+    />
+    <EventCard
+      event={eventHighlight.event}
+      variant="highlight"
+      labels={labels}
+    />
+  </div>
+</section>
