@@ -1,31 +1,29 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import JoinCta from '../../components/JoinCta.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import { siteContent } from '../../data/site-content';
-import { pageAlternates, pagePaths } from '../../data/i18n';
-import { getButtonVariantClass } from '../../utils/buttons';
-import { withBasePath } from '../../utils/paths';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaButton from '../components/CtaButton.astro';
+import JoinCta from '../components/JoinCta.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { siteContent } from '../data/site-content';
+import { pagePaths } from '../data/i18n';
 
-const content = siteContent.es;
+const content = siteContent;
 const { shared, pages } = content;
 const faq = pages.faq;
 ---
 
 <BaseLayout
-  lang="es"
   title={faq.meta.title}
   description={faq.meta.description}
-  canonicalPath={pagePaths.es.faq}
-  alternates={pageAlternates('faq')}
+  canonicalPath={pagePaths.faq}
 >
   <SiteHeader
     brand={shared.brand}
     nav={shared.nav}
     cta={shared.primaryCta}
     menuLabel={shared.labels.menu}
+    navigationLabel={shared.labels.navigation}
   />
 
   <main class="relative">
@@ -72,16 +70,7 @@ const faq = pages.faq;
             body={faq.contact.description}
           />
           <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-            {
-              faq.contact.ctaLinks.map((link) => (
-                <a
-                  href={withBasePath(link.href)}
-                  class={`button ${getButtonVariantClass(link.variant)}`}
-                >
-                  {link.label}
-                </a>
-              ))
-            }
+            {faq.contact.ctaLinks.map((link) => <CtaButton link={link} />)}
           </div>
         </div>
       </div>

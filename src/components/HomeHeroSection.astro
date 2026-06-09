@@ -1,0 +1,59 @@
+---
+import type { HomePage } from '../data/site-content';
+import GlobeHero from './GlobeHero';
+
+interface Props {
+  hero: HomePage['hero'];
+}
+
+const { hero } = Astro.props as Props;
+---
+
+<section class="section relative overflow-hidden pt-14">
+  <div
+    class="hero-glow-warm pointer-events-none absolute -right-28 top-12 h-72 w-72 rounded-full blur-3xl animate-[float-slow_10s_ease-in-out_infinite]"
+  >
+  </div>
+  <div
+    class="hero-glow-soft pointer-events-none absolute -left-24 bottom-8 h-64 w-64 rounded-full blur-2xl"
+  >
+  </div>
+
+  <div class="shell">
+    <div
+      class="flex flex-col items-center gap-10 md:flex-row md:items-center md:gap-12"
+    >
+      <div class="flex-1 text-center md:text-left">
+        <p
+          class="mt-4 inline-flex rounded-full border border-[rgb(17_17_17/0.08)] bg-[rgb(255_255_255/0.66)] px-4 py-2 font-mono text-[1.05rem] text-ink-950 shadow-(--shadow-soft)"
+        >
+          {hero.code}
+        </p>
+        <h1 class="title-xl mt-6">{hero.title}</h1>
+        <p class="mt-6 text-xl leading-8 text-ink-800 md:text-2xl">
+          {hero.intro}
+        </p>
+        <div class="body-copy mt-6 space-y-4">
+          {hero.description.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+        <div class="mt-10 grid gap-3 sm:grid-cols-3">
+          {
+            hero.stats.map((stat) => (
+              <div class="card p-4">
+                <p class="text-xs uppercase tracking-[0.18em] text-stone-500">
+                  {stat.label}
+                </p>
+                <p class="mt-2 font-display text-lg font-semibold text-ink-950">
+                  {stat.value}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="w-full max-w-xs shrink-0 md:w-100 md:max-w-none">
+        <GlobeHero client:visible />
+      </div>
+    </div>
+  </div>
+</section>

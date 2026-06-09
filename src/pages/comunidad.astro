@@ -1,30 +1,30 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import JoinCta from '../../components/JoinCta.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import { siteContent } from '../../data/site-content';
-import { pageAlternates, pagePaths } from '../../data/i18n';
-import { withBasePath } from '../../utils/paths';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CommunityMosaicSection from '../components/CommunityMosaicSection.astro';
+import JoinCta from '../components/JoinCta.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { siteContent } from '../data/site-content';
+import { pagePaths } from '../data/i18n';
+import { withBasePath } from '../utils/paths';
 
-const content = siteContent.en;
+const content = siteContent;
 const { shared, pages } = content;
 const community = pages.community;
 ---
 
 <BaseLayout
-  lang="en"
   title={community.meta.title}
   description={community.meta.description}
-  canonicalPath={pagePaths.en.community}
-  alternates={pageAlternates('community')}
+  canonicalPath={pagePaths.community}
 >
   <SiteHeader
     brand={shared.brand}
     nav={shared.nav}
     cta={shared.primaryCta}
     menuLabel={shared.labels.menu}
+    navigationLabel={shared.labels.navigation}
   />
 
   <main class="relative">
@@ -60,6 +60,8 @@ const community = pages.community;
       </div>
     </section>
 
+    <CommunityMosaicSection founderCard={community.founderCard} />
+
     <section class="section section-border">
       <div
         class="shell grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]"
@@ -89,7 +91,6 @@ const community = pages.community;
         <SectionHeading
           eyebrow={community.pillars.eyebrow}
           title={community.pillars.title}
-          body={community.pillars.intro}
         />
         <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {

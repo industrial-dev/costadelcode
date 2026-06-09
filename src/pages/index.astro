@@ -1,12 +1,47 @@
 ---
-import LocaleRedirectPage from '../components/LocaleRedirectPage.astro';
+import HomeEventSection from '../components/HomeEventSection.astro';
+import HomeHeroSection from '../components/HomeHeroSection.astro';
+import HomePillarsSection from '../components/HomePillarsSection.astro';
+import JoinCta from '../components/JoinCta.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { pagePaths } from '../data/i18n';
+import { siteContent } from '../data/site-content';
+
+const { shared, pages } = siteContent;
+const home = pages.home;
 ---
 
-<LocaleRedirectPage
-  lang="es"
-  title="Costa del Code | Redirigiendo"
-  description="Redirección automática a la versión en español de Costa del Code."
-  heading="Redirigiendo a la versión en español."
-  body="Si no ocurre automáticamente, entra desde aquí."
-  ctaLabel="Ir a la home"
-/>
+<BaseLayout
+  title={home.meta.title}
+  description={home.meta.description}
+  canonicalPath={pagePaths.home}
+  showIntro={true}
+>
+  <SiteHeader
+    brand={shared.brand}
+    nav={shared.nav}
+    cta={shared.primaryCta}
+    menuLabel={shared.labels.menu}
+    navigationLabel={shared.labels.navigation}
+  />
+
+  <main class="relative">
+    <HomeHeroSection hero={home.hero} />
+    <HomePillarsSection pillars={home.pillars} />
+    <HomeEventSection
+      eventHighlight={home.eventHighlight}
+      labels={shared.labels}
+    />
+    <JoinCta join={shared.join} links={shared.ctaLinks} />
+  </main>
+
+  <SiteFooter
+    brand={shared.brand}
+    tagline={shared.tagline}
+    nav={shared.nav}
+    social={shared.social}
+    footer={shared.footer}
+  />
+</BaseLayout>

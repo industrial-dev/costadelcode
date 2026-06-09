@@ -1,39 +1,27 @@
 ---
 import '../styles/global.css';
-import { localeMeta, type LocaleCode } from '../data/i18n';
+import { siteLocale } from '../data/i18n';
 import { withBasePath } from '../utils/paths';
 
 interface Props {
-  lang: LocaleCode;
   title: string;
   description: string;
   canonicalPath: string;
-  alternates: Record<string, string>;
   robots?: string;
   showIntro?: boolean;
 }
 
 const {
-  lang,
   title,
   description,
   canonicalPath,
-  alternates,
   robots = 'index,follow',
   showIntro = false,
 } = Astro.props;
 
-const locale = localeMeta[lang];
 const canonicalUrl = Astro.site
   ? new URL(withBasePath(canonicalPath), Astro.site).href
   : null;
-const alternateUrls = Astro.site
-  ? Object.entries(alternates).map(([hreflang, path]) => ({
-      hreflang,
-      href: new URL(withBasePath(path), Astro.site).href,
-    }))
-  : [];
-const ogLocale = locale.ogLocale;
 const faviconPath = withBasePath('/favicon.svg');
 const introVideoPath = withBasePath('/intro/costa-del-code-intro.mp4');
 const introDecisionScript = `
@@ -115,7 +103,7 @@ const introPlaybackScript = `
 ---
 
 <!doctype html>
-<html lang={locale.htmlLang}>
+<html lang={siteLocale.htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="robots" content={robots} />
@@ -123,14 +111,9 @@ const introPlaybackScript = `
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-    {
-      alternateUrls.map(({ hreflang, href }) => (
-        <link rel="alternate" hreflang={hreflang} href={href} />
-      ))
-    }
 
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale" content={siteLocale.ogLocale} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}

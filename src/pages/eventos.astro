@@ -1,30 +1,29 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import EventCard from '../../components/EventCard.astro';
-import JoinCta from '../../components/JoinCta.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import { siteContent } from '../../data/site-content';
-import { pageAlternates, pagePaths } from '../../data/i18n';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EventCard from '../components/EventCard.astro';
+import JoinCta from '../components/JoinCta.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { siteContent } from '../data/site-content';
+import { pagePaths } from '../data/i18n';
 
-const content = siteContent.es;
+const content = siteContent;
 const { shared, pages } = content;
 const events = pages.events;
 ---
 
 <BaseLayout
-  lang="es"
   title={events.meta.title}
   description={events.meta.description}
-  canonicalPath={pagePaths.es.events}
-  alternates={pageAlternates('events')}
+  canonicalPath={pagePaths.events}
 >
   <SiteHeader
     brand={shared.brand}
     nav={shared.nav}
     cta={shared.primaryCta}
     menuLabel={shared.labels.menu}
+    navigationLabel={shared.labels.navigation}
   />
 
   <main class="relative">

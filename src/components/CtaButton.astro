@@ -1,0 +1,66 @@
+---
+import type { CtaLink } from '../data/site-content';
+import { getButtonVariantClass } from '../utils/buttons';
+import { withBasePath } from '../utils/paths';
+
+interface Props {
+  link: CtaLink;
+  class?: string;
+}
+
+const { link, class: className = '' } = Astro.props as Props;
+const buttonClass = getButtonVariantClass(link.variant, link.platform);
+---
+
+<a
+  href={withBasePath(link.href)}
+  class:list={['button', buttonClass, className]}
+>
+  {
+    link.platform === 'whatsapp' && (
+      <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M12.04 2C6.55 2 2.09 6.45 2.09 11.93c0 1.75.46 3.46 1.33 4.97L2 22l5.23-1.37a9.96 9.96 0 0 0 4.81 1.23h.01c5.48 0 9.94-4.45 9.94-9.93C21.99 6.45 17.53 2 12.04 2Zm5.78 14.22c-.24.68-1.38 1.3-1.93 1.38-.49.07-1.11.1-1.79-.11-.41-.13-.94-.3-1.62-.59-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.38.24-.26.54-.33.72-.33h.52c.16 0 .39-.06.61.47.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.16-.31.36-.44.48-.14.14-.29.29-.12.57.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.45.29.14.46.12.63-.07.19-.22.72-.84.91-1.13.19-.29.38-.24.64-.14.26.1 1.66.78 1.94.92.29.14.48.22.55.34.07.12.07.7-.17 1.38Z"
+        />
+      </svg>
+    )
+  }
+  {
+    link.platform === 'telegram' && (
+      <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M21.9 4.2 18.7 20c-.2 1-1 1.2-1.8.7l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6.1 13.3l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6l18.7-7.1c.9-.3 1.7.2 1.8 1.1Z"
+        />
+      </svg>
+    )
+  }
+  {
+    link.platform === 'instagram' && (
+      <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M7.5 2.75h9A4.75 4.75 0 0 1 21.25 7.5v9a4.75 4.75 0 0 1-4.75 4.75h-9A4.75 4.75 0 0 1 2.75 16.5v-9A4.75 4.75 0 0 1 7.5 2.75Z"
+        />
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M8.75 12a3.25 3.25 0 1 0 6.5 0 3.25 3.25 0 0 0-6.5 0Z"
+        />
+        <path
+          fill="currentColor"
+          d="M17.55 6.75a.85.85 0 1 1-1.7 0 .85.85 0 0 1 1.7 0Z"
+        />
+      </svg>
+    )
+  }
+  <span>{link.label}</span>
+</a>
