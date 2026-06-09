@@ -122,30 +122,6 @@ export type HomePage = {
     primaryCta: CtaLink;
     secondaryCta: CtaLink;
     tertiaryCta: CtaLink;
-    founderCard: {
-      eyebrow: string;
-      title: string;
-      description: string[];
-      highlights: {
-        offline: string;
-        sync: string;
-        push: string;
-        feedback: string;
-      };
-      mosaic: {
-        headline: string;
-        connectLabel: string;
-        connectDescription: string;
-        offlineNumber: string;
-        offlineLabel: string;
-        offlineTitle: string;
-        docTitle: string;
-        communityTitle: string;
-        communityTag: string;
-        pushCommand: string;
-        feedbackCommand: string;
-      };
-    };
   };
   pillars: {
     eyebrow: string;
@@ -160,6 +136,31 @@ export type HomePage = {
   };
 };
 
+export type FounderCard = {
+  eyebrow: string;
+  title: string;
+  description: string[];
+  highlights: {
+    offline: string;
+    sync: string;
+    push: string;
+    feedback: string;
+  };
+  mosaic: {
+    headline: string;
+    connectLabel: string;
+    connectDescription: string;
+    offlineNumber: string;
+    offlineLabel: string;
+    offlineTitle: string;
+    docTitle: string;
+    communityTitle: string;
+    communityTag: string;
+    pushCommand: string;
+    feedbackCommand: string;
+  };
+};
+
 export type CommunityPage = {
   meta: PageMeta;
   hero: {
@@ -168,6 +169,7 @@ export type CommunityPage = {
     intro: string;
     description: string[];
   };
+  founderCard: FounderCard;
   purpose: {
     eyebrow: string;
     title: string;
@@ -410,33 +412,6 @@ const esContent: SiteContent = {
           variant: 'ghost',
           platform: 'instagram',
         },
-        founderCard: {
-          eyebrow: '¿Quién inició este proyecto?',
-          title: 'Dani hizo el primer commit; la comunidad lo mantiene vivo.',
-          description: [
-            'Costa del Code es la excusa para salir de casa, conocer gente y compartir lo que sabemos con los demás.',
-          ],
-          highlights: {
-            offline: 'Encuentra potenciales colaboradores y/o clientes.',
-            sync: 'Aprendizajes compartidos sobre stacks, herramientas y casos de uso reales.',
-            push: 'Proyectos comunitarios para practicar, colaborar y ganar visibilidad.',
-            feedback:
-              'Valida ideas y recibe feedback honesto de compañeros que hablan el mismo idioma.',
-          },
-          mosaic: {
-            headline: 'Daniel Núñez',
-            connectLabel: 'connect()',
-            connectDescription: 'Cafés cortitos y charlas distendidas',
-            offlineNumber: '01',
-            offlineLabel: 'offline',
-            offlineTitle: 'connect',
-            docTitle: 'docs',
-            communityTitle: 'gente junta',
-            communityTag: '[ costadelcode ]',
-            pushCommand: '> gh repo clone industrial-dev/costadelcode',
-            feedbackCommand: 'feedback --honesto',
-          },
-        },
       },
       pillars: {
         eyebrow: '¿Por qué sumarte?',
@@ -488,7 +463,7 @@ const esContent: SiteContent = {
           location: 'Costa del Sol (ubicación por confirmar)',
           meta: 'Formato ligero · 90 min',
           description:
-            'Mesa corta para compartir casos reales, instrucciones útiles y herramientas que ya están en tus tecnologías diarias.',
+            'Mesa corta para hablar sobre Costa del Code, compartir casos reales, instrucciones útiles y herramientas con las que trabajas (o no) en tu día a día.',
           tags: ['IA aplicada', 'Demos en directo', 'Conexiones'],
           ctaLabel: 'Quiero asistir',
           ctaHref: sharedLinks.whatsapp,
@@ -510,6 +485,33 @@ const esContent: SiteContent = {
           'Nuestro foco es lo local: menos algoritmos, más caras conocidas. Queremos crear un punto de encuentro donde las conversaciones que pasan en Teams o Google Meet también puedan pasar con un café en la mano.',
           'Si estás construyendo algo, buscando opiniones o solo quieres hablar de código con alguien cercano, este es tu sitio.',
         ],
+      },
+      founderCard: {
+        eyebrow: '¿Quién inició este proyecto?',
+        title: 'Dani hizo el primer commit; la comunidad lo mantiene vivo.',
+        description: [
+          'Costa del Code es la excusa para salir de casa, conocer gente y compartir lo que sabemos con los demás.',
+        ],
+        highlights: {
+          offline: 'Encuentra potenciales colaboradores y/o clientes.',
+          sync: 'Aprendizajes compartidos sobre stacks, herramientas y casos de uso reales.',
+          push: 'Proyectos comunitarios para practicar, colaborar y ganar visibilidad.',
+          feedback:
+            'Valida ideas y recibe feedback honesto de compañeros que hablan el mismo idioma.',
+        },
+        mosaic: {
+          headline: 'Daniel Núñez',
+          connectLabel: 'connect()',
+          connectDescription: 'Cafés cortitos y charlas distendidas',
+          offlineNumber: '01',
+          offlineLabel: 'offline',
+          offlineTitle: 'connect',
+          docTitle: 'docs',
+          communityTitle: 'gente junta',
+          communityTag: '[ costadelcode ]',
+          pushCommand: '> gh repo clone industrial-dev/costadelcode',
+          feedbackCommand: 'feedback --honesto',
+        },
       },
       purpose: {
         eyebrow: 'El por qué',
