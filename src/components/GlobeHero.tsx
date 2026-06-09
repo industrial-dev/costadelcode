@@ -58,11 +58,12 @@ export default function GlobeHero() {
     };
     rafId = requestAnimationFrame(animate);
 
-    setTimeout(() => {
+    const tid = setTimeout(() => {
       if (canvasRef.current) canvasRef.current.style.opacity = '0.7';
     });
 
     return () => {
+      clearTimeout(tid);
       cancelAnimationFrame(rafId);
       globe.destroy();
       window.removeEventListener('resize', onResize);
@@ -82,6 +83,8 @@ export default function GlobeHero() {
     >
       <canvas
         ref={canvasRef}
+        role="img"
+        aria-label="Globo terráqueo interactivo mostrando la ubicación de Costa del Sol"
         onPointerDown={(e) => {
           pointerInteracting.current =
             e.clientX - pointerInteractionMovement.current;
