@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CommunityMosaicSection from '../components/CommunityMosaicSection.astro';
 import JoinCta from '../components/JoinCta.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -58,6 +59,8 @@ const community = pages.community;
         </aside>
       </div>
     </section>
+
+    <CommunityMosaicSection founderCard={community.founderCard} />
 
     <section class="section section-border">
       <div

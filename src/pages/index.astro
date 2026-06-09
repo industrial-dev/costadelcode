@@ -1,6 +1,5 @@
 ---
 import HomeEventSection from '../components/HomeEventSection.astro';
-import HomeFounderMosaicSection from '../components/HomeFounderMosaicSection.astro';
 import HomeHeroSection from '../components/HomeHeroSection.astro';
 import HomePillarsSection from '../components/HomePillarsSection.astro';
 import JoinCta from '../components/JoinCta.astro';
@@ -30,7 +29,6 @@ const home = pages.home;
 
   <main class="relative">
     <HomeHeroSection hero={home.hero} />
-    <HomeFounderMosaicSection founderCard={home.hero.founderCard} />
     <HomePillarsSection pillars={home.pillars} />
     <HomeEventSection
       eventHighlight={home.eventHighlight}
