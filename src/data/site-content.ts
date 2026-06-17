@@ -306,7 +306,6 @@ const buildSocialCtaLinks = (): CtaLink[] => [
 const navPages = [
   'home',
   'community',
-  'resources',
   'events',
   'faq',
 ] as const satisfies readonly PageKey[];
