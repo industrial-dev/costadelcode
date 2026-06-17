@@ -20,9 +20,9 @@ All commits must follow Conventional Commits with mandatory Gitmoji and scope.
 Valid:
 
 ```
-✨ :sparkles: feat(homepage): add hero copy
-🐛 :bug: fix(api): handle empty response
-🚧 :construction: 🔧 :wrench: chore(tooling): update lint settings
+✨ feat(homepage): add hero copy
+🐛 fix(api): handle empty response
+🚧 🔧 chore(tooling): update lint settings
 ```
 
 Invalid:
@@ -38,12 +38,11 @@ feat(homepage): missing gitmoji
 `BREAKING CHANGE:` is allowed in the body of the commit message.
 
 ```
-💥 :boom: feat(api): update pagination
+💥 feat(api): update pagination
 
 BREAKING CHANGE: pagination now requires pageSize
 ```
 
 ## Gitmoji source
 
-You can import your own Gitmoji JSON list. Validation only checks for the
-`:{shortcode}:` pattern, not specific emoji names.
+The gitmoji source is available at `docs/gitmojis.json`.
