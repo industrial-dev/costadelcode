@@ -141,7 +141,7 @@ const introPlaybackScript = `
     <div id="page-shell" data-intro-shell>
       <slot />
     </div>
-    <ResourcesWidget client:load />
+    <ResourcesWidget client:idle />
     {showIntro && <script is:inline set:html={introPlaybackScript} />}
   </body>
 </html>
