@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { motion, AnimatePresence, useDragControls } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Map, Terminal, Wrench, Sparkles } from 'lucide-react';
 
 type IconComponent = React.ComponentType<{
@@ -86,6 +86,8 @@ const HOVER_STYLES = `
   .rw-row:hover { background: rgb(35 33 29 / 0.04) !important; }
   .rw-visit:hover { color: #111111 !important; }
   .rw-close:hover { background: rgb(35 33 29 / 0.12) !important; color: #111111 !important; }
+  .rw-close:focus-visible { outline: 2px solid #f3d458; outline-offset: 2px; }
+  .rw-orb:focus-visible { outline: 2px solid #f3d458; outline-offset: 3px; }
 `;
 
 function CodeBracketsIcon({ size = 28 }: { size?: number }) {
@@ -123,7 +125,6 @@ function CodeBracketsIcon({ size = 28 }: { size?: number }) {
 
 export default function ResourcesWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const dragControls = useDragControls();
   const didDrag = useRef(false);
 
   return (
@@ -163,6 +164,9 @@ export default function ResourcesWidget() {
         {isOpen && (
           <motion.div
             key="panel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="rw-title"
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.97, transition: { duration: 0.14 } }}
@@ -243,6 +247,7 @@ export default function ResourcesWidget() {
                       Comunidad · Costa del Code
                     </p>
                     <h3
+                      id="rw-title"
                       style={{
                         fontFamily: T.fontDisplay,
                         fontSize: '0.98rem',
@@ -261,6 +266,7 @@ export default function ResourcesWidget() {
                 <button
                   className="rw-close"
                   onClick={() => setIsOpen(false)}
+                  aria-label="Cerrar panel de recursos"
                   style={{
                     width: 30,
                     height: 30,
@@ -468,7 +474,6 @@ export default function ResourcesWidget() {
         <motion.div
           drag
           dragMomentum={false}
-          dragControls={dragControls}
           onDragStart={() => {
             didDrag.current = true;
           }}
@@ -485,12 +490,14 @@ export default function ResourcesWidget() {
           }}
         >
           <motion.button
+            className="rw-orb"
             onClick={() => {
               if (!didDrag.current) setIsOpen((v) => !v);
             }}
             animate={{ scale: isOpen ? 0.88 : 1, opacity: isOpen ? 0.7 : 1 }}
             transition={ORB_TRANSITION}
-            title="Recursos de la comunidad"
+            aria-label="Recursos de la comunidad"
+            aria-expanded={isOpen}
             style={{
               position: 'absolute',
               inset: 0,
