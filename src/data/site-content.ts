@@ -42,18 +42,6 @@ export type HomePillar = Pillar & {
   icon: PillarIconName;
 };
 
-export type ToolkitItem = {
-  name: string;
-  description: string;
-  href: string;
-};
-
-export type ToolkitCategory = {
-  title: string;
-  description: string;
-  items: ToolkitItem[];
-};
-
 export type SetupCard = {
   title: string;
   name: string;
@@ -197,28 +185,6 @@ export type CommunityPage = {
   };
 };
 
-export type ResourcesPage = {
-  meta: PageMeta;
-  hero: {
-    eyebrow: string;
-    title: string;
-    intro: string;
-    description: string;
-  };
-  categories: {
-    eyebrow: string;
-    title: string;
-    intro: string;
-    items: ToolkitCategory[];
-  };
-  contribution: {
-    eyebrow: string;
-    title: string;
-    description: string;
-    cta: CtaLink;
-  };
-};
-
 export type EventsPage = {
   meta: PageMeta;
   hero: {
@@ -268,7 +234,6 @@ export type SiteContent = {
   pages: {
     home: HomePage;
     community: CommunityPage;
-    resources: ResourcesPage;
     events: EventsPage;
     faq: FaqPage;
   };
@@ -324,7 +289,6 @@ const esContent: SiteContent = {
     nav: buildNav({
       home: 'Inicio',
       community: 'Comunidad',
-      resources: 'Recursos',
       events: 'Eventos',
       faq: 'Preguntas',
     }),
@@ -620,120 +584,6 @@ const esContent: SiteContent = {
           label: 'Quiero compartir mi configuración',
           href: sharedLinks.instagram,
           variant: 'secondary',
-        },
-      },
-    },
-    resources: {
-      meta: {
-        title: 'Recursos | Costa del Code',
-        description:
-          'Conjunto curado con herramientas, patrones de diseño y tecnologías que usamos en la comunidad.',
-      },
-      hero: {
-        eyebrow: 'Herramientas',
-        title: 'Recursos que usamos a diario para construir más rápido.',
-        intro:
-          'Selección curada por la comunidad para ahorrar horas de búsqueda.',
-        description:
-          'Un directorio ligero y práctico con herramientas, patrones y stacks que ya están funcionando en proyectos reales.',
-      },
-      categories: {
-        eyebrow: 'Directorios',
-        title: 'Tres bloques claros para empezar hoy.',
-        intro:
-          'Cada categoría tiene ejemplos reales y enlaces listos para probar.',
-        items: [
-          {
-            title: 'Herramientas frontend',
-            description:
-              'Tecnologías rápidas, interfaz consistente y experiencia de desarrollo sin dramas.',
-            items: [
-              {
-                name: 'Astro',
-                description:
-                  'Generador de sitios rápido para contenido y marketing.',
-                href: 'https://astro.build',
-              },
-              {
-                name: 'Tailwind CSS v4',
-                description: 'Sistema de diseño utility-first con tokens.',
-                href: 'https://tailwindcss.com',
-              },
-              {
-                name: 'Vite',
-                description: 'Build rápido para proyectos modernos.',
-                href: 'https://vitejs.dev',
-              },
-              {
-                name: 'Figma',
-                description: 'Prototipos rápidos con colaboración.',
-                href: 'https://figma.com',
-              },
-            ],
-          },
-          {
-            title: 'Patrones de diseño',
-            description: 'Buenas prácticas para escalar sin caos.',
-            items: [
-              {
-                name: 'Sistemas de diseño',
-                description: 'Componentes consistentes y reutilizables.',
-                href: 'https://designsystemsrepo.com',
-              },
-              {
-                name: 'Atomic Design',
-                description: 'Metodología para construir UI por capas.',
-                href: 'https://bradfrost.com/blog/post/atomic-web-design/',
-              },
-              {
-                name: 'Arquitectura limpia',
-                description: 'Separación clara entre dominio y detalles.',
-                href: 'https://8thlight.com/insights/clean-architecture',
-              },
-              {
-                name: 'Diseño por componentes',
-                description: 'Construir UI desde piezas pequeñas.',
-                href: 'https://storybook.js.org/docs/react/writing-stories/introduction',
-              },
-            ],
-          },
-          {
-            title: 'Tecnologías locales',
-            description: 'Tecnologías que más usamos por aquí.',
-            items: [
-              {
-                name: 'TypeScript',
-                description: 'Tipado para proyectos front y back.',
-                href: 'https://www.typescriptlang.org',
-              },
-              {
-                name: 'React',
-                description: 'UI dinámica para apps complejas.',
-                href: 'https://react.dev',
-              },
-              {
-                name: 'Node.js',
-                description: 'Backends rápidos con JS.',
-                href: 'https://nodejs.org',
-              },
-              {
-                name: 'Python',
-                description: 'Automatización, datos y ML.',
-                href: 'https://www.python.org',
-              },
-            ],
-          },
-        ],
-      },
-      contribution: {
-        eyebrow: 'Aporta',
-        title: 'El toolkit crece con la comunidad.',
-        description:
-          'Si falta alguna herramienta, patrón o tecnología que uses a diario, cuéntanoslo y lo sumamos al listado.',
-        cta: {
-          label: 'Proponer un recurso',
-          href: sharedLinks.telegram,
-          variant: 'primary',
         },
       },
     },

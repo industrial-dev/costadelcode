@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { Map, Terminal, Wrench, Sparkles } from 'lucide-react';
 
 type IconComponent = React.ComponentType<{
@@ -55,17 +55,17 @@ const RESOURCES: Resource[] = [
 ];
 
 const T = {
-  cream50: '#f6f1e8',
-  ink950: '#111111',
-  ink800: '#23211d',
-  stone500: '#6f675d',
-  accent500: '#f3d458',
-  borderSoft: 'rgb(35 33 29 / 0.12)',
+  cream50: 'var(--color-cream-50)',
+  ink950: 'var(--color-ink-950)',
+  ink800: 'var(--color-ink-800)',
+  stone500: 'var(--color-stone-500)',
+  accent500: 'var(--color-accent-500)',
+  borderSoft: 'var(--border-soft)',
   glass96: 'rgb(255 255 255 / 0.96)',
   shadowFloat:
     '0 24px 56px rgb(17 17 17 / 0.14), inset 0 1px 0 rgb(255 255 255 / 0.85)',
-  fontDisplay: "'Chakra Petch', 'Segoe UI', sans-serif",
-  fontSans: "'Manrope', 'Segoe UI', sans-serif",
+  fontDisplay: 'var(--font-display)',
+  fontSans: 'var(--font-sans)',
 };
 
 // Tween directo — sin frames de física de spring
@@ -84,10 +84,11 @@ const ORB_TRANSITION = {
 const HOVER_STYLES = `
   .rw-row  { transition: background 100ms; }
   .rw-row:hover { background: rgb(35 33 29 / 0.04) !important; }
-  .rw-visit:hover { color: #111111 !important; }
-  .rw-close:hover { background: rgb(35 33 29 / 0.12) !important; color: #111111 !important; }
-  .rw-close:focus-visible { outline: 2px solid #f3d458; outline-offset: 2px; }
-  .rw-orb:focus-visible { outline: 2px solid #f3d458; outline-offset: 3px; }
+  .rw-visit:hover { color: var(--color-ink-950) !important; }
+  .rw-close:hover { background: rgb(35 33 29 / 0.12) !important; color: var(--color-ink-950) !important; }
+  .rw-close, .rw-orb { outline: none; }
+  .rw-close:focus-visible { outline: 2px solid var(--color-accent-500); outline-offset: 2px; }
+  .rw-orb:focus-visible { outline: 2px solid var(--color-accent-500); outline-offset: 3px; }
 `;
 
 function CodeBracketsIcon({ size = 28 }: { size?: number }) {
@@ -98,24 +99,25 @@ function CodeBracketsIcon({ size = 28 }: { size?: number }) {
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"
+      style={{ color: T.accent500 }}
     >
       <path
         d="M8 5L2 12L8 19"
-        stroke={T.accent500}
+        stroke="currentColor"
         strokeWidth="2.4"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M16 5L22 12L16 19"
-        stroke={T.accent500}
+        stroke="currentColor"
         strokeWidth="2.4"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M14 3L10 21"
-        stroke={T.accent500}
+        stroke="currentColor"
         strokeWidth="2.4"
         strokeLinecap="round"
       />
@@ -123,9 +125,34 @@ function CodeBracketsIcon({ size = 28 }: { size?: number }) {
   );
 }
 
+const SPIN_TRANSITION = {
+  duration: 7,
+  repeat: Infinity,
+  ease: 'linear',
+} as const;
+
 export default function ResourcesWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const didDrag = useRef(false);
+  const spinControls = useAnimation();
+
+  useEffect(() => {
+    spinControls.start({ rotate: 360, transition: SPIN_TRANSITION });
+
+    const handleVisibility = () => {
+      if (document.hidden) {
+        spinControls.stop();
+      } else {
+        spinControls.start({ rotate: 360, transition: SPIN_TRANSITION });
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => {
+      spinControls.stop();
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, [spinControls]);
 
   return (
     <>
@@ -281,7 +308,6 @@ export default function ResourcesWidget() {
                     color: T.stone500,
                     flexShrink: 0,
                     transition: 'background 140ms, color 140ms',
-                    outline: 'none',
                   }}
                 >
                   ✕
@@ -307,7 +333,7 @@ export default function ResourcesWidget() {
                 scrollbarColor: 'rgb(35 33 29 / 0.12) transparent',
               }}
             >
-              {RESOURCES.map((resource, index) => (
+              {RESOURCES.map((resource) => (
                 <div
                   key={resource.id}
                   className="rw-row"
@@ -360,7 +386,7 @@ export default function ResourcesWidget() {
                         fontFamily: T.fontDisplay,
                       }}
                     >
-                      {index + 1}
+                      {resource.id}
                     </span>
                   </div>
 
@@ -510,7 +536,6 @@ export default function ResourcesWidget() {
               justifyContent: 'center',
               gap: 4,
               padding: 0,
-              outline: 'none',
               borderRadius: 9999,
               boxShadow: T.shadowFloat,
               willChange: 'transform, opacity',
@@ -518,8 +543,7 @@ export default function ResourcesWidget() {
             }}
           >
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 7, repeat: Infinity, ease: 'linear' }}
+              animate={spinControls}
               style={{
                 position: 'absolute',
                 inset: -1,
