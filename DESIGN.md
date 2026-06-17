@@ -1,6 +1,6 @@
 ## Product intent
 
-Costa del Code is a static landing page for a local developer community in Estepona.
+Costa del Code is a static landing page for a local developer community in Costa del Sol.
 
 The page should feel:
 
@@ -178,7 +178,7 @@ The copy is a major part of the product identity.
 - Prioritize authenticity over conversion cliches
 - Sound like a real local developer inviting peers, not a brand team
 
-Do not remove the local framing around Estepona and the Costa del Sol.
+Do not remove the local framing around la Costa del Sol.
 
 ## Internationalization
 

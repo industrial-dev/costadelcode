@@ -5,12 +5,12 @@ All commits must follow Conventional Commits with mandatory Gitmoji and scope.
 ## Format
 
 ```
-:gitmoji: type(scope): subject
+<gitmoji> type(scope): subject
 ```
 
 ## Requirements
 
-- Start with 1 or more Gitmoji shortcodes (e.g. `:sparkles:`).
+- Start with 1 or more Gitmoji emojis (e.g. `✨`).
 - `type` must be one of: `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `revert`.
 - `scope` is mandatory and must be a single token (no spaces).
 - `subject` is required and should be concise.
@@ -45,4 +45,4 @@ BREAKING CHANGE: pagination now requires pageSize
 
 ## Gitmoji source
 
-The gitmoji source is available at `docs/gitmojis.json`.
+The gitmoji source is available at `.github/gitmojis.json`.

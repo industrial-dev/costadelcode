@@ -299,7 +299,7 @@
     },
     {
       "emoji": "🍱",
-      "entity": "&#1F371",
+      "entity": "&#1F371;",
       "code": ":bento:",
       "description": "Add or update assets.",
       "name": "bento",
@@ -411,7 +411,7 @@
     },
     {
       "emoji": "🙈",
-      "entity": "&#8bdfe7;",
+      "entity": "&#x1F648;",
       "code": ":see_no_evil:",
       "description": "Add or update a .gitignore file.",
       "name": "see-no-evil",
@@ -595,7 +595,7 @@
     },
     {
       "emoji": "🦖",
-      "entity": "&#x2708;",
+      "entity": "&#x1F996;",
       "code": ":t-rex:",
       "description": "Code that adds backwards compatibility.",
       "name": "t-rex",
