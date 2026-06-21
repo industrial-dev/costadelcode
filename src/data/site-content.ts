@@ -447,14 +447,14 @@ const esContent: SiteContent = {
         eyebrow: 'Comunidad',
         title: 'Un punto de encuentro real para gente que vive cerca.',
         intro:
-          'De Estepona y alrededores. Junior, mid o senior, da igual: si escribes código y vives por aquí, esto va de ti.',
+          'De Estepona y alrededores. Junior, mid o senior, da igual: si escribes código y vives por aquí, esto va sobre ti.',
         description: [
           'Costa del Code está en sus inicios. Somos un grupo de devs de la zona, de todos los niveles, con ganas de quedar, hablar de código y conectar con gente que comparte el mismo día a día.',
         ],
         founderIntro: {
           name: 'Daniel Núñez',
           eyebrow: 'Fundador · Estepona',
-          note: 'No quiero construir una organización. Quiero que cuando alguien de aquí abra el portátil, sepa que no está solo.',
+          note: 'No quiero construir una organización. Quiero quien desarrolla y teletrabaja sepa que no está solo.',
         },
       },
       founderCard: {
@@ -497,9 +497,9 @@ const esContent: SiteContent = {
       },
       origin: {
         eyebrow: 'Historia',
-        title: 'Un dev de Estepona que volvió a casa.',
+        title: 'Un ingeniero esteponero que volvió a casa.',
         description:
-          'Dani creció en Estepona, estudió fuera y pasó años trabajando en distintas ciudades y en el extranjero. Cuando volvió, lo tenía todo menos algo obvio: gente tech cerca con quien hablar. Ahora teletrabaja desde Estepona y tiene claro que no es el único en esa situación. Costa del Code es su forma de hacer algo al respecto.',
+          'Dani creció en Estepona, estudió fuera y pasó años trabajando en distintas ciudades y en el extranjero. Cuando volvió, echó algo en falta y se preguntó: ¿habrá muchos desarrolladores aquí? Ahora teletrabaja y tiene claro que no es el único que se lo pregunta. Costa del Code es su forma de buscar una respuesta.',
         founderNote:
           'No quiero construir una organización. Quiero que cuando alguien de aquí abra el portátil, sepa que no está solo.',
       },

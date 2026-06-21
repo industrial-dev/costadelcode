@@ -47,7 +47,7 @@ src/data/site-content.ts  (contenido)
 | `/`           | `index.astro`     | HomeHeroSection, HomePillarsSection, HomeEventSection |
 | `/comunidad/` | `comunidad.astro` | CommunityMosaicSection                                |
 | `/recursos/`  | `recursos.astro`  | —                                                     |
-| `/eventos/`   | `eventos.astro`   | EventCard, HomeEventSection                           |
+| `/eventos/`   | `events.astro`    | EventCard, HomeEventSection                           |
 | `/faq/`       | `faq.astro`       | —                                                     |
 
 Todas las páginas comparten: `BaseLayout` → `SiteHeader` + `JoinCta` + `SiteFooter`.
