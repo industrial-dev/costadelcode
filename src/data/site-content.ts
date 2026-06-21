@@ -156,11 +156,6 @@ export type CommunityPage = {
     title: string;
     intro: string;
     description: string[];
-    founderIntro: {
-      name: string;
-      note: string;
-      eyebrow: string;
-    };
   };
   founderCard: FounderCard;
   purpose: {
@@ -174,12 +169,6 @@ export type CommunityPage = {
     title: string;
     description: string;
     founderNote: string;
-  };
-  pillars: {
-    eyebrow: string;
-    title: string;
-    intro: string;
-    items: Pillar[];
   };
   setups: {
     eyebrow: string;
@@ -451,11 +440,6 @@ const esContent: SiteContent = {
         description: [
           'Costa del Code está en sus inicios. Somos un grupo de devs de la zona, de todos los niveles, con ganas de quedar, hablar de código y conectar con gente que comparte el mismo día a día.',
         ],
-        founderIntro: {
-          name: 'Daniel Núñez',
-          eyebrow: 'Fundador · Estepona',
-          note: 'No quiero construir una organización. Quiero quien desarrolla y teletrabaja sepa que no está solo.',
-        },
       },
       founderCard: {
         eyebrow: '¿Quién inició este proyecto?',
@@ -502,53 +486,6 @@ const esContent: SiteContent = {
           'Dani creció en Estepona, estudió fuera y pasó años trabajando en distintas ciudades y en el extranjero. Cuando volvió, echó algo en falta y se preguntó: ¿habrá muchos desarrolladores aquí? Ahora teletrabaja y tiene claro que no es el único que se lo pregunta. Costa del Code es su forma de buscar una respuesta.',
         founderNote:
           'No quiero construir una organización. Quiero que cuando alguien de aquí abra el portátil, sepa que no está solo.',
-      },
-      pillars: {
-        eyebrow: 'Pilares',
-        title: 'Lo que hace que esto funcione.',
-        intro: 'Estos son los temas que guían nuestras quedadas y proyectos.',
-        items: [
-          {
-            title: 'Conexiones',
-            description: 'Conexiones reales entre profesionales tech locales.',
-          },
-          {
-            title: 'Colaboración',
-            description: 'Proyectos abiertos para aprender haciendo.',
-          },
-          {
-            title: 'Actualidad',
-            description: 'Charlas sobre IA, herramientas y tendencias.',
-          },
-          {
-            title: 'Sintonía',
-            description: 'Gente que entiende tus retos y tus tecnologías.',
-          },
-          {
-            title: 'Descubrimiento',
-            description: 'Trucos de IDE, setups y flujos de trabajo.',
-          },
-          {
-            title: 'Retroalimentación',
-            description: 'Feedback honesto para proyectos personales.',
-          },
-          {
-            title: 'Oportunidades',
-            description: 'Ofertas, freelos y colaboraciones locales.',
-          },
-          {
-            title: 'Clientes',
-            description: 'Canal local para encontrar necesidades reales.',
-          },
-          {
-            title: 'Recursos',
-            description: 'Biblioteca de herramientas y patrones curados.',
-          },
-          {
-            title: 'Diversión',
-            description: 'Humor dev, setups y cultura compartida.',
-          },
-        ],
       },
       setups: {
         eyebrow: 'Revisión de configuraciones',
