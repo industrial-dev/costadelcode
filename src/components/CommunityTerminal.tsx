@@ -1,5 +1,4 @@
-import { useEffect, useMemo, useState, type ReactElement } from 'react';
-import { TerminalIcon } from 'lucide-react';
+import { useEffect, useState, type ReactElement } from 'react';
 import { GoTerminal } from 'react-icons/go';
 
 type TerminalStep = {
@@ -12,9 +11,6 @@ type TerminalProps = {
   steps: TerminalStep[];
   pulseInterval?: number;
   stepInterval?: number;
-  showLocalhost?: boolean;
-  hostBarTitle?: string;
-  hostMessage?: string;
 };
 
 function MacControls() {
@@ -28,29 +24,14 @@ function MacControls() {
   );
 }
 
-function LocalHost({ title, message }: { title: string; message: string }) {
-  return (
-    <div className="bg-ink-950 absolute right-4 bottom-5 z-10 overflow-hidden rounded-md border border-[rgb(255_255_255/0.1)] shadow-xl">
-      <div className="bg-[rgb(255_255_255/0.06)] text-stone-500 relative flex h-6 flex-row items-center border-b border-[rgb(255_255_255/0.1)] px-4 text-xs font-mono">
-        <TerminalIcon className="absolute inset-2 size-3" />
-        <p className="absolute inset-x-0 text-center">{title}</p>
-      </div>
-      <div className="text-code-lime p-4 text-sm font-mono">{message}</div>
-    </div>
-  );
-}
-
 const CommunityTerminal = ({
   command,
   steps,
   pulseInterval = 60,
   stepInterval = 500,
-  showLocalhost = true,
-  hostBarTitle = 'localhost:3000',
-  hostMessage = 'New App Created!',
 }: TerminalProps) => {
-  const typingLen = useMemo(() => command.length, [command]);
-  const revealLen = useMemo(() => steps.length, [steps]);
+  const typingLen = command.length;
+  const revealLen = steps.length;
   const finalCount = typingLen + revealLen + 1;
 
   const [counter, setCounter] = useState(0);
@@ -104,8 +85,6 @@ const CommunityTerminal = ({
     }
   }
 
-  const revealComplete = counter > typingLen + revealLen;
-
   return (
     <div
       className="relative"
@@ -115,11 +94,11 @@ const CommunityTerminal = ({
         }
       }}
     >
-      {showLocalhost && revealComplete && (
-        <LocalHost title={hostBarTitle} message={hostMessage} />
-      )}
-
-      <pre className="bg-ink-950 w-full overflow-hidden rounded-xl border border-[rgb(255_255_255/0.1)] text-[11px] shadow-lg sm:text-[12px] md:text-[13px]">
+      <pre
+        aria-live="polite"
+        aria-label="Terminal animation"
+        className="bg-ink-950 w-full overflow-hidden rounded-xl border border-[rgb(255_255_255/0.1)] text-[11px] shadow-lg sm:text-[12px] md:text-[13px]"
+      >
         <div className="bg-[rgb(255_255_255/0.06)] flex flex-row items-center gap-2 border-b border-[rgb(255_255_255/0.1)] px-3 py-2 sm:px-4">
           <MacControls />
         </div>

@@ -37,7 +37,7 @@ const { items } = Astro.props;
     border-left: 3px solid transparent;
   }
 
-  details[open].faq-item {
+  .faq-item.is-open {
     border-left-color: var(--color-accent-500);
   }
 
@@ -49,7 +49,7 @@ const { items } = Astro.props;
     content: '+';
   }
 
-  details[open] .faq-toggle::before {
+  .faq-item.is-open .faq-toggle::before {
     content: '×';
   }
 
@@ -60,7 +60,7 @@ const { items } = Astro.props;
     overflow: hidden;
   }
 
-  details[open] .faq-body {
+  .faq-item.is-open .faq-body {
     grid-template-rows: 1fr;
   }
 
@@ -74,3 +74,28 @@ const { items } = Astro.props;
     }
   }
 </style>
+
+<script>
+  document
+    .querySelectorAll<HTMLDetailsElement>('details.faq-item')
+    .forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = el.classList.contains('is-open');
+        if (isOpen) {
+          el.classList.remove('is-open');
+          const body = el.querySelector<HTMLElement>('.faq-body')!;
+          body.addEventListener(
+            'transitionend',
+            () => {
+              el.removeAttribute('open');
+            },
+            { once: true }
+          );
+        } else {
+          el.setAttribute('open', '');
+          requestAnimationFrame(() => el.classList.add('is-open'));
+        }
+      });
+    });
+</script>

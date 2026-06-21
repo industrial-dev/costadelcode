@@ -209,17 +209,7 @@ export type FaqPage = {
     description: string;
   };
   questions: {
-    eyebrow: string;
-    title: string;
-    intro: string;
-    ctaText: string;
     items: FaqItem[];
-  };
-  contact: {
-    eyebrow: string;
-    title: string;
-    description: string;
-    ctaLinks: CtaLink[];
   };
 };
 
@@ -605,11 +595,6 @@ const esContent: SiteContent = {
           'La comunidad es abierta, gratuita y local. Queremos que sea fácil dar el primer paso.',
       },
       questions: {
-        eyebrow: 'FAQ',
-        title: 'Respuestas claras antes de dar el paso.',
-        intro:
-          'Una comunidad abierta, gratuita y local. Queremos que te sea lo más fácil posible empezar.',
-        ctaText: '¿Tienes otra duda? Escríbenos y te respondemos rápido.',
         items: [
           {
             question: '¿Tiene algún coste participar?',
@@ -636,13 +621,6 @@ const esContent: SiteContent = {
             answer: 'Seas quien seas, eres bienvenido en la comunidad..',
           },
         ],
-      },
-      contact: {
-        eyebrow: 'Contacto rápido',
-        title: 'Conecta en el canal que prefieras.',
-        description:
-          'WhatsApp para el grupo principal, Telegram para avisos y Instagram para ver la parte humana.',
-        ctaLinks: buildSocialCtaLinks(),
       },
     },
   },
