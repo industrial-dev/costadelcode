@@ -61,9 +61,9 @@ const T = {
   stone500: 'var(--color-stone-500)',
   accent500: 'var(--color-accent-500)',
   borderSoft: 'var(--border-soft)',
-  glass96: 'rgb(255 255 255 / 0.96)',
+  glass96: 'rgb(252 251 249 / 0.98)',
   shadowFloat:
-    '0 24px 56px rgb(17 17 17 / 0.14), inset 0 1px 0 rgb(255 255 255 / 0.85)',
+    '0 20px 48px rgb(17 17 17 / 0.18), 0 2px 8px rgb(17 17 17 / 0.06), inset 0 1px 0 rgb(255 255 255 / 0.9)',
   fontDisplay: 'var(--font-display)',
   fontSans: 'var(--font-sans)',
 };
@@ -91,7 +91,13 @@ const HOVER_STYLES = `
   .rw-orb:focus-visible { outline: 2px solid var(--color-accent-500); outline-offset: 3px; }
 `;
 
-function CodeBracketsIcon({ size = 28 }: { size?: number }) {
+function CodeBracketsIcon({
+  size = 28,
+  color = T.accent500,
+}: {
+  size?: number;
+  color?: string;
+}) {
   return (
     <svg
       width={size}
@@ -99,7 +105,7 @@ function CodeBracketsIcon({ size = 28 }: { size?: number }) {
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"
-      style={{ color: T.accent500 }}
+      style={{ color }}
     >
       <path
         d="M8 5L2 12L8 19"
@@ -227,7 +233,7 @@ export default function ResourcesWidget() {
               zIndex: 50,
               width: 'min(480px, calc(100vw - 32px))',
               background: T.glass96,
-              border: `1px solid ${T.borderSoft}`,
+              border: '1px solid rgb(35 33 29 / 0.1)',
               boxShadow: T.shadowFloat,
               borderRadius: 28,
               willChange: 'transform, opacity',
@@ -269,15 +275,15 @@ export default function ResourcesWidget() {
                       width: 38,
                       height: 38,
                       borderRadius: 10,
-                      background: 'rgb(243 212 88 / 0.12)',
-                      border: '1px solid rgb(243 212 88 / 0.3)',
+                      background: 'rgb(243 212 88 / 0.18)',
+                      border: '1.5px solid rgb(243 212 88 / 0.45)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
                     }}
                   >
-                    <CodeBracketsIcon size={20} />
+                    <CodeBracketsIcon size={20} color={T.ink950} />
                   </div>
                   <div>
                     <p
@@ -359,7 +365,7 @@ export default function ResourcesWidget() {
                   className="rw-row"
                   style={{
                     display: 'flex',
-                    alignItems: 'flex-start',
+                    alignItems: 'center',
                     gap: 12,
                     padding: '9px 10px',
                     borderRadius: 14,
@@ -374,8 +380,8 @@ export default function ResourcesWidget() {
                         width: 38,
                         height: 38,
                         borderRadius: 11,
-                        background: 'rgb(243 212 88 / 0.12)',
-                        border: '1px solid rgb(243 212 88 / 0.26)',
+                        background: 'rgb(243 212 88 / 0.18)',
+                        border: '1.5px solid rgb(243 212 88 / 0.45)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -383,7 +389,7 @@ export default function ResourcesWidget() {
                     >
                       <resource.Icon
                         size={17}
-                        color={T.accent500}
+                        color={T.ink950}
                         strokeWidth={2.2}
                       />
                     </div>
@@ -392,17 +398,17 @@ export default function ResourcesWidget() {
                         position: 'absolute',
                         top: -5,
                         left: -5,
-                        width: 16,
-                        height: 16,
+                        width: 18,
+                        height: 18,
                         borderRadius: '50%',
-                        background: T.cream50,
-                        border: `1px solid ${T.borderSoft}`,
+                        background: T.accent500,
+                        border: '2px solid rgb(252 251 249 / 0.98)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: '0.55rem',
-                        fontWeight: 700,
-                        color: T.stone500,
+                        fontSize: '0.58rem',
+                        fontWeight: 800,
+                        color: T.ink950,
                         fontFamily: T.fontDisplay,
                       }}
                     >
@@ -477,7 +483,7 @@ export default function ResourcesWidget() {
                       lineHeight: 1,
                       flexShrink: 0,
                       transition: 'color 100ms',
-                      marginTop: 2,
+                      alignSelf: 'center',
                     }}
                   >
                     Visitar →
@@ -518,7 +524,7 @@ export default function ResourcesWidget() {
       >
         {/* Shell de drag: sin position fixed, ocupa el espacio del wrapper */}
         <motion.div
-          drag
+          drag={!isOpen}
           dragMomentum={false}
           dragConstraints={dragConstraints}
           dragElastic={0}
@@ -549,7 +555,7 @@ export default function ResourcesWidget() {
             style={{
               position: 'absolute',
               inset: 0,
-              border: 'none',
+              border: '1.5px solid rgb(35 33 29 / 0.12)',
               background: T.glass96,
               cursor: 'pointer',
               display: 'flex',
@@ -559,25 +565,12 @@ export default function ResourcesWidget() {
               gap: 4,
               padding: 0,
               borderRadius: 9999,
-              boxShadow: T.shadowFloat,
+              boxShadow:
+                '0 4px 20px rgb(17 17 17 / 0.13), 0 1px 4px rgb(17 17 17 / 0.08)',
               willChange: 'transform, opacity',
               overflow: 'hidden',
             }}
           >
-            <motion.div
-              animate={spinControls}
-              style={{
-                position: 'absolute',
-                inset: -1,
-                borderRadius: 9999,
-                background:
-                  'conic-gradient(from 0deg, rgb(243 212 88 / 0.6), rgb(243 212 88 / 0.04), rgb(243 212 88 / 0.6))',
-                opacity: 0.65,
-                willChange: 'transform',
-                backfaceVisibility: 'hidden',
-              }}
-            />
-
             <div
               style={{
                 position: 'absolute',
@@ -597,7 +590,7 @@ export default function ResourcesWidget() {
                     width: 3,
                     height: 3,
                     borderRadius: '50%',
-                    background: T.ink800,
+                    background: 'rgb(35 33 29 / 0.35)',
                   }}
                 />
               ))}
