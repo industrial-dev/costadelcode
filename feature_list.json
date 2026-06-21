@@ -9,74 +9,6 @@
   },
   "features": [
     {
-      "id": 1,
-      "name": "community_hero_refactor",
-      "title": "Refactorizar hero de Comunidad + fundir sección fundador",
-      "description": "Simplificar hero section con contenido más conciso y diseño user-friendly. Eliminar sección 'quién inició' e integrar fundador en hero section.",
-      "acceptance": [
-        "Hero section con diseño simplificado y más llamativo",
-        "Información del fundador integrada en hero (no sección separada)",
-        "Diseño diferenciado respecto a otras hero sections",
-        "yarn build pasa sin errores"
-      ],
-      "sdd": true,
-      "status": "done"
-    },
-    {
-      "id": 2,
-      "name": "community_why_redesign",
-      "title": "Mejorar sección 'por qué' de Comunidad",
-      "description": "Rediseñar sección 'por qué' con estructura y componentes más visuales y llamativos, manteniendo coherencia con el proyecto.",
-      "acceptance": [
-        "Sección rediseñada con estructura mejorada",
-        "Componentes visuales más atractivos e interactivos",
-        "Contenido clara y conciso",
-        "yarn build pasa sin errores"
-      ],
-      "sdd": true,
-      "status": "done"
-    },
-    {
-      "id": 3,
-      "name": "community_remove_pillars",
-      "title": "Eliminar sección de pilares de Comunidad",
-      "description": "Remover sección de pilares que no aporta valor diferencial.",
-      "acceptance": [
-        "Sección de pilares eliminada de la página",
-        "No hay referencias rotas",
-        "yarn build pasa sin errores"
-      ],
-      "sdd": false,
-      "status": "pending"
-    },
-    {
-      "id": 4,
-      "name": "community_configs_enhance",
-      "title": "Mejorar sección configuraciones reales + agregar fundadores",
-      "description": "Rediseñar sección de configuraciones con componentes interactivos. Agregar configuraciones reales de Dani y Javi (fundadores). Diseño más visual y llamativo.",
-      "acceptance": [
-        "Sección de configuraciones rediseñada",
-        "Configuraciones de Dani y Javi agregadas",
-        "Componente interactivo implementado (galería, tabs, o similar)",
-        "Diseño coherente con identidad del proyecto",
-        "yarn build pasa sin errores"
-      ],
-      "sdd": true,
-      "status": "pending"
-    },
-    {
-      "id": 5,
-      "name": "community_share",
-      "title": "Eliminar botón de compartir configuración",
-      "description": "Eliminar botón de compartir configuración y reemplazarlo por un modal con formulario para que los usuarios puedan proponer nuevas configuraciones. El formulario debe incluir campos para nombre, descripción e imágenes, con validación y envío mockeado por correo.",
-      "acceptance": [
-        "Botón de compartir configuración eliminado",
-        "yarn build pasa sin errores"
-      ],
-      "sdd": true,
-      "status": "spec_ready"
-    },
-    {
       "id": 6,
       "name": "events_hero_redesign",
       "title": "Mejorar hero section de página Eventos",
@@ -176,6 +108,21 @@
       ],
       "sdd": false,
       "status": "pending"
+    },
+    {
+      "id": 13,
+      "name": "community_hero_terminal",
+      "title": "Terminal animada en hero de la página Comunidad",
+      "description": "Añadir terminal animada (Astro Island React) en el hero de /comunidad que simula npx create-costadelcode. Restructurar hero a layout de dos columnas. Componente adaptado de Eldora UI.",
+      "acceptance": [
+        "Terminal animada visible en el hero de /comunidad",
+        "Layout de dos columnas (texto izq, terminal dcha) en desktop",
+        "Animación arranca al entrar en viewport (client:visible)",
+        "Hover reinicia la animación",
+        "yarn build pasa sin errores"
+      ],
+      "sdd": false,
+      "status": "in_progress"
     }
   ]
 }
