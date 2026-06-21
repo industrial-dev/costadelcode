@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CtaButton from '../components/CtaButton.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
 import JoinCta from '../components/JoinCta.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -27,52 +27,15 @@ const faq = pages.faq;
   />
 
   <main class="relative">
-    <section class="section pt-14">
-      <div class="shell">
-        <SectionHeading
-          eyebrow={faq.hero.eyebrow}
-          title={faq.hero.title}
-          body={faq.hero.description}
-          size="xl"
-        />
-        <p class="body-copy mt-5 max-w-3xl">{faq.hero.intro}</p>
-      </div>
-    </section>
-
     <section class="section section-border">
       <div class="shell space-y-10">
         <SectionHeading
-          eyebrow={faq.questions.eyebrow}
-          title={faq.questions.title}
-          body={faq.questions.intro}
+          eyebrow={faq.hero.eyebrow}
+          title={faq.hero.title}
+          body={faq.hero.intro}
+          size="xl"
         />
-        <div class="grid gap-4 lg:grid-cols-2">
-          {
-            faq.questions.items.map((item) => (
-              <article class="card p-6">
-                <h3 class="font-display text-xl font-semibold tracking-[-0.03em] text-ink-950">
-                  {item.question}
-                </h3>
-                <p class="body-copy mt-3">{item.answer}</p>
-              </article>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="shell">
-        <div class="card p-8">
-          <SectionHeading
-            eyebrow={faq.contact.eyebrow}
-            title={faq.contact.title}
-            body={faq.contact.description}
-          />
-          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-            {faq.contact.ctaLinks.map((link) => <CtaButton link={link} />)}
-          </div>
-        </div>
+        <FaqAccordion items={faq.questions.items} />
       </div>
     </section>
 

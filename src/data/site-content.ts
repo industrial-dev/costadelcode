@@ -212,6 +212,7 @@ export type FaqPage = {
     eyebrow: string;
     title: string;
     intro: string;
+    ctaText: string;
     items: FaqItem[];
   };
   contact: {
@@ -283,7 +284,7 @@ const esContent: SiteContent = {
       home: 'Inicio',
       community: 'Comunidad',
       events: 'Eventos',
-      faq: 'Preguntas',
+      faq: 'FAQ',
     }),
     primaryCta: {
       label: 'Unirse a WhatsApp',
@@ -591,26 +592,29 @@ const esContent: SiteContent = {
     },
     faq: {
       meta: {
-        title: 'Preguntas y Contacto | Costa del Code',
+        title: 'FAQ | Costa del Code',
         description:
           'Resolvemos dudas frecuentes y dejamos los canales abiertos para conectar contigo.',
       },
       hero: {
-        eyebrow: 'Preguntas y contacto',
-        title: 'Respuestas claras antes de sumarte.',
-        intro: 'Si algo no está aquí, nos escribes y lo resolvemos rápido.',
+        eyebrow: 'FAQ',
+        title: 'Preguntas y respuestas.',
+        intro:
+          'Si tienes dudas, aquí están las más frecuentes. Si no ves la tuya, escríbenos y te respondemos rápido.',
         description:
           'La comunidad es abierta, gratuita y local. Queremos que sea fácil dar el primer paso.',
       },
       questions: {
-        eyebrow: 'Preguntas frecuentes',
-        title: 'Lo que suele preguntar la gente.',
-        intro: 'Corto y directo.',
+        eyebrow: 'FAQ',
+        title: 'Respuestas claras antes de dar el paso.',
+        intro:
+          'Una comunidad abierta, gratuita y local. Queremos que te sea lo más fácil posible empezar.',
+        ctaText: '¿Tienes otra duda? Escríbenos y te respondemos rápido.',
         items: [
           {
             question: '¿Tiene algún coste participar?',
             answer:
-              'No, es 100% gratuito y abierto. Solo pedimos ganas de compartir y respeto.',
+              'No, es 100% gratuito y abierto. Solo es necesario traer buen rollo y ganas de aprender y compartir.',
           },
           {
             question: '¿Qué nivel técnico necesito?',
@@ -620,16 +624,16 @@ const esContent: SiteContent = {
           {
             question: '¿Dónde se hacen las quedadas?',
             answer:
-              'Preferimos espacios locales de Costa del Sol. Avisamos la ubicación con antelación.',
+              'Por el momento en Estepona. Se avisará tanto en el grupo de la comunidad como por instagram del lugar, hora y ubicación exacta de la próxima quedada.',
           },
           {
             question: '¿Puedo proponer un tema o charla?',
             answer:
-              'Sí. De hecho lo buscamos. Escribe y te ayudamos a darle forma.',
+              'Sí. De hecho estaremos encantados de recibir propuestas. Escríbenos y vemos como darle forma.',
           },
           {
             question: '¿Puedo ir aunque no sea dev?',
-            answer: 'Si eres perfil tech o estás aprendiendo, eres bienvenido.',
+            answer: 'Seas quien seas, eres bienvenido en la comunidad..',
           },
         ],
       },
