@@ -3,21 +3,18 @@
 > Este archivo se vacía al cerrar cada sesión y se mueve a `history.md`.
 > Mientras trabajas, **mantenlo actualizado en tiempo real**, no al final.
 
-- **Feature en curso:** harness_sdd
-- **Inicio:** 2026-06-17
-- **Agente:** leader
+- **Feature en curso:** 10 — faq_questions_accordion
+- **Inicio:** 2026-06-21
+- **Agente:** implementer
 
 ## Plan
 
-Implementar el harness SDD completo: CLAUDE.md, AGENTS.md, CHECKPOINTS.md,
-feature_list.json, init.sh, docs/, specs/, progress/, .claude/agents/, settings.json.
+Tasks T1..T11 de specs/faq_questions_accordion/tasks.md
 
 ## Bitácora
 
-- Archivos base del harness creados y verificados con bash init.sh (15/15 checks).
-- Reescritos partiendo de los originales de betta-tech/harness-sdd.
-- Añadidos .claude/agents/ (leader, spec_author, implementer, reviewer).
-
-## Próximo paso
-
-Marcar feature `harness_sdd` como `done` tras validación del humano.
+- T1: Añadido campo `ctaText: string` al tipo `FaqPage.questions`
+- T2: Actualizados valores eyebrow, title, intro, ctaText en esContent.pages.faq.questions
+- T3-T9: Creado FaqAccordion.tsx con estado, animación, icono, accesibilidad, CTA
+- T10: Actualizado faq.astro con import y reemplazo de sección estática
+- T11: yarn build verificado

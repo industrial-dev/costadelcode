@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CtaButton from '../components/CtaButton.astro';
+import FaqAccordion from '../components/FaqAccordion';
 import JoinCta from '../components/JoinCta.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -32,10 +32,10 @@ const faq = pages.faq;
         <SectionHeading
           eyebrow={faq.hero.eyebrow}
           title={faq.hero.title}
-          body={faq.hero.description}
+          body={faq.hero.intro}
           size="xl"
         />
-        <p class="body-copy mt-5 max-w-3xl">{faq.hero.intro}</p>
+        <p class="body-copy mt-5 max-w-3xl">{faq.hero.description}</p>
       </div>
     </section>
 
@@ -46,33 +46,7 @@ const faq = pages.faq;
           title={faq.questions.title}
           body={faq.questions.intro}
         />
-        <div class="grid gap-4 lg:grid-cols-2">
-          {
-            faq.questions.items.map((item) => (
-              <article class="card p-6">
-                <h3 class="font-display text-xl font-semibold tracking-[-0.03em] text-ink-950">
-                  {item.question}
-                </h3>
-                <p class="body-copy mt-3">{item.answer}</p>
-              </article>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="shell">
-        <div class="card p-8">
-          <SectionHeading
-            eyebrow={faq.contact.eyebrow}
-            title={faq.contact.title}
-            body={faq.contact.description}
-          />
-          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-            {faq.contact.ctaLinks.map((link) => <CtaButton link={link} />)}
-          </div>
-        </div>
+        <FaqAccordion items={faq.questions.items} client:load />
       </div>
     </section>
 

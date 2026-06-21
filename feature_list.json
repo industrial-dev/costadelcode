@@ -151,7 +151,7 @@
         "yarn build pasa sin errores"
       ],
       "sdd": true,
-      "status": "pending"
+      "status": "spec_ready"
     },
     {
       "id": 11,

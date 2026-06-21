@@ -219,6 +219,7 @@ export type FaqPage = {
     eyebrow: string;
     title: string;
     intro: string;
+    ctaText: string;
     items: FaqItem[];
   };
   contact: {
@@ -658,14 +659,17 @@ const esContent: SiteContent = {
       hero: {
         eyebrow: 'Preguntas y contacto',
         title: 'Respuestas claras antes de sumarte.',
-        intro: 'Si algo no está aquí, nos escribes y lo resolvemos rápido.',
+        intro:
+          'Todo lo que suele surgir cuando alguien descubre la comunidad por primera vez.',
         description:
           'La comunidad es abierta, gratuita y local. Queremos que sea fácil dar el primer paso.',
       },
       questions: {
-        eyebrow: 'Preguntas frecuentes',
-        title: 'Lo que suele preguntar la gente.',
-        intro: 'Corto y directo.',
+        eyebrow: 'PREGUNTAS Y CONTACTO',
+        title: 'Respuestas claras antes de dar el paso.',
+        intro:
+          'Una comunidad abierta, gratuita y local. Queremos que te sea lo más fácil posible empezar.',
+        ctaText: '¿Tienes otra duda? Escríbenos y te respondemos rápido.',
         items: [
           {
             question: '¿Tiene algún coste participar?',
