@@ -1,6 +1,6 @@
-# Costa del Code - Comunidad de Desarrolladores en Estepona
+# Costa del Code - Comunidad de Desarrolladores en la Costa del Sol
 
-Landing page para conectar desarrolladores en Estepona. Una comunidad local para compartir experiencias, colaborar en proyectos y hacer crecer nuestras habilidades técnicas juntos.
+Landing page para conectar desarrolladores en la Costa del Sol. Una comunidad local para compartir experiencias, colaborar en proyectos y hacer crecer nuestras habilidades técnicas juntos.
 
 ## 🚀 Comenzar
 
@@ -127,14 +127,13 @@ Puntos importantes al trabajar con Remotion:
 
 El contexto base para trabajar con IA está en:
 
-- AI_CONTEXT.md
-- .ai/README.md
+- docs/AI_CONTEXT.md
 
 ## 🧾 Convención de commits
 
 Usamos Conventional Commits con Gitmoji y scope obligatorio. Consulta
-`COMMIT_CONVENTION.md` para el formato y ejemplos.
+`docs/COMMIT_CONVENTION.md` para el formato y ejemplos.
 
 ## 📄 Licencia
 
-Proyecto open source de la comunidad de desarrolladores de Estepona.
+Proyecto open source de la comunidad de desarrolladores de la Costa del Sol.

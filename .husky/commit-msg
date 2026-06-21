@@ -4,12 +4,16 @@
 commit_msg_file="$1"
 first_line="$(sed -n '1p' "$commit_msg_file")"
 
-pattern='^(:[a-z0-9_+-]+:[[:space:]]*)+(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)\([^[:space:]()]+\):[[:space:]].+'
+# Accept bare emoji: one or more non-alpha/digit/space chars followed by a space
+emoji_pattern='^([^[:alpha:][:digit:][:space:]][^[:alpha:][:space:]]*[[:space:]]+)+(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)\([^[:space:]()]+\):[[:space:]].+'
+# Also accept legacy :shortcode: format
+shortcode_pattern='^(:[a-z0-9_+-]+:[[:space:]]*)+(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert)\([^[:space:]()]+\):[[:space:]].+'
 
-if ! printf '%s' "$first_line" | grep -Eq "$pattern"; then
+if ! printf '%s' "$first_line" | grep -Eq "$emoji_pattern" && \
+   ! printf '%s' "$first_line" | grep -Eq "$shortcode_pattern"; then
   echo "ERROR: Invalid commit message."
-  echo "Format: :gitmoji: type(scope): subject"
-  echo "Example: :sparkles: feat(homepage): add hero copy"
+  echo "Format: <gitmoji> type(scope): subject"
+  echo "Example: ✨ feat(homepage): add hero copy"
   echo "Allowed types: feat, fix, chore, docs, style, refactor, perf, test, build, ci, revert"
   echo "Note: BREAKING CHANGE: in the body is allowed."
   exit 1
