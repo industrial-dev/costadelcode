@@ -1,0 +1,24 @@
+---
+import type { CommunityPage } from '../data/site-content';
+
+interface Props {
+  origin: NonNullable<CommunityPage['origin']>;
+}
+
+const { origin } = Astro.props;
+---
+
+<section class="section section-border bg-ink-950">
+  <div class="shell mx-auto max-w-3xl">
+    <p class="eyebrow text-cream-200/60">{origin.eyebrow}</p>
+    <h2 class="title-lg mt-4 text-cream-50">{origin.title}</h2>
+    <p class="body-copy mt-5 text-cream-200/80">{origin.description}</p>
+    <blockquote class="mt-10 border-l-2 border-code-green pl-6">
+      <p
+        class="font-display text-2xl font-semibold leading-snug tracking-[-0.04em] text-code-green"
+      >
+        "{origin.founderNote}"
+      </p>
+    </blockquote>
+  </div>
+</section>

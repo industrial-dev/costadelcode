@@ -2,6 +2,10 @@
 import type { CtaLink, NavItem } from '../data/site-content';
 import CtaButton from './CtaButton.astro';
 import { withBasePath } from '../utils/paths';
+import homeIcon from '../assets/icons/nav/home.svg?raw';
+import communityIcon from '../assets/icons/nav/community.svg?raw';
+import eventsIcon from '../assets/icons/nav/events.svg?raw';
+import faqIcon from '../assets/icons/nav/faq.svg?raw';
 
 interface Props {
   brand: string;
@@ -13,6 +17,13 @@ interface Props {
 
 const { brand, nav, cta, menuLabel, navigationLabel } = Astro.props as Props;
 const homeHref = withBasePath(nav[0]?.href ?? '/');
+
+const navIcons: Record<string, string> = {
+  '/': homeIcon,
+  '/community/': communityIcon,
+  '/events/': eventsIcon,
+  '/faq/': faqIcon,
+};
 const firstBrandHighlight = brand.indexOf('C');
 const secondBrandHighlight = brand.indexOf('C', firstBrandHighlight + 1);
 const canHighlightBrand = firstBrandHighlight >= 0 && secondBrandHighlight >= 0;
@@ -31,13 +42,10 @@ const brandSegments = canHighlightBrand
 ---
 
 <header
-  class="site-header sticky top-0 z-40 border-b border-(--border-soft) bg-[rgb(246_241_232/0.92)] backdrop-blur-[18px] transition duration-180"
-  data-site-header
-  data-condensed="false"
+  class="site-header sticky top-0 z-40 border-b border-(--border-soft) bg-[rgb(246_241_232/0.92)] backdrop-blur-[18px]"
 >
   <nav
-    class="shell flex min-h-19 items-center justify-between gap-4 transition-[min-height] duration-180 data-[condensed=true]:min-h-16"
-    data-site-nav
+    class="shell flex min-h-19 items-center justify-between gap-4"
     aria-label={navigationLabel}
   >
     <a
@@ -65,7 +73,11 @@ const brandSegments = canHighlightBrand
     <div class="hidden items-center gap-6 md:flex">
       {
         nav.map((item) => (
-          <a href={withBasePath(item.href)} class="nav-link">
+          <a
+            href={withBasePath(item.href)}
+            class="nav-link flex items-center gap-1.5"
+          >
+            <Fragment set:html={navIcons[item.href] ?? ''} />
             {item.label}
           </a>
         ))
@@ -80,7 +92,11 @@ const brandSegments = canHighlightBrand
         <div class="grid gap-3">
           {
             nav.map((item) => (
-              <a href={withBasePath(item.href)} class="menu-link">
+              <a
+                href={withBasePath(item.href)}
+                class="menu-link flex items-center gap-2"
+              >
+                <Fragment set:html={navIcons[item.href] ?? ''} />
                 {item.label}
               </a>
             ))
@@ -91,29 +107,3 @@ const brandSegments = canHighlightBrand
     </details>
   </nav>
 </header>
-
-<script>
-  const siteHeader = document.querySelector('[data-site-header]');
-  const siteNav = document.querySelector('[data-site-nav]');
-
-  if (siteHeader instanceof HTMLElement && siteNav instanceof HTMLElement) {
-    let lastCondensed = window.scrollY > 20;
-
-    const syncHeader = () => {
-      const condensed = window.scrollY > 20;
-
-      if (condensed === lastCondensed) {
-        return;
-      }
-
-      lastCondensed = condensed;
-      siteHeader.dataset.condensed = condensed ? 'true' : 'false';
-      siteNav.dataset.condensed = condensed ? 'true' : 'false';
-    };
-
-    siteHeader.dataset.condensed = lastCondensed ? 'true' : 'false';
-    siteNav.dataset.condensed = lastCondensed ? 'true' : 'false';
-    syncHeader();
-    window.addEventListener('scroll', syncHeader, { passive: true });
-  }
-</script>

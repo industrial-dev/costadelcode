@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CommunityMosaicSection from '../components/CommunityMosaicSection.astro';
+import JoinCta from '../components/JoinCta.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CommunityWhySection from '../components/CommunityWhySection.astro';
+import CommunityOriginSection from '../components/CommunityOriginSection.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SetupCard from '../components/SetupCard.astro';
+import { siteContent } from '../data/site-content';
+import { pagePaths } from '../data/i18n';
+import CommunityTerminal from '../components/CommunityTerminal';
+
+const content = siteContent;
+const { shared, pages } = content;
+const community = pages.community;
+---
+
+<BaseLayout
+  title={community.meta.title}
+  description={community.meta.description}
+  canonicalPath={pagePaths.community}
+>
+  <SiteHeader
+    brand={shared.brand}
+    nav={shared.nav}
+    cta={shared.primaryCta}
+    menuLabel={shared.labels.menu}
+    navigationLabel={shared.labels.navigation}
+  />
+
+  <main class="relative">
+    <section class="section pt-12">
+      <div class="shell">
+        <div class="flex flex-col gap-10 md:flex-row md:items-center md:gap-16">
+          <div class="flex-1">
+            <p class="eyebrow">{community.hero.eyebrow}</p>
+            <h1 class="title-xl mt-6">{community.hero.title}</h1>
+            <p class="mt-6 text-xl leading-8 text-ink-800 md:text-2xl">
+              {community.hero.intro}
+            </p>
+            <div class="body-copy mt-6 space-y-1">
+              {
+                community.hero.description.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))
+              }
+            </div>
+          </div>
+          <div class="w-full shrink-0 md:w-120">
+            <CommunityTerminal
+              client:visible
+              command="$ npx create-costadelcode"
+              steps={[
+                {
+                  text: '\n  ⠿ Escaneando la Costa del Sol en busca de devs...',
+                },
+                { text: '\n  ✓ Encontrados 4251 desarrolladores' },
+                {
+                  text: '\n  ✓ Reservando lugar con terraza y buena cobertura WiFi...',
+                },
+                { text: '\n  ✓ Instalando dependencias de cervezas@^1.0.0' },
+                {
+                  text: '\n  ✓ Montando el canal de Whatsapp e Instagram de la comunidad...',
+                },
+                { text: '\n  ✓ Sincronizando ideas...' },
+                { text: '\n' },
+                {
+                  text: '\n  🚀 Push a producción. Comunidad lista.',
+                  bold: true,
+                },
+              ]}
+              pulseInterval={55}
+              stepInterval={1200}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CommunityMosaicSection founderCard={community.founderCard} />
+
+    <CommunityWhySection purpose={community.purpose} />
+
+    {community.origin && <CommunityOriginSection origin={community.origin} />}
+
+    <section class="section section-border">
+      <div class="shell space-y-10">
+        <SectionHeading
+          eyebrow={community.setups.eyebrow}
+          title={community.setups.title}
+          body={community.setups.intro}
+        />
+        <div class="grid gap-6 lg:grid-cols-2">
+          {community.setups.items.map((setup) => <SetupCard setup={setup} />)}
+        </div>
+      </div>
+    </section>
+
+    <JoinCta join={shared.join} links={shared.ctaLinks} />
+  </main>
+
+  <SiteFooter
+    brand={shared.brand}
+    tagline={shared.tagline}
+    nav={shared.nav}
+    social={shared.social}
+    footer={shared.footer}
+  />
+</BaseLayout>

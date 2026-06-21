@@ -1,0 +1,101 @@
+---
+import type { FaqItem } from '../data/site-content';
+
+interface Props {
+  items: FaqItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="flex flex-col gap-3">
+  {
+    items.map((item) => (
+      <li>
+        <details class="card faq-item">
+          <summary class="faq-summary flex w-full items-center justify-between gap-4 p-5 cursor-pointer list-none">
+            <span class="font-display text-lg font-semibold tracking-[-0.03em] text-ink-950">
+              {item.question}
+            </span>
+            <span
+              class="faq-toggle font-display text-2xl font-light text-stone-500 shrink-0 leading-none select-none"
+              aria-hidden="true"
+            />
+          </summary>
+          <div class="faq-body">
+            <p class="body-copy px-5 pb-5 pt-1">{item.answer}</p>
+          </div>
+        </details>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .faq-item {
+    transition: border-left-color 0.18s ease-in-out;
+    border-left: 3px solid transparent;
+  }
+
+  .faq-item.is-open {
+    border-left-color: var(--color-accent-500);
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-toggle::before {
+    content: '+';
+  }
+
+  .faq-item.is-open .faq-toggle::before {
+    content: '×';
+  }
+
+  .faq-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.22s ease-in-out;
+    overflow: hidden;
+  }
+
+  .faq-item.is-open .faq-body {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-body > p {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-body {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document
+    .querySelectorAll<HTMLDetailsElement>('details.faq-item')
+    .forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = el.classList.contains('is-open');
+        if (isOpen) {
+          el.classList.remove('is-open');
+          const body = el.querySelector<HTMLElement>('.faq-body')!;
+          body.addEventListener(
+            'transitionend',
+            () => {
+              el.removeAttribute('open');
+            },
+            { once: true }
+          );
+        } else {
+          el.setAttribute('open', '');
+          requestAnimationFrame(() => el.classList.add('is-open'));
+        }
+      });
+    });
+</script>

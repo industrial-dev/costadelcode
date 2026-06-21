@@ -1,48 +1,38 @@
-# Instrucciones para Claude
+# CLAUDE.md
 
-> Este archivo se carga automáticamente al inicio de cada sesión.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Rol obligatorio: leader
+## Commands
 
-En este repositorio actúas **siempre** como el subagente `leader` definido en
-`.claude/agents/leader.md`. Tu trabajo es **descomponer y coordinar**, nunca
-implementar.
+```bash
+yarn dev          # dev server (localhost:4321)
+yarn build        # type-check + build (astro check && astro build)
+yarn preview      # preview production build
+yarn format       # format all files with Prettier
+```
 
-### Reglas duras
+No test suite. `yarn build` is the verification step — it runs `astro check` (TypeScript + Astro type checking) before bundling.
 
-- ❌ **No edites** archivos en `src/` directamente (ni con Edit, ni
-  con Write, ni con Bash).
-- ❌ **No marques** features como `done` en `feature_list.json`.
-- ❌ **No saltes la fase de spec.** Toda feature con `"sdd": true` debe
-  pasar por `spec_author` antes de cualquier implementación.
-- ❌ **No saltes la puerta de aprobación humana** entre `spec_ready` e
-  `in_progress`. Cuando una feature llega a `spec_ready`, paras y le
-  pides al humano que apruebe o pida cambios.
-- ✅ Para cualquier tarea de código, lanza el subagente apropiado vía la
-  herramienta `Agent`:
-  - `subagent_type: "spec_author"` → redacta
-    `specs/<name>/{requirements,design,tasks}.md` para una feature `pending`
-    con `"sdd": true`.
-  - `subagent_type: "implementer"` → escribe código de **una**
-    feature ya con spec aprobado (`in_progress`).
-  - `subagent_type: "reviewer"` → valida trazabilidad y tasks antes de cerrar.
-  - Si la tarea requiere investigación previa, lanza 2-3 subagentes en paralelo
-    (Explore o general-purpose) con preguntas acotadas.
+## Architecture
 
-### Protocolo de arranque (al recibir la primera tarea)
+Static site built with **Astro + React + Tailwind CSS v4**, deployed to GitHub Pages at `industrial-dev.github.io/costadelcode`.
 
-1. Lee `AGENTS.md` para orientarte.
-2. Lee `feature_list.json` y `progress/current.md`.
-3. Ejecuta `bash init.sh`. Si falla, paras y reportas.
-4. Aplica la tabla de escalado y el flujo SDD de `.claude/agents/leader.md`.
+### Base path handling
 
-### Regla anti-teléfono-descompuesto
+The site runs under `/costadelcode` in production and `/` in dev. All internal paths must go through `withBasePath()` from `src/utils/paths.ts`. Never hardcode `/costadelcode/` in links or asset references.
 
-Cuando lances subagentes, instrúyeles para **escribir resultados en archivos**
-(p. ej. `specs/<feature>/requirements.md`, `progress/impl_<feature>.md`) y devolverte solo la referencia, no el contenido. Ver `.claude/agents/leader.md` para el patrón completo.
+### Content layer
 
-### Cuándo NO aplica este rol
+All user-facing copy lives in `src/data/site-content.ts` as a single typed `esContent` object. Page components import the relevant slice from this object — they don't own their own strings. The shape is defined by the `SiteContent` type in the same file.
 
-- Preguntas conceptuales o de exploración del repo (lectura pura) → responde
-  tú directamente, sin lanzar subagentes.
-- Cambios fuera de `src/` (docs, configuración, `progress/`) → puedes editar tú mismo.
+Page routes are declared in `src/data/i18n.ts` (`pagePaths`). Nav links are built automatically from that map, so adding/renaming a page means updating `pagePaths` and adding a corresponding `.astro` file in `src/pages/`.
+
+### Component conventions
+
+- `.astro` components are the default. Use React (`.tsx`) only when interactivity or animation requires it (e.g. `GlobeHero.tsx`, `CommunityTerminal.tsx`).
+- `src/components/` holds shared/reusable pieces. Page-specific sections live directly in `src/pages/` as sibling `.astro` files named after the section (e.g. `HomeHeroSection.astro`).
+- `BaseLayout.astro` wraps every page and handles `<head>`, OG tags, canonical URLs, and the video intro overlay. Pages pass `title`, `description`, and `canonicalPath` props.
+
+### Intro video
+
+`BaseLayout` includes an opt-in video intro (`showIntro` prop). The logic (play once, skip on `prefers-reduced-motion`, force with `?intro=1`) is inlined as `is:inline` scripts to run before hydration.

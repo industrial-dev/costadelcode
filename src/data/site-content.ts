@@ -164,24 +164,17 @@ export type CommunityPage = {
     description: string;
     points: string[];
   };
-  origin: {
+  origin?: {
     eyebrow: string;
     title: string;
     description: string;
     founderNote: string;
-  };
-  pillars: {
-    eyebrow: string;
-    title: string;
-    intro: string;
-    items: Pillar[];
   };
   setups: {
     eyebrow: string;
     title: string;
     intro: string;
     items: SetupCard[];
-    cta: CtaLink;
   };
 };
 
@@ -216,16 +209,7 @@ export type FaqPage = {
     description: string;
   };
   questions: {
-    eyebrow: string;
-    title: string;
-    intro: string;
     items: FaqItem[];
-  };
-  contact: {
-    eyebrow: string;
-    title: string;
-    description: string;
-    ctaLinks: CtaLink[];
   };
 };
 
@@ -290,7 +274,7 @@ const esContent: SiteContent = {
       home: 'Inicio',
       community: 'Comunidad',
       events: 'Eventos',
-      faq: 'Preguntas',
+      faq: 'FAQ',
     }),
     primaryCta: {
       label: 'Unirse a WhatsApp',
@@ -443,10 +427,9 @@ const esContent: SiteContent = {
         eyebrow: 'Comunidad',
         title: 'Un punto de encuentro real para gente que vive cerca.',
         intro:
-          'Costa del Code conecta a devs locales, nómadas digitales y perfiles tech que quieren compartir conocimiento sin salir de la Costa del Sol.',
+          'De Estepona y alrededores. Junior, mid o senior, da igual: si escribes código y vives por aquí, esto va sobre ti.',
         description: [
-          'Nuestro foco es lo local: menos algoritmos, más caras conocidas. Queremos crear un punto de encuentro donde las conversaciones que pasan en Teams o Google Meet también puedan pasar con un café en la mano.',
-          'Si estás construyendo algo, buscando opiniones o solo quieres hablar de código con alguien cercano, este es tu sitio.',
+          'Costa del Code está en sus inicios. Somos un grupo de devs de la zona, de todos los niveles, con ganas de quedar, hablar de código y conectar con gente que comparte el mismo día a día.',
         ],
       },
       founderCard: {
@@ -480,67 +463,20 @@ const esContent: SiteContent = {
         eyebrow: 'El por qué',
         title: 'Descentralizar talento y crear comunidad real.',
         description:
-          'No hace falta irse a una capital para crecer. Lo que faltaba era un lugar para conectar a quienes ya están aquí.',
+          'No hace falta irse a una gran ciudad para crecer. Lo que faltaba era un lugar para conectar a quienes ya están aquí.',
         points: [
-          'Reducir el aislamiento del teletrabajo con encuentros presenciales.',
+          'Reducir el aislamiento del teletrabajo.',
           'Dar visibilidad a talento local y crear oportunidades reales.',
           'Impulsar proyectos de código abierto que nazcan desde la zona.',
         ],
       },
       origin: {
         eyebrow: 'Historia',
-        title: 'Todo empezó con preguntas simples.',
+        title: 'Un ingeniero esteponero que volvió a casa.',
         description:
-          '¿Cuántos devs habrá trabajando en remoto desde la Costa del Sol? ¿Hasta dónde podría llegar una comunidad de desarrolladores de software? La respuesta está aún por descubrir.',
+          'Dani creció en Estepona, estudió fuera y pasó años trabajando en distintas ciudades y en el extranjero. Cuando volvió, echó algo en falta y se preguntó: ¿habrá muchos desarrolladores aquí? Ahora teletrabaja y tiene claro que no es el único que se lo pregunta. Costa del Code es su forma de buscar una respuesta.',
         founderNote:
-          'Soy Dani, llevo años trabajando en remoto y sabía que la comunidad tenía que existir también fuera de las grandes ciudades.',
-      },
-      pillars: {
-        eyebrow: 'Pilares',
-        title: 'Lo que hace que esto funcione.',
-        intro: 'Estos son los temas que guían nuestras quedadas y proyectos.',
-        items: [
-          {
-            title: 'Conexiones',
-            description: 'Conexiones reales entre profesionales tech locales.',
-          },
-          {
-            title: 'Colaboración',
-            description: 'Proyectos abiertos para aprender haciendo.',
-          },
-          {
-            title: 'Actualidad',
-            description: 'Charlas sobre IA, herramientas y tendencias.',
-          },
-          {
-            title: 'Sintonía',
-            description: 'Gente que entiende tus retos y tus tecnologías.',
-          },
-          {
-            title: 'Descubrimiento',
-            description: 'Trucos de IDE, setups y flujos de trabajo.',
-          },
-          {
-            title: 'Retroalimentación',
-            description: 'Feedback honesto para proyectos personales.',
-          },
-          {
-            title: 'Oportunidades',
-            description: 'Ofertas, freelos y colaboraciones locales.',
-          },
-          {
-            title: 'Clientes',
-            description: 'Canal local para encontrar necesidades reales.',
-          },
-          {
-            title: 'Recursos',
-            description: 'Biblioteca de herramientas y patrones curados.',
-          },
-          {
-            title: 'Diversión',
-            description: 'Humor dev, setups y cultura compartida.',
-          },
-        ],
+          'No quiero construir una organización. Quiero que cuando alguien de aquí abra el portátil, sepa que no está solo.',
       },
       setups: {
         eyebrow: 'Revisión de configuraciones',
@@ -580,11 +516,6 @@ const esContent: SiteContent = {
             ],
           },
         ],
-        cta: {
-          label: 'Quiero compartir mi configuración',
-          href: sharedLinks.instagram,
-          variant: 'secondary',
-        },
       },
     },
     events: {
@@ -651,26 +582,24 @@ const esContent: SiteContent = {
     },
     faq: {
       meta: {
-        title: 'Preguntas y Contacto | Costa del Code',
+        title: 'FAQ | Costa del Code',
         description:
           'Resolvemos dudas frecuentes y dejamos los canales abiertos para conectar contigo.',
       },
       hero: {
-        eyebrow: 'Preguntas y contacto',
-        title: 'Respuestas claras antes de sumarte.',
-        intro: 'Si algo no está aquí, nos escribes y lo resolvemos rápido.',
+        eyebrow: 'FAQ',
+        title: 'Preguntas y respuestas.',
+        intro:
+          'Si tienes dudas, aquí están las más frecuentes. Si no ves la tuya, escríbenos y te respondemos rápido.',
         description:
           'La comunidad es abierta, gratuita y local. Queremos que sea fácil dar el primer paso.',
       },
       questions: {
-        eyebrow: 'Preguntas frecuentes',
-        title: 'Lo que suele preguntar la gente.',
-        intro: 'Corto y directo.',
         items: [
           {
             question: '¿Tiene algún coste participar?',
             answer:
-              'No, es 100% gratuito y abierto. Solo pedimos ganas de compartir y respeto.',
+              'No, es 100% gratuito y abierto. Solo es necesario traer buen rollo y ganas de aprender y compartir.',
           },
           {
             question: '¿Qué nivel técnico necesito?',
@@ -680,25 +609,18 @@ const esContent: SiteContent = {
           {
             question: '¿Dónde se hacen las quedadas?',
             answer:
-              'Preferimos espacios locales de Costa del Sol. Avisamos la ubicación con antelación.',
+              'Por el momento en Estepona. Se avisará tanto en el grupo de la comunidad como por instagram del lugar, hora y ubicación exacta de la próxima quedada.',
           },
           {
             question: '¿Puedo proponer un tema o charla?',
             answer:
-              'Sí. De hecho lo buscamos. Escribe y te ayudamos a darle forma.',
+              'Sí. De hecho estaremos encantados de recibir propuestas. Escríbenos y vemos como darle forma.',
           },
           {
             question: '¿Puedo ir aunque no sea dev?',
-            answer: 'Si eres perfil tech o estás aprendiendo, eres bienvenido.',
+            answer: 'Seas quien seas, eres bienvenido en la comunidad..',
           },
         ],
-      },
-      contact: {
-        eyebrow: 'Contacto rápido',
-        title: 'Conecta en el canal que prefieras.',
-        description:
-          'WhatsApp para el grupo principal, Telegram para avisos y Instagram para ver la parte humana.',
-        ctaLinks: buildSocialCtaLinks(),
       },
     },
   },

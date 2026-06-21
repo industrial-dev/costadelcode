@@ -1,0 +1,35 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import type { CommunityPage } from '../data/site-content';
+
+interface Props {
+  purpose: CommunityPage['purpose'];
+}
+
+const { purpose } = Astro.props;
+---
+
+<section class="section section-border">
+  <div
+    class="shell grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center"
+  >
+    <SectionHeading
+      eyebrow={purpose.eyebrow}
+      title={purpose.title}
+      body={purpose.description}
+    />
+    <ul
+      class="grid gap-px overflow-hidden rounded-2xl bg-ink-950/8 sm:grid-cols-3"
+    >
+      {
+        purpose.points.map((point) => (
+          <li class="bg-cream-50 p-6 flex items-center justify-center">
+            <p class="font-display text-lg font-semibold tracking-[-0.03em] text-ink-950">
+              {point}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

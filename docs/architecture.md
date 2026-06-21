@@ -9,8 +9,7 @@
    - `src/data/` — contenido y configuración (fuente única de verdad).
    - `src/components/` — componentes Astro (estáticos) y React (interactivos).
    - `src/pages/` — páginas con enrutamiento basado en archivos.
-     No introducir capas adicionales (stores, servicios, routers) hasta que
-     haya una razón concreta documentada en `feature_list.json`.
+     No introducir capas adicionales (stores, servicios, routers) sin una razón concreta documentada.
 
 2. **Contenido en data, no en componentes.** Todo texto visible en la web
    vive en `src/data/site-content.ts`. Los componentes reciben datos como
@@ -45,10 +44,9 @@ src/data/site-content.ts  (contenido)
 | Ruta          | Archivo           | Componentes principales                               |
 | ------------- | ----------------- | ----------------------------------------------------- |
 | `/`           | `index.astro`     | HomeHeroSection, HomePillarsSection, HomeEventSection |
-| `/comunidad/` | `comunidad.astro` | CommunityMosaicSection                                |
-| `/recursos/`  | `recursos.astro`  | —                                                     |
-| `/eventos/`   | `eventos.astro`   | EventCard, HomeEventSection                           |
-| `/faq/`       | `faq.astro`       | —                                                     |
+| `/community/` | `community.astro` | CommunityTerminal, SetupCard                          |
+| `/events/`    | `events.astro`    | EventCard, HomeEventSection                           |
+| `/faq/`       | `faq.astro`       | FaqAccordion                                          |
 
 Todas las páginas comparten: `BaseLayout` → `SiteHeader` + `JoinCta` + `SiteFooter`.
 

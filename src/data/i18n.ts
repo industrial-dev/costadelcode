@@ -1,7 +1,7 @@
 export const pagePaths = {
   home: '/',
-  community: '/comunidad/',
-  events: '/eventos/',
+  community: '/community/',
+  events: '/events/',
   faq: '/faq/',
 } as const;
 
