@@ -12,6 +12,16 @@
   página de comunidad con mosaico del fundador, simplificación a español único.
 - **Resultado:** landing page con 5 páginas operativa en GitHub Pages.
 
+## 2026-06-21 — Feature 2: community_why_redesign
+
+- **Agente:** Claude Code (leader + spec_author + implementer + reviewer)
+- **Plan:** rediseñar sección "por qué" de Comunidad con componentes visuales más atractivos.
+- **Cambios:** `src/components/CommunityWhySection.astro` (creado), `src/pages/comunidad.astro` (actualizado), ajuste de alineación vertical entre columnas (items-center).
+- **Verificación:** yarn build verde. Reviewer: APROBADO.
+- **Cierre:** feature marcada done.
+
+---
+
 ## 2026-06-17 — Feature 5: harness_sdd
 
 - **Agente:** Claude Code (leader)

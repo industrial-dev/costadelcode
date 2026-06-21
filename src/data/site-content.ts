@@ -489,9 +489,9 @@ const esContent: SiteContent = {
         eyebrow: 'El por qué',
         title: 'Descentralizar talento y crear comunidad real.',
         description:
-          'No hace falta irse a una capital para crecer. Lo que faltaba era un lugar para conectar a quienes ya están aquí.',
+          'No hace falta irse a una gran ciudad para crecer. Lo que faltaba era un lugar para conectar a quienes ya están aquí.',
         points: [
-          'Reducir el aislamiento del teletrabajo con encuentros presenciales.',
+          'Reducir el aislamiento del teletrabajo.',
           'Dar visibilidad a talento local y crear oportunidades reales.',
           'Impulsar proyectos de código abierto que nazcan desde la zona.',
         ],

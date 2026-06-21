@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CommunityMosaicSection from '../components/CommunityMosaicSection.astro';
 import JoinCta from '../components/JoinCta.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import CommunityWhySection from '../components/CommunityWhySection.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import { siteContent } from '../data/site-content';
@@ -43,29 +44,7 @@ const community = pages.community;
 
     <CommunityMosaicSection founderCard={community.founderCard} />
 
-    <section class="section section-border">
-      <div
-        class="shell grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]"
-      >
-        <SectionHeading
-          eyebrow={community.purpose.eyebrow}
-          title={community.purpose.title}
-          body={community.purpose.description}
-        />
-        <div class="card p-6">
-          <ul class="space-y-4">
-            {
-              community.purpose.points.map((point) => (
-                <li class="flex gap-3 text-sm text-ink-950">
-                  <span class="mt-1 h-2 w-2 rounded-full bg-accent-500" />
-                  <span>{point}</span>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </div>
-    </section>
+    <CommunityWhySection purpose={community.purpose} />
 
     <section class="section">
       <div class="shell space-y-10">
