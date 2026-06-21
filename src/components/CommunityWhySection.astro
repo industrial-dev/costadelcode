@@ -18,16 +18,15 @@ const { purpose } = Astro.props;
       title={purpose.title}
       body={purpose.description}
     />
-    <ul class="space-y-3">
+    <ul
+      class="grid gap-px overflow-hidden rounded-2xl bg-ink-950/8 sm:grid-cols-3"
+    >
       {
-        purpose.points.map((point, i) => (
-          <li class="card flex gap-4 items-start p-5">
-            <div>
-              <span class="font-mono text-accent-500 text-lg leading-none shrink-0">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span class="body-copy">{point}</span>
-            </div>
+        purpose.points.map((point) => (
+          <li class="bg-cream-50 p-6">
+            <p class="font-display text-lg font-semibold tracking-[-0.03em] text-ink-950">
+              {point}
+            </p>
           </li>
         ))
       }
