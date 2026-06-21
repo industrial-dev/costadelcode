@@ -27,15 +27,41 @@ const events = pages.events;
   />
 
   <main class="relative">
-    <section class="section pt-14">
+    <section class="section relative overflow-hidden pt-14">
+      <div
+        class="hero-glow-warm pointer-events-none absolute -right-32 -top-10 h-80 w-80 rounded-full blur-3xl"
+        aria-hidden="true"
+      >
+      </div>
+
       <div class="shell">
-        <SectionHeading
-          eyebrow={events.hero.eyebrow}
-          title={events.hero.title}
-          body={events.hero.description}
-          size="xl"
-        />
-        <p class="body-copy mt-5 max-w-3xl">{events.hero.intro}</p>
+        <div class="reveal max-w-3xl">
+          <div class="flex items-center gap-3">
+            <span class="eyebrow">{events.hero.eyebrow}</span>
+            <span class="h-px w-10 bg-stone-300" aria-hidden="true"></span>
+          </div>
+
+          <h1 class="title-xl mt-4">
+            {
+              events.hero.titleHighlight
+                ? events.hero.title.replace(events.hero.titleHighlight, '')
+                : events.hero.title
+            }
+            {
+              events.hero.titleHighlight && (
+                <mark
+                  class="relative whitespace-nowrap bg-transparent text-ink-950"
+                  style="background: linear-gradient(180deg, transparent 55%, rgb(243 212 88 / 0.55) 55%); -webkit-box-decoration-break: clone; box-decoration-break: clone;"
+                >
+                  {events.hero.titleHighlight}
+                </mark>
+              )
+            }
+          </h1>
+
+          <p class="body-copy mt-5">{events.hero.description}</p>
+          <p class="body-copy mt-3">{events.hero.intro}</p>
+        </div>
       </div>
     </section>
 
@@ -46,6 +72,21 @@ const events = pages.events;
           title={events.upcoming.title}
           body={events.upcoming.intro}
         />
+
+        <div
+          class="flex items-start gap-3 rounded-2xl border border-[rgb(243_212_88/0.5)] bg-[rgb(243_212_88/0.12)] px-5 py-4"
+        >
+          <span
+            class="mt-0.5 shrink-0 text-[1rem] leading-none"
+            aria-hidden="true">⏳</span
+          >
+          <p class="text-sm font-semibold text-ink-800">
+            Las fechas de estos eventos están por confirmar. En cuanto cerremos
+            sitio y fecha, lo actualizamos aquí y avisamos por WhatsApp y
+            Telegram.
+          </p>
+        </div>
+
         <div class="grid gap-6 lg:grid-cols-2">
           {
             events.upcoming.items.map((event) => (

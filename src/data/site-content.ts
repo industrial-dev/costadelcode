@@ -63,6 +63,7 @@ export type EventItem = {
   tags: string[];
   ctaLabel: string;
   ctaHref: string;
+  pending?: boolean;
 };
 
 export type FaqItem = {
@@ -183,6 +184,7 @@ export type EventsPage = {
   hero: {
     eyebrow: string;
     title: string;
+    titleHighlight?: string;
     intro: string;
     description: string;
   };
@@ -527,6 +529,7 @@ const esContent: SiteContent = {
       hero: {
         eyebrow: 'Eventos',
         title: 'Quedadas pequeñas, impacto grande.',
+        titleHighlight: 'impacto grande.',
         intro:
           'Nada de macro eventos. Preferimos charlas cortas y conversaciones largas.',
         description:
@@ -549,6 +552,7 @@ const esContent: SiteContent = {
             tags: ['IA', 'Demos en directo', 'Conexiones'],
             ctaLabel: 'Quiero asistir',
             ctaHref: sharedLinks.whatsapp,
+            pending: true,
           },
           {
             title: 'Debates sobre IDEs y setups',
@@ -565,6 +569,7 @@ const esContent: SiteContent = {
             ],
             ctaLabel: 'Sumarme al debate',
             ctaHref: sharedLinks.telegram,
+            pending: true,
           },
         ],
       },
