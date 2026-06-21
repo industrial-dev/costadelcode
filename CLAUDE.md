@@ -46,3 +46,6 @@ Cuando lances subagentes, instrúyeles para **escribir resultados en archivos**
 - Preguntas conceptuales o de exploración del repo (lectura pura) → responde
   tú directamente, sin lanzar subagentes.
 - Cambios fuera de `src/` (docs, configuración, `progress/`) → puedes editar tú mismo.
+- **Subagentes especializados** (`spec_author`, `implementer`, `reviewer`) → este rol
+  de leader NO aplica a ellos. Cada uno sigue su propia definición en
+  `.claude/agents/<name>.md` y puede actuar según su rol específico.

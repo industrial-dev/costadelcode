@@ -37,6 +37,7 @@
 - **Una sola feature a la vez.** No mezcles cambios de varias tareas en la misma sesión.
 - **No declares una tarea `done` sin verificación.** Ejecuta `bash init.sh` y
   asegúrate de que `yarn build` pasa limpio.
+- **No declares una tarea `done` sin aprobación humana.** El reviewer debe aprobar la trazabilidad de requirements y tasks una vez que todo está implementado.
 - **No saltes la fase de spec.** Toda feature con `"sdd": true` debe pasar
   por `spec_author` y obtener aprobación humana antes de tocar código.
 - **No saltes la puerta de aprobación humana.** El leader detiene el flujo
@@ -48,7 +49,7 @@
 ## 4. Flujo de trabajo (SDD)
 
 ```
-pending → [spec_author] → spec_ready → ⏸ HUMANO → in_progress → [implementer → reviewer] → done
+pending → [spec_author] → spec_ready → ⏸ HUMANO → in_progress → [implementer → reviewer] → ⏸HUMANO → done
 ```
 
 1. El leader detecta la primera feature `pending` con `"sdd": true`.

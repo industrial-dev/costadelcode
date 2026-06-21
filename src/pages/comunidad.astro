@@ -28,35 +28,16 @@ const community = pages.community;
   />
 
   <main class="relative">
-    <section class="section pt-14">
-      <div
-        class="shell grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]"
-      >
-        <div class="max-w-2xl">
-          <p class="eyebrow">{community.hero.eyebrow}</p>
-          <h1 class="title-xl mt-6">{community.hero.title}</h1>
-          <p class="mt-6 text-xl leading-8 text-ink-800 md:text-2xl">
-            {community.hero.intro}
-          </p>
-          <div class="body-copy mt-6 space-y-4">
-            {community.hero.description.map((paragraph) => <p>{paragraph}</p>)}
-          </div>
+    <section class="section pt-12">
+      <div class="shell mx-auto max-w-2xl">
+        <p class="eyebrow">{community.hero.eyebrow}</p>
+        <h1 class="title-xl mt-6">{community.hero.title}</h1>
+        <p class="mt-6 text-xl leading-8 text-ink-800 md:text-2xl">
+          {community.hero.intro}
+        </p>
+        <div class="body-copy mt-6 space-y-1">
+          {community.hero.description.map((paragraph) => <p>{paragraph}</p>)}
         </div>
-
-        <aside class="card p-8">
-          <p class="eyebrow">{community.origin.eyebrow}</p>
-          <h2
-            class="mt-4 font-display text-2xl font-semibold tracking-[-0.03em] text-ink-950"
-          >
-            {community.origin.title}
-          </h2>
-          <p class="body-copy mt-5">{community.origin.description}</p>
-          <p
-            class="mt-6 rounded-2xl border border-[rgb(17_17_17/0.08)] bg-[rgb(255_255_255/0.7)] p-4 text-sm text-ink-950"
-          >
-            {community.origin.founderNote}
-          </p>
-        </aside>
       </div>
     </section>
 

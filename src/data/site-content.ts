@@ -156,6 +156,11 @@ export type CommunityPage = {
     title: string;
     intro: string;
     description: string[];
+    founderIntro: {
+      name: string;
+      note: string;
+      eyebrow: string;
+    };
   };
   founderCard: FounderCard;
   purpose: {
@@ -164,7 +169,7 @@ export type CommunityPage = {
     description: string;
     points: string[];
   };
-  origin: {
+  origin?: {
     eyebrow: string;
     title: string;
     description: string;
@@ -443,11 +448,15 @@ const esContent: SiteContent = {
         eyebrow: 'Comunidad',
         title: 'Un punto de encuentro real para gente que vive cerca.',
         intro:
-          'Costa del Code conecta a devs locales, nómadas digitales y perfiles tech que quieren compartir conocimiento sin salir de la Costa del Sol.',
+          'De Estepona y alrededores. Junior, mid o senior, da igual: si escribes código y vives por aquí, esto va de ti.',
         description: [
-          'Nuestro foco es lo local: menos algoritmos, más caras conocidas. Queremos crear un punto de encuentro donde las conversaciones que pasan en Teams o Google Meet también puedan pasar con un café en la mano.',
-          'Si estás construyendo algo, buscando opiniones o solo quieres hablar de código con alguien cercano, este es tu sitio.',
+          'Costa del Code está en sus inicios. Somos un grupo de devs de la zona, de todos los niveles, con ganas de quedar, hablar de código y conectar con gente que comparte el mismo día a día.',
         ],
+        founderIntro: {
+          name: 'Daniel Núñez',
+          eyebrow: 'Fundador · Estepona',
+          note: 'No quiero construir una organización. Quiero que cuando alguien de aquí abra el portátil, sepa que no está solo.',
+        },
       },
       founderCard: {
         eyebrow: '¿Quién inició este proyecto?',
@@ -489,11 +498,11 @@ const esContent: SiteContent = {
       },
       origin: {
         eyebrow: 'Historia',
-        title: 'Todo empezó con preguntas simples.',
+        title: 'Un dev de Estepona que volvió a casa.',
         description:
-          '¿Cuántos devs habrá trabajando en remoto desde la Costa del Sol? ¿Hasta dónde podría llegar una comunidad de desarrolladores de software? La respuesta está aún por descubrir.',
+          'Dani creció en Estepona, estudió fuera y pasó años trabajando en distintas ciudades y en el extranjero. Cuando volvió, lo tenía todo menos algo obvio: gente tech cerca con quien hablar. Ahora teletrabaja desde Estepona y tiene claro que no es el único en esa situación. Costa del Code es su forma de hacer algo al respecto.',
         founderNote:
-          'Soy Dani, llevo años trabajando en remoto y sabía que la comunidad tenía que existir también fuera de las grandes ciudades.',
+          'No quiero construir una organización. Quiero que cuando alguien de aquí abra el portátil, sepa que no está solo.',
       },
       pillars: {
         eyebrow: 'Pilares',
