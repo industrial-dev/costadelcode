@@ -80,7 +80,7 @@ const ORB_TRANSITION = {
   duration: 0.18,
 } as const;
 
-// CSS de hover fuera del componente — se inyecta una sola vez, nunca en renders
+// CSS de hover inyectado con precedence="low" — React 19 lo mueve al <head> y lo deduplica
 const HOVER_STYLES = `
   .rw-row  { transition: background 100ms; }
   .rw-row:hover { background: rgb(35 33 29 / 0.04) !important; }
@@ -135,6 +135,26 @@ export default function ResourcesWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const didDrag = useRef(false);
   const spinControls = useAnimation();
+  const [dragConstraints, setDragConstraints] = useState({
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  });
+
+  useEffect(() => {
+    const updateConstraints = () => {
+      setDragConstraints({
+        top: -(window.innerHeight - 128 - 28),
+        left: -(window.innerWidth - 128 - 28),
+        right: 0,
+        bottom: 0,
+      });
+    };
+    updateConstraints();
+    window.addEventListener('resize', updateConstraints);
+    return () => window.removeEventListener('resize', updateConstraints);
+  }, []);
 
   useEffect(() => {
     spinControls.start({ rotate: 360, transition: SPIN_TRANSITION });
@@ -156,7 +176,7 @@ export default function ResourcesWidget() {
 
   return (
     <>
-      <style>{HOVER_STYLES}</style>
+      <style precedence="low">{HOVER_STYLES}</style>
 
       {/*
         Backdrop SIN backdropFilter — la causa #1 del lag al abrir.
@@ -205,7 +225,7 @@ export default function ResourcesWidget() {
               x: '-50%',
               y: '-50%',
               zIndex: 50,
-              width: 480,
+              width: 'min(480px, calc(100vw - 32px))',
               background: T.glass96,
               border: `1px solid ${T.borderSoft}`,
               boxShadow: T.shadowFloat,
@@ -500,6 +520,8 @@ export default function ResourcesWidget() {
         <motion.div
           drag
           dragMomentum={false}
+          dragConstraints={dragConstraints}
+          dragElastic={0}
           onDragStart={() => {
             didDrag.current = true;
           }}
