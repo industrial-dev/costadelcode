@@ -66,19 +66,15 @@
     },
     {
       "id": 5,
-      "name": "community_share_config_modal",
-      "title": "Modal 'Compartir mi configuración' con formulario",
-      "description": "Crear modal para que usuarios compartan su configuración. Incluye formulario con campos de usuario, descripción y carga de imágenes. Envío por correo mockeado (sin implementar integración real).",
+      "name": "community_share",
+      "title": "Eliminar botón de compartir configuración",
+      "description": "Eliminar botón de compartir configuración y reemplazarlo por un modal con formulario para que los usuarios puedan proponer nuevas configuraciones. El formulario debe incluir campos para nombre, descripción e imágenes, con validación y envío mockeado por correo.",
       "acceptance": [
-        "Modal accesible desde sección configuraciones",
-        "Formulario con campos: nombre, descripción, imágenes",
-        "Validación de formulario",
-        "Mock de envío por correo (console.log o similar)",
-        "Diseño atractivo y user-friendly",
+        "Botón de compartir configuración eliminado",
         "yarn build pasa sin errores"
       ],
       "sdd": true,
-      "status": "pending"
+      "status": "spec_ready"
     },
     {
       "id": 6,

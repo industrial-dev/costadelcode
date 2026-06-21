@@ -186,7 +186,6 @@ export type CommunityPage = {
     title: string;
     intro: string;
     items: SetupCard[];
-    cta: CtaLink;
   };
 };
 
@@ -589,11 +588,6 @@ const esContent: SiteContent = {
             ],
           },
         ],
-        cta: {
-          label: 'Quiero compartir mi configuración',
-          href: sharedLinks.instagram,
-          variant: 'secondary',
-        },
       },
     },
     events: {
