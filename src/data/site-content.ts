@@ -47,7 +47,6 @@ export type SetupCard = {
   name: string;
   role: string;
   imageSrc: string;
-  imageLabel: string;
   imageAlt: string;
   roast: string;
   highlights: string[];
@@ -174,7 +173,6 @@ export type CommunityPage = {
   setups: {
     eyebrow: string;
     title: string;
-    intro: string;
     items: SetupCard[];
   };
 };
@@ -482,39 +480,38 @@ const esContent: SiteContent = {
       },
       setups: {
         eyebrow: 'Revisión de configuraciones',
-        title: 'Configuraciones reales, humor respetuoso.',
-        intro:
-          'Dos setups de muestra para el primer despliegue. Pronto abrimos la galería completa con aportes de la comunidad.',
+        title: 'Setups de la comunidad analizados por IA.',
         items: [
           {
-            title: 'Configuración #01 · El minimalista accidental',
-            name: 'Rafa M.',
-            role: 'Desarrollador de interfaz',
-            imageSrc: '/images/setups/setup-01.svg',
-            imageLabel: 'Imagen provisional de configuración con luz cálida',
+            title: 'Configuración #01 · Los patos lo hacen todo',
+            name: 'Dani (github: @industrial-dev)',
+            role: 'Fundador · Dev Full Stack',
+            imageSrc: '/images/setups/setup-01.jpg',
             imageAlt:
-              'Foto de configuración con mesa clara y monitor panorámico',
+              'Setup de Daniel N. con dos monitores grandes, portátil central sobre mesa elevable y patos de goma en el escritorio',
             roast:
-              'Mucho minimalismo, pero ese cable HDMI sigue viendo el sol cada mañana.',
+              'Triple pantalla, mesa elevable y un equipo de patos de goma más fiable que cualquier sprint planning.',
             highlights: [
-              '1 monitor panorámico',
-              'Teclado de perfil bajo',
-              'Café en taza de cerámica',
+              'Triple pantalla (2 monitores + portátil)',
+              'Mesa elevable',
+              'Teclado mecánico ultradelgado',
             ],
           },
           {
-            title: 'Configuración #02 · El multiventana',
-            name: 'Lola G.',
-            role: 'Servidor + IA',
-            imageSrc: '/images/setups/setup-02.svg',
-            imageLabel: 'Imagen provisional de configuración con tonos oscuros',
-            imageAlt: 'Foto de configuración con doble monitor y libros',
+            title: 'Configuración #02 · El junior con setup de caudillo',
+            name: 'Javi (github: @javi12ms)',
+            role: 'Junior · Dev Full Stack',
+            imageSrc: '/images/setups/setup-02.jpeg',
+            imageAlt:
+              'Setup de Javi con dos monitores curvos, torre gaming con RGB, teclado mecánico, mando de PS4 y una copa de Game of Thrones',
             roast:
-              'Dos pantallas, tres notebooks y aun así el bug estaba en la línea 12.',
+              'Setup de senior financiado por la casa Targarian: dos monitores curvos, torre con más RGB que una feria y una copa de Game of Thrones para el café. El mando de PS4 es púramente decorativo.',
             highlights: [
-              '2x monitores 27"',
-              'Dock con mil puertos',
-              'Notas en post-its',
+              '2 monitores curvos',
+              'Torre gaming con RGB',
+              'Teclado mecánico gaming',
+              'Mando PS4 en el escritorio',
+              'Copa de Game of Thrones',
             ],
           },
         ],
