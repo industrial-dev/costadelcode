@@ -406,7 +406,7 @@ const esContent: SiteContent = {
           date: 'Por confirmar',
           time: 'Después del trabajo',
           location: 'Costa del Sol (ubicación por confirmar)',
-          meta: 'Formato ligero · 90 min',
+          meta: 'Formato ligero',
           description:
             'Mesa corta para hablar sobre Costa del Code, compartir casos reales, instrucciones útiles y herramientas con las que trabajas (o no) en tu día a día.',
           tags: ['IA aplicada', 'Demos en directo', 'Conexiones'],
@@ -532,38 +532,21 @@ const esContent: SiteContent = {
       },
       upcoming: {
         eyebrow: 'Agenda',
-        title: 'Lo que viene (provisional y editable).',
+        title: 'Lo que viene próximamente.',
         intro:
           'Actualizamos esta sección cuando cerramos fecha. Si quieres proponer tema, escribe.',
         items: [
           {
-            title: 'IA aplicada al código',
-            date: 'Fecha por confirmar',
-            time: '18:30 - 20:00',
-            location: 'Costa del Sol',
-            meta: 'Después del trabajo · 90 min',
+            title: '¿Qué es Costa del Code?',
+            date: 'Por confirmar',
+            time: 'Después del trabajo',
+            location: 'Costa del Sol (ubicación por confirmar)',
+            meta: 'Formato ligero',
             description:
-              'Casos reales de uso de IA: instrucciones útiles, herramientas y flujos de trabajo que ya usamos cada día.',
-            tags: ['IA', 'Demos en directo', 'Conexiones'],
+              'Mesa corta para hablar sobre Costa del Code, compartir casos reales, instrucciones útiles y herramientas con las que trabajas (o no) en tu día a día.',
+            tags: ['Presentación'],
             ctaLabel: 'Quiero asistir',
             ctaHref: sharedLinks.whatsapp,
-            pending: true,
-          },
-          {
-            title: 'Debates sobre IDEs y setups',
-            date: 'Fecha por confirmar',
-            time: '19:00 - 20:30',
-            location: 'Costa del Sol',
-            meta: 'Mesa redonda',
-            description:
-              'Comparte tu configuración, extensiones clave y trucos para ser más rápido.',
-            tags: [
-              'Herramientas',
-              'Experiencia de desarrollo',
-              'Configuraciones',
-            ],
-            ctaLabel: 'Sumarme al debate',
-            ctaHref: sharedLinks.telegram,
             pending: true,
           },
         ],
@@ -572,7 +555,7 @@ const esContent: SiteContent = {
         eyebrow: 'Ponentes',
         title: '¿Quieres dar una charla?',
         description:
-          'Buscamos charlas cortas, prácticas y sin humo. 15 minutos y opiniones reales.',
+          'Buscamos charlas cortas, prácticas y sin humo. Si tienes algo que contar, coméntalo por WhatsApp, Telegram o Instagram y le damos forma.',
         cta: {
           label: 'Proponer charla',
           href: sharedLinks.talks,
