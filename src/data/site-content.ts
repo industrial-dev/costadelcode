@@ -106,7 +106,7 @@ export type HomePage = {
     title: string;
     intro: string;
     description: string[];
-    stats: { label: string; value: string }[];
+    stats: { label: string; value: string; badge?: string }[];
     primaryCta: CtaLink;
     secondaryCta: CtaLink;
     tertiaryCta: CtaLink;
@@ -337,9 +337,9 @@ const esContent: SiteContent = {
           'Vivir en la Costa del Sol y trabajar para fuera es un privilegio, pero también puede ser solitario. Costa del Code nace para conectar a quienes compartimos la misma zona geográfica.',
         ],
         stats: [
-          { value: 'Local', label: 'Costa del Sol' },
-          { value: 'Código abierto', label: 'Proyectos con impacto real' },
-          { value: 'Sin coste', label: 'Comunidad abierta' },
+          { value: 'Costa del Sol', label: '¿Dónde estamos?' },
+          { value: 'Open source', label: '¿Cómo trabajamos?' },
+          { value: '100% gratis', label: 'Para unirte', badge: 'Para siempre' },
         ],
         primaryCta: {
           label: 'Unirme a WhatsApp',
@@ -498,7 +498,7 @@ const esContent: SiteContent = {
             ],
           },
           {
-            title: 'Configuración #02 · El junior con setup de caudillo',
+            title: 'Configuración #02 · El setup más ordenado de la comunidad',
             name: 'Javi (github: @javi12ms)',
             role: 'Junior · Dev Full Stack',
             imageSrc: '/images/setups/setup-02.jpeg',
