@@ -11,219 +11,168 @@ const { eyebrow, title, description, highlights, mosaic } = founderCard;
 
 <section class="section section-border">
   <div class="shell">
-    <div class="grid gap-3 lg:grid-cols-12 lg:auto-rows-[minmax(190px,auto)]">
-      <!-- 1. Daniel Núñez — white glass, card principal -->
-      <article
-        class="relative overflow-hidden rounded-[1.6rem] border bg-white/80 backdrop-blur-sm shadow-(--shadow-card) p-6 sm:p-8 lg:col-span-8 lg:min-h-77.5 reveal"
-      >
-        <div class="max-w-2xl">
+    <div class="flex flex-col gap-2.5">
+      <!-- FILA 1: Card principal + Card connect -->
+      <div class="grid gap-2.5 sm:grid-cols-[3fr_2fr]">
+        <article
+          class="relative overflow-hidden rounded-[1.6rem] border bg-white/80 shadow-(--shadow-card) backdrop-blur-sm p-7 sm:p-9 reveal"
+        >
           <p class="eyebrow">{eyebrow}</p>
           <h2
-            class="mt-5 max-w-[10ch] font-display text-[clamp(3.1rem,8vw,7.5rem)] leading-[0.82] font-semibold tracking-[-0.09em] text-code-green"
+            class="mt-4 font-display text-[clamp(2.6rem,6vw,4.2rem)] leading-[0.88] font-semibold tracking-[-0.05em] text-code-green"
           >
             {mosaic.headline}
           </h2>
+          <div class="mt-6 border-t border-(--border-soft) pt-5">
+            <p
+              class="font-display text-base font-semibold tracking-[-0.02em] text-ink-950"
+            >
+              {title}
+            </p>
+            <div
+              class="mt-2 space-y-1.5 text-sm leading-6 font-semibold text-ink-800"
+            >
+              {description.map((p) => <p>{p}</p>)}
+            </div>
+          </div>
+        </article>
+
+        <article
+          class="relative overflow-hidden rounded-[1.6rem] bg-code-green p-7 sm:p-9 reveal"
+        >
+          <p class="font-mono text-2xl leading-none text-code-lime">
+            {mosaic.connectLabel}
+          </p>
           <p
-            class="mt-5 font-display text-xl font-semibold tracking-[-0.04em] text-ink-950 sm:text-2xl"
+            class="mt-5 font-display text-[clamp(1.6rem,4vw,2.4rem)] leading-[1.1] font-semibold tracking-[-0.03em] text-white"
           >
-            {title}
+            {mosaic.connectDescription}
           </p>
           <div
-            class="mt-4 max-w-lg space-y-2 text-sm leading-6 font-semibold text-ink-800"
+            class="pointer-events-none absolute -right-6 -bottom-6 h-36 w-36 rounded-full border border-code-lime/20 opacity-40"
+            aria-hidden="true"
           >
-            {description.map((paragraph) => <p>{paragraph}</p>)}
           </div>
-        </div>
+        </article>
+      </div>
 
-        <div
-          class="absolute right-6 bottom-6 hidden items-end gap-2 sm:flex"
-          aria-hidden="true"
-        >
-          <div
-            class="h-14 w-14 rounded-full border-2 border-ink-950/20 bg-accent-500"
-          >
-          </div>
-          <div
-            class="h-17 w-17 rounded-full border-2 border-ink-950/20 bg-cream-200"
-          >
-          </div>
-          <div
-            class="h-12 w-12 rounded-full border-2 border-ink-950/20 bg-code-green"
-          >
-          </div>
-        </div>
-      </article>
-
-      <!-- 2. connect() — verde completo -->
-      <article
-        class="relative overflow-hidden rounded-[1.6rem] bg-code-green p-6 text-cream-50 sm:p-8 lg:col-span-4 lg:min-h-77.5 reveal"
-      >
-        <div
-          class="absolute -top-20 -right-16 h-52 w-52 rounded-full border-28 border-code-lime/30"
-        >
-        </div>
-        <p class="font-mono text-2xl leading-none text-code-lime">
-          {mosaic.connectLabel}
-        </p>
-        <svg
-          class="mx-auto mt-8 h-36 w-full max-w-sm text-cream-50 sm:h-44"
-          viewBox="0 0 320 180"
-          fill="none"
-          aria-hidden="true"
-        >
-          <g fill="currentColor" opacity="0.96">
-            <path d="M26 74 98 24l55 76-72 50L26 74Z"></path>
-            <path d="M296 73 222 22l-55 78 73 50 56-77Z"></path>
-          </g>
-          <path
-            class="text-code-lime"
-            d="M127 103c21-29 54-29 75 0l-20 28c-12 15-31 15-43 0l-12-28Z"
+      <!-- FILA 2: Tres cards medianas -->
+      <div class="grid gap-2.5 sm:grid-cols-3">
+        <article class="rounded-[1.6rem] bg-accent-500 p-6 sm:p-7 reveal">
+          <svg
+            class="h-5 w-5 text-ink-950/40"
+            viewBox="0 0 24 24"
+            fill="none"
             stroke="currentColor"
-            stroke-width="8"
+            stroke-width="2"
             stroke-linecap="round"
-            stroke-linejoin="round"></path>
-          <path
-            d="M111 96c30 20 65 22 99 0M130 132c22 14 45 14 66 0"
-            stroke="currentColor"
-            stroke-width="8"
-            stroke-linecap="round"></path>
-          <path
-            class="text-code-lime"
-            d="M73 135c-18 4-34 17-45 34M247 135c18 4 34 17 45 34"
-            stroke="currentColor"
-            stroke-width="7"
-            stroke-linecap="round"></path>
-        </svg>
-        <p class="relative mt-6 max-w-sm text-lg leading-7 font-semibold">
-          {mosaic.connectDescription}
-        </p>
-      </article>
-
-      <!-- 3. offline — amarillo completo -->
-      <article
-        class="rounded-[1.6rem] bg-accent-500 p-6 text-ink-950 sm:p-7 lg:col-span-4 reveal"
-      >
-        <div
-          class="flex items-center justify-between font-mono text-xl leading-none opacity-55"
-        >
-          <span>{mosaic.offlineNumber}</span>
-          <span>{mosaic.offlineLabel}</span>
-        </div>
-        <h3
-          class="mt-11 font-display text-4xl leading-none font-semibold tracking-[-0.06em]"
-        >
-          {mosaic.offlineTitle}
-        </h3>
-        <p class="mt-5 text-sm leading-6 font-semibold text-ink-800">
-          {highlights.offline}
-        </p>
-      </article>
-
-      <!-- 4. docs — cream-100, tono cálido -->
-      <article
-        class="rounded-[1.6rem] border bg-cream-100 shadow-(--shadow-card) p-6 sm:p-7 lg:col-span-4 reveal"
-      >
-        <div
-          class="mx-auto mt-2 flex h-18 w-18 items-center justify-center rounded-3xl bg-code-green text-cream-50"
-          aria-hidden="true"
-        >
-          <svg class="h-10 w-10" viewBox="0 0 48 48" fill="none">
-            <path
-              d="M10 24h28"
-              stroke="currentColor"
-              stroke-width="4"
-              stroke-linecap="round"></path>
-            <path
-              d="M24 10v28"
-              stroke="currentColor"
-              stroke-width="4"
-              stroke-linecap="round"></path>
-            <path
-              d="m15 15 18 18"
-              stroke="currentColor"
-              stroke-width="4"
-              stroke-linecap="round"></path>
-            <path
-              d="m33 15-18 18"
-              stroke="currentColor"
-              stroke-width="4"
-              stroke-linecap="round"></path>
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
           </svg>
-        </div>
-        <h3
-          class="mt-7 text-center font-display text-5xl leading-none font-semibold tracking-[-0.08em] text-code-green"
-        >
-          {mosaic.docTitle}
-        </h3>
-        <p
-          class="mx-auto mt-5 max-w-xs text-center text-sm leading-6 font-semibold text-ink-800"
-        >
-          {highlights.sync}
-        </p>
-      </article>
+          <h3
+            class="mt-6 font-display text-[1.65rem] leading-[0.9] font-semibold tracking-[-0.04em] text-ink-950"
+          >
+            {mosaic.offlineTitle}
+          </h3>
+          <p class="mt-4 text-sm leading-6 font-semibold text-ink-800">
+            {highlights.offline}
+          </p>
+        </article>
 
-      <!-- 5. gente junta — cream-200, más cálido aún -->
-      <article
-        class="relative overflow-hidden rounded-[1.6rem] border bg-cream-200 shadow-(--shadow-card) p-6 sm:p-7 lg:col-span-4 lg:row-span-2 reveal"
-      >
-        <p
-          class="font-display text-[clamp(3rem,6vw,5.4rem)] leading-[0.82] font-semibold -tracking-widest text-code-green"
+        <article
+          class="rounded-[1.6rem] border bg-cream-100 shadow-(--shadow-card) p-6 sm:p-7 reveal"
         >
-          {mosaic.communityTitle}
-        </p>
-        <p class="mt-5 font-mono text-2xl text-ink-950/35">
-          {mosaic.communityTag}
-        </p>
-        <div
-          class="absolute right-4 bottom-4 left-4 flex items-end justify-center"
-          aria-hidden="true"
+          <svg
+            class="h-5 w-5 text-code-green"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="18" cy="18" r="3"></circle>
+            <circle cx="6" cy="6" r="3"></circle>
+            <path d="M6 21V9a9 9 0 0 0 9 9"></path>
+          </svg>
+          <h3
+            class="mt-6 font-display text-[1.65rem] leading-[0.9] font-semibold tracking-[-0.04em] text-code-green"
+          >
+            {mosaic.docTitle}
+          </h3>
+          <p class="mt-4 text-sm leading-6 font-semibold text-ink-800">
+            {highlights.sync}
+          </p>
+        </article>
+
+        <article
+          class="rounded-[1.6rem] border bg-cream-200 shadow-(--shadow-card) p-6 sm:p-7 reveal"
+        >
+          <svg
+            class="h-5 w-5 text-stone-500"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <h3
+            class="mt-6 font-display text-[1.65rem] leading-[0.9] font-semibold tracking-[-0.04em] text-ink-950"
+          >
+            {mosaic.communityTitle}
+          </h3>
+          <p class="mt-4 text-sm leading-6 font-semibold text-ink-800">
+            {highlights.community}
+          </p>
+        </article>
+      </div>
+
+      <!-- FILA 3: Dos cards de terminal -->
+      <div class="grid gap-2.5 sm:grid-cols-[3fr_2fr]">
+        <article
+          class="rounded-[1.6rem] border bg-accent-500/15 shadow-(--shadow-card) p-6 sm:p-7 reveal"
         >
           <div
-            class="h-28 w-24 rounded-t-full border-[3px] border-ink-950/20 bg-accent-500"
+            class="flex items-center gap-3 rounded-2xl bg-ink-950 px-5 py-3.5 font-mono text-lg leading-none text-cream-50"
           >
+            <span class="text-code-lime shrink-0">$</span>
+            <span class="truncate text-white/80">{mosaic.pushCommand}</span>
           </div>
-          <div
-            class="-ml-4 h-36 w-28 rounded-t-full border-[3px] border-ink-950/20 bg-white/70"
-          >
-          </div>
-          <div
-            class="-ml-4 h-31 w-24 rounded-t-full border-[3px] border-ink-950/20 bg-code-green"
-          >
-          </div>
-        </div>
-      </article>
+          <p class="mt-5 text-sm leading-6 font-semibold text-ink-950">
+            {highlights.push}
+          </p>
+        </article>
 
-      <!-- 6. push command — tinte amarillo muy suave -->
-      <article
-        class="rounded-[1.6rem] border bg-accent-500/15 shadow-(--shadow-card) p-6 sm:p-7 lg:col-span-5 reveal"
-      >
-        <div
-          class="rounded-[1.35rem] bg-ink-950 px-5 py-4 font-mono text-xl leading-none text-cream-50"
+        <article
+          class="relative overflow-hidden rounded-[1.6rem] border bg-code-green/10 shadow-(--shadow-card) p-6 sm:p-7 reveal"
         >
-          {mosaic.pushCommand}
-        </div>
-        <p class="mt-6 text-sm leading-6 font-semibold text-ink-950">
-          {highlights.push}
-        </p>
-      </article>
-
-      <!-- 7. feedback — tinte verde muy suave -->
-      <article
-        class="relative overflow-hidden rounded-[1.6rem] border bg-code-green/12 shadow-(--shadow-card) p-6 sm:p-7 lg:col-span-3 reveal"
-      >
-        <div
-          class="absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-code-green/15"
-        >
-        </div>
-        <div
-          class="relative rounded-[1.35rem] bg-ink-950 px-5 py-4 font-mono text-xl leading-none text-cream-50"
-        >
-          {mosaic.feedbackCommand}
-        </div>
-        <p class="relative mt-6 text-sm leading-6 font-semibold text-ink-800">
-          {highlights.feedback}
-        </p>
-      </article>
+          <div
+            class="flex items-center gap-3 rounded-2xl bg-ink-950 px-5 py-3.5 font-mono text-lg leading-none text-cream-50"
+          >
+            <span class="text-code-lime shrink-0">$</span>
+            <span class="text-white/80">{mosaic.feedbackCommand}</span>
+          </div>
+          <p class="mt-5 text-sm leading-6 font-semibold text-ink-800">
+            {highlights.feedback}
+          </p>
+          <div
+            class="pointer-events-none absolute -right-8 -bottom-8 h-28 w-28 rounded-full bg-code-green/10"
+            aria-hidden="true"
+          >
+          </div>
+        </article>
+      </div>
     </div>
   </div>
 </section>
