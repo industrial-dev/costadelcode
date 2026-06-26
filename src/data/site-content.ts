@@ -47,7 +47,6 @@ export type SetupCard = {
   name: string;
   role: string;
   imageSrc: string;
-  imageLabel: string;
   imageAlt: string;
   roast: string;
   highlights: string[];
@@ -63,6 +62,7 @@ export type EventItem = {
   tags: string[];
   ctaLabel: string;
   ctaHref: string;
+  pending?: boolean;
 };
 
 export type FaqItem = {
@@ -83,6 +83,7 @@ export type SharedContent = {
     location: string;
     menu: string;
     navigation: string;
+    pendingDate: string;
   };
   footer: {
     note: string;
@@ -106,7 +107,7 @@ export type HomePage = {
     title: string;
     intro: string;
     description: string[];
-    stats: { label: string; value: string }[];
+    stats: { label: string; value: string; badge?: string }[];
     primaryCta: CtaLink;
     secondaryCta: CtaLink;
     tertiaryCta: CtaLink;
@@ -133,17 +134,15 @@ export type FounderCard = {
     sync: string;
     push: string;
     feedback: string;
+    community: string;
   };
   mosaic: {
     headline: string;
     connectLabel: string;
     connectDescription: string;
-    offlineNumber: string;
-    offlineLabel: string;
     offlineTitle: string;
     docTitle: string;
     communityTitle: string;
-    communityTag: string;
     pushCommand: string;
     feedbackCommand: string;
   };
@@ -173,7 +172,6 @@ export type CommunityPage = {
   setups: {
     eyebrow: string;
     title: string;
-    intro: string;
     items: SetupCard[];
   };
 };
@@ -183,6 +181,7 @@ export type EventsPage = {
   hero: {
     eyebrow: string;
     title: string;
+    titleHighlight?: string;
     intro: string;
     description: string;
   };
@@ -289,6 +288,7 @@ const esContent: SiteContent = {
       location: 'Lugar',
       menu: 'Menú',
       navigation: 'Navegación principal',
+      pendingDate: 'Fecha por confirmar',
     },
     social: [
       {
@@ -337,9 +337,9 @@ const esContent: SiteContent = {
           'Vivir en la Costa del Sol y trabajar para fuera es un privilegio, pero también puede ser solitario. Costa del Code nace para conectar a quienes compartimos la misma zona geográfica.',
         ],
         stats: [
-          { value: 'Local', label: 'Costa del Sol' },
-          { value: 'Código abierto', label: 'Proyectos con impacto real' },
-          { value: 'Sin coste', label: 'Comunidad abierta' },
+          { value: 'Costa del Sol', label: '¿Dónde estamos?' },
+          { value: 'Open source', label: '¿Cómo trabajamos?' },
+          { value: '100% gratis', label: 'Para unirte', badge: 'Para siempre' },
         ],
         primaryCta: {
           label: 'Unirme a WhatsApp',
@@ -408,7 +408,7 @@ const esContent: SiteContent = {
           date: 'Por confirmar',
           time: 'Después del trabajo',
           location: 'Costa del Sol (ubicación por confirmar)',
-          meta: 'Formato ligero · 90 min',
+          meta: 'Formato ligero',
           description:
             'Mesa corta para hablar sobre Costa del Code, compartir casos reales, instrucciones útiles y herramientas con las que trabajas (o no) en tu día a día.',
           tags: ['IA aplicada', 'Demos en directo', 'Conexiones'],
@@ -439,22 +439,22 @@ const esContent: SiteContent = {
           'Costa del Code es la excusa para salir de casa, conocer gente y compartir lo que sabemos con los demás.',
         ],
         highlights: {
-          offline: 'Encuentra potenciales colaboradores y/o clientes.',
-          sync: 'Aprendizajes compartidos sobre stacks, herramientas y casos de uso reales.',
-          push: 'Proyectos comunitarios para practicar, colaborar y ganar visibilidad.',
+          offline:
+            'Quedadas presenciales en Málaga y Marbella. Sal de casa y conoce a otros devs de la zona.',
+          sync: 'Proyectos reales en GitHub donde aprender, colaborar y ganar visibilidad con tu código.',
+          push: 'Sube tus ideas al repositorio. La comunidad ayuda a revisarlas y hacerlas crecer.',
           feedback:
-            'Valida ideas y recibe feedback honesto de compañeros que hablan el mismo idioma.',
+            'Recibe feedback honesto de compañeros que hablan tu idioma.',
+          community:
+            'Abierto a todos. Sin cuotas ni requisitos. Solo ganas de conectar y compartir.',
         },
         mosaic: {
           headline: 'Daniel Núñez',
           connectLabel: 'connect()',
           connectDescription: 'Cafés cortitos y charlas distendidas',
-          offlineNumber: '01',
-          offlineLabel: 'offline',
-          offlineTitle: 'connect',
-          docTitle: 'docs',
-          communityTitle: 'gente junta',
-          communityTag: '[ costadelcode ]',
+          offlineTitle: 'Meetups',
+          docTitle: 'Proyectos',
+          communityTitle: 'Comunidad',
           pushCommand: '> gh repo clone industrial-dev/costadelcode',
           feedbackCommand: 'feedback --honesto',
         },
@@ -480,39 +480,38 @@ const esContent: SiteContent = {
       },
       setups: {
         eyebrow: 'Revisión de configuraciones',
-        title: 'Configuraciones reales, humor respetuoso.',
-        intro:
-          'Dos setups de muestra para el primer despliegue. Pronto abrimos la galería completa con aportes de la comunidad.',
+        title: 'Setups de la comunidad analizados por IA.',
         items: [
           {
-            title: 'Configuración #01 · El minimalista accidental',
-            name: 'Rafa M.',
-            role: 'Desarrollador de interfaz',
-            imageSrc: '/images/setups/setup-01.svg',
-            imageLabel: 'Imagen provisional de configuración con luz cálida',
+            title: 'Configuración #01 · Los patos lo hacen todo',
+            name: 'Dani (github: @industrial-dev)',
+            role: 'Fundador · Dev Full Stack',
+            imageSrc: '/images/setups/setup-01.jpg',
             imageAlt:
-              'Foto de configuración con mesa clara y monitor panorámico',
+              'Setup de Daniel N. con dos monitores grandes, portátil central sobre mesa elevable y patos de goma en el escritorio',
             roast:
-              'Mucho minimalismo, pero ese cable HDMI sigue viendo el sol cada mañana.',
+              'Triple pantalla, mesa elevable y un equipo de patos de goma más fiable que cualquier sprint planning.',
             highlights: [
-              '1 monitor panorámico',
-              'Teclado de perfil bajo',
-              'Café en taza de cerámica',
+              'Triple pantalla (2 monitores + portátil)',
+              'Mesa elevable',
+              'Teclado mecánico ultradelgado',
             ],
           },
           {
-            title: 'Configuración #02 · El multiventana',
-            name: 'Lola G.',
-            role: 'Servidor + IA',
-            imageSrc: '/images/setups/setup-02.svg',
-            imageLabel: 'Imagen provisional de configuración con tonos oscuros',
-            imageAlt: 'Foto de configuración con doble monitor y libros',
+            title: 'Configuración #02 · El junior con setup de caudillo',
+            name: 'Javi (github: @javi12ms)',
+            role: 'Junior · Dev Full Stack',
+            imageSrc: '/images/setups/setup-02.jpeg',
+            imageAlt:
+              'Setup de Javi con dos monitores curvos, torre gaming con RGB, teclado mecánico, mando de PS4 y una copa de Game of Thrones',
             roast:
-              'Dos pantallas, tres notebooks y aun así el bug estaba en la línea 12.',
+              'Setup de senior financiado por la casa Targarian: dos monitores curvos, torre con más RGB que una feria y una copa de Game of Thrones para el café. El mando de PS4 es púramente decorativo.',
             highlights: [
-              '2x monitores 27"',
-              'Dock con mil puertos',
-              'Notas en post-its',
+              '2 monitores curvos',
+              'Torre gaming con RGB',
+              'Teclado mecánico gaming',
+              'Mando PS4 en el escritorio',
+              'Copa de Game of Thrones',
             ],
           },
         ],
@@ -527,6 +526,7 @@ const esContent: SiteContent = {
       hero: {
         eyebrow: 'Eventos',
         title: 'Quedadas pequeñas, impacto grande.',
+        titleHighlight: 'impacto grande.',
         intro:
           'Nada de macro eventos. Preferimos charlas cortas y conversaciones largas.',
         description:
@@ -534,37 +534,22 @@ const esContent: SiteContent = {
       },
       upcoming: {
         eyebrow: 'Agenda',
-        title: 'Lo que viene (provisional y editable).',
+        title: 'Lo que viene próximamente.',
         intro:
           'Actualizamos esta sección cuando cerramos fecha. Si quieres proponer tema, escribe.',
         items: [
           {
-            title: 'IA aplicada al código',
-            date: 'Fecha por confirmar',
-            time: '18:30 - 20:00',
-            location: 'Costa del Sol',
-            meta: 'Después del trabajo · 90 min',
+            title: '¿Qué es Costa del Code?',
+            date: 'Por confirmar',
+            time: 'Después del trabajo',
+            location: 'Costa del Sol (ubicación por confirmar)',
+            meta: 'Formato ligero',
             description:
-              'Casos reales de uso de IA: instrucciones útiles, herramientas y flujos de trabajo que ya usamos cada día.',
-            tags: ['IA', 'Demos en directo', 'Conexiones'],
+              'Mesa corta para hablar sobre Costa del Code, compartir casos reales, instrucciones útiles y herramientas con las que trabajas (o no) en tu día a día.',
+            tags: ['Presentación'],
             ctaLabel: 'Quiero asistir',
             ctaHref: sharedLinks.whatsapp,
-          },
-          {
-            title: 'Debates sobre IDEs y setups',
-            date: 'Fecha por confirmar',
-            time: '19:00 - 20:30',
-            location: 'Costa del Sol',
-            meta: 'Mesa redonda',
-            description:
-              'Comparte tu configuración, extensiones clave y trucos para ser más rápido.',
-            tags: [
-              'Herramientas',
-              'Experiencia de desarrollo',
-              'Configuraciones',
-            ],
-            ctaLabel: 'Sumarme al debate',
-            ctaHref: sharedLinks.telegram,
+            pending: true,
           },
         ],
       },
@@ -572,7 +557,7 @@ const esContent: SiteContent = {
         eyebrow: 'Ponentes',
         title: '¿Quieres dar una charla?',
         description:
-          'Buscamos charlas cortas, prácticas y sin humo. 15 minutos y opiniones reales.',
+          'Buscamos charlas cortas, prácticas y sin humo. Si tienes algo que contar, coméntalo por WhatsApp, Telegram o Instagram y le damos forma.',
         cta: {
           label: 'Proponer charla',
           href: sharedLinks.talks,

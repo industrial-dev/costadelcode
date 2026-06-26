@@ -9,6 +9,7 @@ interface Props {
     date: string;
     time: string;
     location: string;
+    pendingDate: string;
   };
 }
 
@@ -22,6 +23,13 @@ const titleClass = variant === 'highlight' ? 'text-3xl' : 'text-2xl';
   <div class="flex flex-wrap items-center gap-2">
     <span class="tag">{event.meta}</span>
     {event.tags.map((tag: string) => <span class="tag tag-accent">{tag}</span>)}
+    {
+      event.pending && (
+        <span class="tag border-[rgb(243_212_88/0.5)] bg-[rgb(243_212_88/0.18)] text-ink-800">
+          {metaLabels.pendingDate}
+        </span>
+      )
+    }
   </div>
   <div>
     <h3
@@ -36,7 +44,11 @@ const titleClass = variant === 'highlight' ? 'text-3xl' : 'text-2xl';
       <p class="text-xs uppercase tracking-[0.18em] text-stone-500">
         {metaLabels.date}
       </p>
-      <p class="font-semibold text-ink-950">{event.date}</p>
+      <p
+        class={`font-semibold ${event.pending ? 'italic text-stone-500' : 'text-ink-950'}`}
+      >
+        {event.date}
+      </p>
     </div>
     <div>
       <p class="text-xs uppercase tracking-[0.18em] text-stone-500">
