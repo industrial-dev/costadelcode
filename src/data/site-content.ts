@@ -83,6 +83,7 @@ export type SharedContent = {
     location: string;
     menu: string;
     navigation: string;
+    pendingDate: string;
   };
   footer: {
     note: string;
@@ -287,6 +288,7 @@ const esContent: SiteContent = {
       location: 'Lugar',
       menu: 'Menú',
       navigation: 'Navegación principal',
+      pendingDate: 'Fecha por confirmar',
     },
     social: [
       {

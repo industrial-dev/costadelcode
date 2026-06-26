@@ -9,6 +9,7 @@ interface Props {
     date: string;
     time: string;
     location: string;
+    pendingDate: string;
   };
 }
 
@@ -25,7 +26,7 @@ const titleClass = variant === 'highlight' ? 'text-3xl' : 'text-2xl';
     {
       event.pending && (
         <span class="tag border-[rgb(243_212_88/0.5)] bg-[rgb(243_212_88/0.18)] text-ink-800">
-          Fecha por confirmar
+          {metaLabels.pendingDate}
         </span>
       )
     }

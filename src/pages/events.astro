@@ -44,7 +44,9 @@ const events = pages.events;
           <h1 class="title-xl mt-4">
             {
               events.hero.titleHighlight
-                ? events.hero.title.replace(events.hero.titleHighlight, '')
+                ? events.hero.title
+                    .replace(events.hero.titleHighlight, '')
+                    .trimEnd()
                 : events.hero.title
             }
             {
