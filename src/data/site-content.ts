@@ -10,7 +10,7 @@ export type NavItem = {
   href: string;
 };
 
-export type SocialPlatform = 'whatsapp' | 'telegram' | 'instagram';
+export type SocialPlatform = 'telegram' | 'instagram';
 
 export type CtaLink = {
   label: string;
@@ -223,7 +223,6 @@ export type SiteContent = {
 };
 
 const sharedLinks = {
-  whatsapp: 'https://chat.whatsapp.com/costadelcode',
   telegram: 'https://t.me/costadelcode',
   instagram: 'https://instagram.com/costadelcode',
   github: 'https://github.com/industrial-dev/costadelcode',
@@ -232,21 +231,15 @@ const sharedLinks = {
 
 const buildSocialCtaLinks = (): CtaLink[] => [
   {
-    label: 'WhatsApp',
-    href: sharedLinks.whatsapp,
-    variant: 'primary',
-    platform: 'whatsapp',
-  },
-  {
     label: 'Telegram',
     href: sharedLinks.telegram,
-    variant: 'secondary',
+    variant: 'primary',
     platform: 'telegram',
   },
   {
     label: 'Instagram',
     href: sharedLinks.instagram,
-    variant: 'ghost',
+    variant: 'secondary',
     platform: 'instagram',
   },
 ];
@@ -276,10 +269,10 @@ const esContent: SiteContent = {
       faq: 'FAQ',
     }),
     primaryCta: {
-      label: 'Unirse a WhatsApp',
-      href: sharedLinks.whatsapp,
+      label: 'Unirse a Telegram',
+      href: sharedLinks.telegram,
       variant: 'primary',
-      platform: 'whatsapp',
+      platform: 'telegram',
     },
     ctaLinks: buildSocialCtaLinks(),
     labels: {
@@ -292,14 +285,9 @@ const esContent: SiteContent = {
     },
     social: [
       {
-        label: 'WhatsApp',
-        href: sharedLinks.whatsapp,
-        note: 'Grupo principal',
-      },
-      {
         label: 'Telegram',
         href: sharedLinks.telegram,
-        note: 'Canal de avisos',
+        note: 'Grupo principal',
       },
       {
         label: 'Instagram',
@@ -334,7 +322,7 @@ const esContent: SiteContent = {
         title: 'Comunidad local de desarrolladores en la Costa del Sol.',
         intro: 'Estamos cerca. Nos falta conectar.',
         description: [
-          'Vivir en la Costa del Sol y trabajar para fuera es un privilegio, pero también puede ser solitario. Costa del Code nace para conectar a quienes compartimos la misma zona geográfica.',
+          'Vivir en la Costa del Sol y trabajar fuera es un privilegio, pero también puede ser solitario. Costa del Code nace para conectar a quienes compartimos la misma zona geográfica.',
         ],
         stats: [
           { value: 'Costa del Sol', label: '¿Dónde estamos?' },
@@ -342,22 +330,21 @@ const esContent: SiteContent = {
           { value: '100% gratis', label: 'Para unirte', badge: 'Para siempre' },
         ],
         primaryCta: {
-          label: 'Unirme a WhatsApp',
-          href: sharedLinks.whatsapp,
-          variant: 'primary',
-          platform: 'whatsapp',
-        },
-        secondaryCta: {
           label: 'Unirme a Telegram',
           href: sharedLinks.telegram,
-          variant: 'secondary',
+          variant: 'primary',
           platform: 'telegram',
         },
-        tertiaryCta: {
+        secondaryCta: {
           label: 'Ver Instagram',
           href: sharedLinks.instagram,
-          variant: 'ghost',
+          variant: 'secondary',
           platform: 'instagram',
+        },
+        tertiaryCta: {
+          label: 'Ver GitHub',
+          href: sharedLinks.github,
+          variant: 'ghost',
         },
       },
       pillars: {
@@ -402,7 +389,7 @@ const esContent: SiteContent = {
         eyebrow: 'Próxima quedada',
         title: 'Agenda viva, eventos en formato ligero.',
         intro:
-          'La siguiente meetup se publica aquí en cuanto haya fecha cerrada. Si tienes tema, proponlo sin dudarlo.',
+          'La siguiente quedada se publica aquí en cuanto haya fecha cerrada. Si tienes tema, proponlo sin dudarlo.',
         event: {
           title: '¿Qué es Costa del Code?',
           date: 'Por confirmar',
@@ -410,10 +397,11 @@ const esContent: SiteContent = {
           location: 'Costa del Sol (ubicación por confirmar)',
           meta: 'Formato ligero',
           description:
-            'Mesa corta para hablar sobre Costa del Code, compartir casos reales, instrucciones útiles y herramientas con las que trabajas (o no) en tu día a día.',
-          tags: ['IA aplicada', 'Demos en directo', 'Conexiones'],
+            'Quedada para hablar sobre Costa del Code, compartir casos reales, instrucciones útiles y herramientas con las que trabajas (o no) en tu día a día.',
+          tags: ['Presentación'],
           ctaLabel: 'Quiero asistir',
-          ctaHref: sharedLinks.whatsapp,
+          ctaHref: sharedLinks.telegram,
+          pending: true,
         },
       },
     },
@@ -498,14 +486,14 @@ const esContent: SiteContent = {
             ],
           },
           {
-            title: 'Configuración #02 · El junior con setup de caudillo',
+            title: 'Configuración #02 · El junior con setup Targaryen',
             name: 'Javi (github: @javi12ms)',
             role: 'Junior · Dev Full Stack',
             imageSrc: '/images/setups/setup-02.jpeg',
             imageAlt:
               'Setup de Javi con dos monitores curvos, torre gaming con RGB, teclado mecánico, mando de PS4 y una copa de Game of Thrones',
             roast:
-              'Setup de senior financiado por la casa Targarian: dos monitores curvos, torre con más RGB que una feria y una copa de Game of Thrones para el café. El mando de PS4 es púramente decorativo.',
+              'Setup de senior financiado por la casa Targaryen: dos monitores curvos, torre con más RGB que una feria y una copa de Game of Thrones para el café. El mando de PS4 es púramente decorativo.',
             highlights: [
               '2 monitores curvos',
               'Torre gaming con RGB',
@@ -545,10 +533,10 @@ const esContent: SiteContent = {
             location: 'Costa del Sol (ubicación por confirmar)',
             meta: 'Formato ligero',
             description:
-              'Mesa corta para hablar sobre Costa del Code, compartir casos reales, instrucciones útiles y herramientas con las que trabajas (o no) en tu día a día.',
+              'Quedada para hablar sobre Costa del Code, compartir casos reales, instrucciones útiles y herramientas con las que trabajas (o no) en tu día a día.',
             tags: ['Presentación'],
             ctaLabel: 'Quiero asistir',
-            ctaHref: sharedLinks.whatsapp,
+            ctaHref: sharedLinks.telegram,
             pending: true,
           },
         ],
@@ -557,7 +545,7 @@ const esContent: SiteContent = {
         eyebrow: 'Ponentes',
         title: '¿Quieres dar una charla?',
         description:
-          'Buscamos charlas cortas, prácticas y sin humo. Si tienes algo que contar, coméntalo por WhatsApp, Telegram o Instagram y le damos forma.',
+          'Buscamos charlas cortas, prácticas y sin humo. Si tienes algo que contar, coméntalo por Telegram o Instagram y le damos forma.',
         cta: {
           label: 'Proponer charla',
           href: sharedLinks.talks,

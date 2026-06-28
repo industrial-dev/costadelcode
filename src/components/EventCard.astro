@@ -21,7 +21,7 @@ const titleClass = variant === 'highlight' ? 'text-3xl' : 'text-2xl';
 
 <article class={`${cardClass} space-y-5`}>
   <div class="flex flex-wrap items-center gap-2">
-    <span class="tag">{event.meta}</span>
+    <span class="tag tag-accent">{event.meta}</span>
     {event.tags.map((tag: string) => <span class="tag tag-accent">{tag}</span>)}
     {
       event.pending && (

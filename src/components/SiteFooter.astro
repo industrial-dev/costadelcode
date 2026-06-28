@@ -16,6 +16,19 @@ interface Props {
 }
 
 const { brand, tagline, nav, social, footer } = Astro.props as Props;
+
+const firstC = brand.indexOf('C');
+const secondC = brand.indexOf('C', firstC + 1);
+const canHighlight = firstC >= 0 && secondC >= 0;
+const brandSegments = canHighlight
+  ? [
+      { text: brand.slice(0, firstC), highlighted: false },
+      { text: brand[firstC], highlighted: true },
+      { text: brand.slice(firstC + 1, secondC), highlighted: false },
+      { text: brand[secondC], highlighted: true },
+      { text: brand.slice(secondC + 1), highlighted: false },
+    ].filter(({ text }) => text.length > 0)
+  : [{ text: brand, highlighted: false }];
 ---
 
 <footer class="border-t border-(--border-soft) py-12">
@@ -24,7 +37,29 @@ const { brand, tagline, nav, social, footer } = Astro.props as Props;
       class="grid grid-cols-2 gap-8 sm:grid-cols-[1fr_1fr] lg:grid-cols-[1.3fr_0.9fr_0.9fr]"
     >
       <div class="col-span-2 space-y-3 lg:col-span-1">
-        <p class="font-mono text-2xl text-ink-950">{brand}</p>
+        <p
+          class="font-logo text-3xl font-bold tracking-[-0.2em] uppercase text-ink-950 [word-spacing:0.08em]"
+          aria-label={brand}
+        >
+          <span
+            class="inline-block origin-left scale-x-[0.86]"
+            aria-hidden="true"
+          >
+            {
+              brandSegments.map(({ text, highlighted }) => (
+                <span
+                  class:list={[
+                    highlighted
+                      ? 'inline-block origin-bottom translate-y-[0.04em] scale-x-115 scale-y-130 text-accent-500 mr-[-0.3em]'
+                      : null,
+                  ]}
+                >
+                  {text}
+                </span>
+              ))
+            }
+          </span>
+        </p>
         <p class="body-copy max-w-lg">{tagline}</p>
       </div>
 
