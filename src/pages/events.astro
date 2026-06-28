@@ -21,7 +21,7 @@ const events = pages.events;
   <SiteHeader
     brand={shared.brand}
     nav={shared.nav}
-    cta={shared.primaryCta}
+    ctas={shared.ctaLinks}
     menuLabel={shared.labels.menu}
     navigationLabel={shared.labels.navigation}
   />
@@ -61,8 +61,24 @@ const events = pages.events;
             }
           </h1>
 
-          <p class="body-copy mt-5">{events.hero.description}</p>
-          <p class="body-copy mt-3">{events.hero.intro}</p>
+          <p class="mt-5 text-xl leading-8 text-ink-800">
+            {events.hero.description}
+          </p>
+          <p class="body-copy mt-4">{events.hero.intro}</p>
+          <div class="mt-7 grid grid-cols-3 gap-3">
+            {
+              events.hero.formatAttributes.map((attr) => (
+                <div class="rounded-xl border border-(--border-soft) bg-[rgb(255_255_255/0.65)] px-4 py-3 text-center">
+                  <p class="font-display text-lg font-semibold tracking-tight text-ink-950">
+                    {attr.value}
+                  </p>
+                  <p class="mt-0.5 text-xs uppercase tracking-[0.14em] text-stone-400">
+                    {attr.label}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
     </section>
@@ -74,20 +90,6 @@ const events = pages.events;
           title={events.upcoming.title}
           body={events.upcoming.intro}
         />
-
-        <div
-          class="flex items-start gap-3 rounded-2xl border border-[rgb(243_212_88/0.5)] bg-[rgb(243_212_88/0.12)] px-5 py-4"
-        >
-          <span
-            class="shrink-0 text-[1rem] leading-none self-center"
-            aria-hidden="true">⏳</span
-          >
-          <p class="text-sm font-semibold text-ink-800">
-            Las fechas de estos eventos están por confirmar. En cuanto cerremos
-            sitio y fecha, lo actualizamos aquí y avisamos por Telegram e
-            Instagram.
-          </p>
-        </div>
 
         <div class="grid gap-6 lg:grid-cols-2">
           {
@@ -101,10 +103,45 @@ const events = pages.events;
 
     <section class="section">
       <div class="shell">
-        <div class="card p-8">
-          <p class="eyebrow">{events.speakers.eyebrow}</p>
-          <h2 class="title-lg mt-4">{events.speakers.title}</h2>
-          <p class="body-copy mt-4">{events.speakers.description}</p>
+        <div
+          class="relative overflow-hidden rounded-[1.6rem] bg-ink-950 px-8 py-10 md:px-12 md:py-14"
+        >
+          <div
+            class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent-500/10 blur-3xl"
+            aria-hidden="true"
+          >
+          </div>
+          <div
+            class="absolute bottom-0 left-0 right-0 h-0.75 bg-linear-to-r from-accent-500/80 to-accent-600/20"
+            aria-hidden="true"
+          >
+          </div>
+          <p class="eyebrow text-accent-500!">{events.speakers.eyebrow}</p>
+          <h2 class="title-xl mt-4 text-white">{events.speakers.title}</h2>
+          <p class="mt-5 max-w-xl text-lg leading-8 text-white/70">
+            {events.speakers.description}
+          </p>
+          <div class="mt-8">
+            <a
+              href={events.speakers.cta.href}
+              class="inline-flex items-center gap-2 rounded-full bg-accent-500 px-6 py-3 font-semibold text-ink-950 transition-opacity hover:opacity-90"
+            >
+              {events.speakers.cta.label}
+              <svg
+                class="h-4 w-4"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>

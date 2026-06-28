@@ -1,6 +1,7 @@
 ---
 import type { NavItem, SocialLink } from '../data/site-content';
 import { withBasePath } from '../utils/paths';
+import BrandLogo from './BrandLogo.astro';
 
 interface Props {
   brand: string;
@@ -16,19 +17,6 @@ interface Props {
 }
 
 const { brand, tagline, nav, social, footer } = Astro.props as Props;
-
-const firstC = brand.indexOf('C');
-const secondC = brand.indexOf('C', firstC + 1);
-const canHighlight = firstC >= 0 && secondC >= 0;
-const brandSegments = canHighlight
-  ? [
-      { text: brand.slice(0, firstC), highlighted: false },
-      { text: brand[firstC], highlighted: true },
-      { text: brand.slice(firstC + 1, secondC), highlighted: false },
-      { text: brand[secondC], highlighted: true },
-      { text: brand.slice(secondC + 1), highlighted: false },
-    ].filter(({ text }) => text.length > 0)
-  : [{ text: brand, highlighted: false }];
 ---
 
 <footer class="border-t border-(--border-soft) py-12">
@@ -41,24 +29,7 @@ const brandSegments = canHighlight
           class="font-logo text-3xl leading-none font-bold tracking-[-0.2em] uppercase text-ink-950 [word-spacing:0.08em]"
           aria-label={brand}
         >
-          <span
-            class="inline-block origin-left scale-x-[0.86]"
-            aria-hidden="true"
-          >
-            {
-              brandSegments.map(({ text, highlighted }) => (
-                <span
-                  class:list={[
-                    highlighted
-                      ? 'inline-block origin-bottom translate-y-[0.04em] scale-x-115 scale-y-130 text-accent-500 mr-[-0.3em]'
-                      : null,
-                  ]}
-                >
-                  {text}
-                </span>
-              ))
-            }
-          </span>
+          <BrandLogo brand={brand} />
         </p>
         <p class="body-copy max-w-lg">{tagline}</p>
       </div>
@@ -89,10 +60,12 @@ const brandSegments = canHighlight
         >
           {footer.socialTitle}
         </p>
-        <div class="grid gap-3">
+        <div
+          class="grid grid-cols-[max-content_1fr] items-baseline gap-x-5 gap-y-3"
+        >
           {
             social.map((item) => (
-              <div class="flex flex-wrap items-baseline gap-x-4 gap-y-0.5">
+              <div style="display: contents">
                 <a
                   href={item.href}
                   class="text-sm font-semibold text-ink-950"
@@ -101,11 +74,9 @@ const brandSegments = canHighlight
                 >
                   {item.label}
                 </a>
-                {item.note && (
-                  <span class="text-xs uppercase tracking-[0.14em] text-stone-500">
-                    {item.note}
-                  </span>
-                )}
+                <span class="text-xs uppercase tracking-[0.14em] text-stone-500">
+                  {item.note ?? ''}
+                </span>
               </div>
             ))
           }

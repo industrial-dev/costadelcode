@@ -1,6 +1,7 @@
 ---
 import type { CtaLink, NavItem } from '../data/site-content';
 import CtaButton from './CtaButton.astro';
+import BrandLogo from './BrandLogo.astro';
 import { withBasePath } from '../utils/paths';
 import homeIcon from '../assets/icons/nav/home.svg?raw';
 import communityIcon from '../assets/icons/nav/community.svg?raw';
@@ -10,12 +11,12 @@ import faqIcon from '../assets/icons/nav/faq.svg?raw';
 interface Props {
   brand: string;
   nav: NavItem[];
-  cta: CtaLink;
+  ctas: CtaLink[];
   menuLabel: string;
   navigationLabel: string;
 }
 
-const { brand, nav, cta, menuLabel, navigationLabel } = Astro.props as Props;
+const { brand, nav, ctas, menuLabel, navigationLabel } = Astro.props as Props;
 const homeHref = withBasePath(nav[0]?.href ?? '/');
 
 const navIcons: Record<string, string> = {
@@ -24,21 +25,6 @@ const navIcons: Record<string, string> = {
   '/events/': eventsIcon,
   '/faq/': faqIcon,
 };
-const firstBrandHighlight = brand.indexOf('C');
-const secondBrandHighlight = brand.indexOf('C', firstBrandHighlight + 1);
-const canHighlightBrand = firstBrandHighlight >= 0 && secondBrandHighlight >= 0;
-const brandSegments = canHighlightBrand
-  ? [
-      { text: brand.slice(0, firstBrandHighlight), highlighted: false },
-      { text: brand[firstBrandHighlight], highlighted: true },
-      {
-        text: brand.slice(firstBrandHighlight + 1, secondBrandHighlight),
-        highlighted: false,
-      },
-      { text: brand[secondBrandHighlight], highlighted: true },
-      { text: brand.slice(secondBrandHighlight + 1), highlighted: false },
-    ].filter(({ text }) => text.length > 0)
-  : [{ text: brand, highlighted: false }];
 ---
 
 <header
@@ -53,21 +39,7 @@ const brandSegments = canHighlightBrand
       class="font-logo text-[clamp(1.15rem,0.92rem+0.7vw,1.7rem)] leading-none font-bold tracking-[-0.2em] whitespace-nowrap uppercase text-ink-950 [word-spacing:0.08em]"
       aria-label={brand}
     >
-      <span class="inline-block origin-left scale-x-[0.86]" aria-hidden="true">
-        {
-          brandSegments.map(({ text, highlighted }) => (
-            <span
-              class:list={[
-                highlighted
-                  ? 'inline-block origin-bottom translate-y-[0.04em] scale-x-115 scale-y-130 text-accent-500 mr-[-0.3em]'
-                  : null,
-              ]}
-            >
-              {text}
-            </span>
-          ))
-        }
-      </span>
+      <BrandLogo brand={brand} />
     </a>
 
     <div class="hidden items-center gap-6 md:flex">
@@ -84,7 +56,9 @@ const brandSegments = canHighlightBrand
       }
     </div>
 
-    <CtaButton link={cta} class="hidden md:inline-flex" />
+    <div class="hidden items-center gap-2 md:flex">
+      {ctas.map((cta) => <CtaButton link={cta} />)}
+    </div>
 
     <details class="relative md:hidden">
       <summary class="button button-ghost px-4 py-2">{menuLabel}</summary>
@@ -101,7 +75,7 @@ const brandSegments = canHighlightBrand
               </a>
             ))
           }
-          <CtaButton link={cta} class="w-full" />
+          {ctas.map((cta) => <CtaButton link={cta} class="w-full" />)}
         </div>
       </div>
     </details>

@@ -4,7 +4,6 @@ import CommunityMosaicSection from '../components/CommunityMosaicSection.astro';
 import JoinCta from '../components/JoinCta.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CommunityWhySection from '../components/CommunityWhySection.astro';
-import CommunityOriginSection from '../components/CommunityOriginSection.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SetupCard from '../components/SetupCard.astro';
@@ -26,7 +25,7 @@ const community = pages.community;
   <SiteHeader
     brand={shared.brand}
     nav={shared.nav}
-    cta={shared.primaryCta}
+    ctas={shared.ctaLinks}
     menuLabel={shared.labels.menu}
     navigationLabel={shared.labels.navigation}
   />
@@ -84,7 +83,7 @@ const community = pages.community;
 
     <CommunityWhySection purpose={community.purpose} />
 
-    {community.origin && <CommunityOriginSection origin={community.origin} />}
+    <CommunityResourcesSection />
 
     <section class="section section-border">
       <div class="shell space-y-10">
@@ -97,8 +96,6 @@ const community = pages.community;
         </div>
       </div>
     </section>
-
-    <CommunityResourcesSection />
 
     <JoinCta join={shared.join} links={shared.ctaLinks} />
   </main>

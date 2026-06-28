@@ -168,6 +168,7 @@ export type CommunityPage = {
     title: string;
     description: string;
     founderNote: string;
+    founderPortfolio?: string;
   };
   setups: {
     eyebrow: string;
@@ -182,8 +183,9 @@ export type EventsPage = {
     eyebrow: string;
     title: string;
     titleHighlight?: string;
-    intro: string;
     description: string;
+    intro: string;
+    formatAttributes: { value: string; label: string }[];
   };
   upcoming: {
     eyebrow: string;
@@ -205,7 +207,6 @@ export type FaqPage = {
     eyebrow: string;
     title: string;
     intro: string;
-    description: string;
   };
   questions: {
     items: FaqItem[];
@@ -261,7 +262,7 @@ const buildNav = (labels: Record<PageKey, string>) => [
 const esContent: SiteContent = {
   shared: {
     brand: 'Costa del Code',
-    tagline: 'La comunidad de devs en la Costa del Sol.',
+    tagline: 'Devs de la Costa del Sol. Conectados.',
     nav: buildNav({
       home: 'Inicio',
       community: 'Comunidad',
@@ -305,8 +306,9 @@ const esContent: SiteContent = {
     join: {
       eyebrow: 'Únete a la conversación',
       code: 'git switch -c costadelcode;',
-      title: 'Una comunidad social para gente que vive en remoto.',
-      description: 'Comparte, enseña y aprende con compañía real.',
+      title: 'El primer paso es el más fácil.',
+      description:
+        'La próxima quedada se anuncia en Telegram antes que en ningún otro sitio. Entra ahora y no te la pierdas.',
     },
   },
   pages: {
@@ -325,8 +327,8 @@ const esContent: SiteContent = {
           'Vivir en la Costa del Sol y trabajar fuera es un privilegio, pero también puede ser solitario. Costa del Code nace para conectar a quienes compartimos la misma zona geográfica.',
         ],
         stats: [
-          { value: 'Costa del Sol', label: '¿Dónde estamos?' },
-          { value: 'Open source', label: '¿Cómo trabajamos?' },
+          { value: 'Costa del Sol', label: 'Nuestra zona' },
+          { value: 'Arrancamos pronto', label: 'Momento' },
           { value: '100% gratis', label: 'Para unirte', badge: 'Para siempre' },
         ],
         primaryCta: {
@@ -428,7 +430,7 @@ const esContent: SiteContent = {
         ],
         highlights: {
           offline:
-            'Quedadas presenciales en Málaga y Marbella. Sal de casa y conoce a otros devs de la zona.',
+            'Quedadas presenciales en la Costa del <span style="position:relative;display:inline-block"><span aria-hidden="true" style="position:absolute;left:0;right:0;top:52%;height:2px;background:currentColor;border-radius:1px;pointer-events:none"></span>Code</span> Sol. Sal de casa y conoce a otros devs de la zona.',
           sync: 'Proyectos reales en GitHub donde aprender, colaborar y ganar visibilidad con tu código.',
           push: 'Sube tus ideas al repositorio. La comunidad ayuda a revisarlas y hacerlas crecer.',
           feedback:
@@ -465,10 +467,11 @@ const esContent: SiteContent = {
           'Dani creció en Estepona, estudió fuera y pasó años trabajando en distintas ciudades y en el extranjero. Cuando volvió, echó algo en falta y se preguntó: ¿habrá muchos desarrolladores aquí? Ahora teletrabaja y tiene claro que no es el único que se lo pregunta. Costa del Code es su forma de buscar una respuesta.',
         founderNote:
           'No quiero construir una organización. Quiero que cuando alguien de aquí abra el portátil, sepa que no está solo.',
+        founderPortfolio: 'https://industrial-dev.github.io/portfolio/',
       },
       setups: {
-        eyebrow: 'Revisión de configuraciones',
-        title: 'Setups de la comunidad analizados por IA.',
+        eyebrow: 'Setups',
+        title: 'Setups de la comunidad criticados por IA.',
         items: [
           {
             title: 'Configuración #01 · Los patos lo hacen todo',
@@ -493,7 +496,7 @@ const esContent: SiteContent = {
             imageAlt:
               'Setup de Javi con dos monitores curvos, torre gaming con RGB, teclado mecánico, mando de PS4 y una copa de Game of Thrones',
             roast:
-              'Setup de senior financiado por la casa Targaryen: dos monitores curvos, torre con más RGB que una feria y una copa de Game of Thrones para el café. El mando de PS4 es púramente decorativo.',
+              'Setup de senior financiado por la casa Targaryen: dos monitores curvos, torre con más RGB que una feria y una copa de Game of Thrones para el café. El mando de PS4 es puramente decorativo.',
             highlights: [
               '2 monitores curvos',
               'Torre gaming con RGB',
@@ -515,16 +518,21 @@ const esContent: SiteContent = {
         eyebrow: 'Eventos',
         title: 'Quedadas pequeñas, impacto grande.',
         titleHighlight: 'impacto grande.',
-        intro:
-          'Nada de macro eventos. Preferimos charlas cortas y conversaciones largas.',
         description:
-          'Publicamos aquí cada meetup para que puedas venir aunque solo sea a tomar un café y charlar de código.',
+          'Nada de macro eventos ni ponentes estrella. Nos juntamos a tomar algo, cada uno cuenta en qué está trabajando y se abre conversación.',
+        intro:
+          'Puedes venir aunque solo sea a tomar un café y charlar de código — cualquier nivel es bienvenido.',
+        formatAttributes: [
+          { value: '~90 min', label: 'duración' },
+          { value: 'Informal', label: 'formato' },
+          { value: 'Costa del Sol', label: 'ubicación' },
+        ],
       },
       upcoming: {
         eyebrow: 'Agenda',
         title: 'Lo que viene próximamente.',
         intro:
-          'Actualizamos esta sección cuando cerramos fecha. Si quieres proponer tema, escribe.',
+          'Avisamos por Telegram e Instagram en cuanto cerremos sitio y fecha — si quieres proponer un tema, escríbenos.',
         items: [
           {
             title: '¿Qué es Costa del Code?',
@@ -548,7 +556,7 @@ const esContent: SiteContent = {
           'Buscamos charlas cortas, prácticas y sin humo. Si tienes algo que contar, coméntalo por Telegram o Instagram y le damos forma.',
         cta: {
           label: 'Proponer charla',
-          href: sharedLinks.talks,
+          href: sharedLinks.telegram,
           variant: 'secondary',
         },
       },
@@ -564,8 +572,6 @@ const esContent: SiteContent = {
         title: 'Preguntas y respuestas.',
         intro:
           'Si tienes dudas, aquí están las más frecuentes. Si no ves la tuya, escríbenos y te respondemos rápido.',
-        description:
-          'La comunidad es abierta, gratuita y local. Queremos que sea fácil dar el primer paso.',
       },
       questions: {
         items: [
@@ -591,7 +597,23 @@ const esContent: SiteContent = {
           },
           {
             question: '¿Puedo ir aunque no sea dev?',
-            answer: 'Seas quien seas, eres bienvenido en la comunidad..',
+            answer: 'Seas quien seas, eres bienvenido en la comunidad.',
+          },
+          {
+            question:
+              '¿Puedo participar solo por Telegram sin ir a los eventos?',
+            answer:
+              'Por supuesto. El grupo de Telegram es el núcleo diario de la comunidad: preguntas, recursos, conversaciones. Los eventos son un plus, no un requisito.',
+          },
+          {
+            question: '¿Con qué frecuencia hacéis quedadas?',
+            answer:
+              'Estamos arrancando, así que todavía no tenemos una frecuencia fija. El objetivo es quedar una vez al mes. Todo se anuncia en Telegram e Instagram.',
+          },
+          {
+            question: '¿Hay algún stack o lenguaje predominante?',
+            answer:
+              'Ninguno. Hay gente de frontend, backend, full stack, escritorio, web, móvil... La conversación suele girar en torno a herramientas, proyectos y experiencias, no a tecnologías concretas.',
           },
         ],
       },
