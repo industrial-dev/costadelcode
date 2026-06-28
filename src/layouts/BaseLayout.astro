@@ -2,7 +2,6 @@
 import '../styles/global.css';
 import { siteLocale } from '../data/i18n';
 import { withBasePath } from '../utils/paths';
-import ResourcesWidget from '../components/ResourcesWidget';
 
 interface Props {
   title: string;
@@ -141,7 +140,6 @@ const introPlaybackScript = `
     <div id="page-shell" data-intro-shell>
       <slot />
     </div>
-    <ResourcesWidget client:idle />
     {showIntro && <script is:inline set:html={introPlaybackScript} />}
   </body>
 </html>

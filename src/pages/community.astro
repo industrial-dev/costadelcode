@@ -8,6 +8,7 @@ import CommunityOriginSection from '../components/CommunityOriginSection.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SetupCard from '../components/SetupCard.astro';
+import CommunityResourcesSection from '../components/CommunityResourcesSection.astro';
 import { siteContent } from '../data/site-content';
 import { pagePaths } from '../data/i18n';
 import CommunityTerminal from '../components/CommunityTerminal';
@@ -96,6 +97,8 @@ const community = pages.community;
         </div>
       </div>
     </section>
+
+    <CommunityResourcesSection />
 
     <JoinCta join={shared.join} links={shared.ctaLinks} />
   </main>

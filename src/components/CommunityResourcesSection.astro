@@ -1,0 +1,75 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+const resources = [
+  {
+    name: 'Roadmap.sh',
+    description: 'Rutas de aprendizaje y guías para desarrolladores.',
+    href: 'https://roadmap.sh',
+    category: 'Aprender',
+    icon: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></svg>`,
+  },
+  {
+    name: 'Skills.sh',
+    description:
+      'Plataforma interactiva para evaluar y mejorar tus habilidades tech.',
+    href: 'https://skills.sh',
+    category: 'Skills',
+    icon: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>`,
+  },
+  {
+    name: 'Hubdev.tools',
+    description:
+      'Navaja suiza de micro-herramientas esenciales para el día a día del dev.',
+    href: 'https://hubdev.tools',
+    category: 'Tools',
+    icon: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
+  },
+  {
+    name: 'v0 by Vercel',
+    description: 'Generador de UI con IA usando Tailwind y Shadcn.',
+    href: 'https://v0.dev',
+    category: 'IA',
+    icon: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>`,
+  },
+];
+---
+
+<section class="section section-border">
+  <div class="shell space-y-10">
+    <SectionHeading eyebrow="Recursos" title="Recursos de la comunidad" />
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        resources.map((resource) => (
+          <div class="card p-5 transition-colors hover:bg-ink-950/4">
+            <div class="mb-4 flex items-center gap-3">
+              <div
+                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl"
+                style="background: rgb(243 212 88 / 0.18); border: 1.5px solid rgb(243 212 88 / 0.45);"
+              >
+                <Fragment set:html={resource.icon} />
+              </div>
+              <span class="font-display text-[0.6rem] font-semibold uppercase tracking-widest text-stone-500">
+                {resource.category}
+              </span>
+            </div>
+            <p class="font-display text-sm font-bold tracking-tight text-ink-950">
+              {resource.name}
+            </p>
+            <p class="mt-1 text-xs leading-relaxed text-ink-800/70">
+              {resource.description}
+            </p>
+            <a
+              href={resource.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-4 inline-block text-xs font-semibold text-stone-500 transition-colors hover:text-ink-950"
+            >
+              Visitar →
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
