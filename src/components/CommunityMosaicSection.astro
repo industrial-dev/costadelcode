@@ -77,9 +77,10 @@ const { eyebrow, title, description, highlights, mosaic } = founderCard;
           >
             {mosaic.offlineTitle}
           </h3>
-          <p class="mt-4 text-sm leading-6 font-semibold text-ink-800">
-            {highlights.offline}
-          </p>
+          <p
+            class="mt-4 text-sm leading-6 font-semibold text-ink-800"
+            set:html={highlights.offline}
+          />
         </article>
 
         <article

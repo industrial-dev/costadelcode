@@ -2,6 +2,7 @@
 import HomeEventSection from '../components/HomeEventSection.astro';
 import HomeHeroSection from '../components/HomeHeroSection.astro';
 import HomePillarsSection from '../components/HomePillarsSection.astro';
+import CommunityOriginSection from '../components/CommunityOriginSection.astro';
 import JoinCta from '../components/JoinCta.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
@@ -11,6 +12,7 @@ import { siteContent } from '../data/site-content';
 
 const { shared, pages } = siteContent;
 const home = pages.home;
+const community = pages.community;
 ---
 
 <BaseLayout
@@ -22,7 +24,7 @@ const home = pages.home;
   <SiteHeader
     brand={shared.brand}
     nav={shared.nav}
-    cta={shared.primaryCta}
+    ctas={shared.ctaLinks}
     menuLabel={shared.labels.menu}
     navigationLabel={shared.labels.navigation}
   />
@@ -30,6 +32,7 @@ const home = pages.home;
   <main class="relative">
     <HomeHeroSection hero={home.hero} />
     <HomePillarsSection pillars={home.pillars} />
+    {community.origin && <CommunityOriginSection origin={community.origin} />}
     <HomeEventSection
       eventHighlight={home.eventHighlight}
       labels={shared.labels}

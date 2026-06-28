@@ -30,7 +30,9 @@ const { origin } = Astro.props;
       <div class="flex justify-center md:justify-end">
         <div class="relative">
           <!-- Glow backdrop -->
-          <div class="absolute -inset-4 rounded-sm bg-code-green/5 blur-2xl">
+          <div
+            class="pointer-events-none absolute -inset-4 rounded-sm bg-code-green/5 blur-2xl"
+          >
           </div>
           <!-- Corner accents -->
           <div
@@ -53,6 +55,34 @@ const { origin } = Astro.props;
           >
             Dani · Fundador
           </p>
+          {
+            origin.founderPortfolio && (
+              <div class="mt-4 flex justify-center">
+                <a
+                  href={origin.founderPortfolio}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 rounded-full border border-cream-200/20 px-5 py-2.5 font-sans text-sm font-semibold text-cream-200/70 transition-colors hover:border-cream-200/40 hover:text-cream-50"
+                >
+                  Ver portfolio
+                  <svg
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M2 7h10M7 2l5 5-5 5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </a>
+              </div>
+            )
+          }
         </div>
       </div>
     </div>

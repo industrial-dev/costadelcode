@@ -4,10 +4,10 @@ import CommunityMosaicSection from '../components/CommunityMosaicSection.astro';
 import JoinCta from '../components/JoinCta.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CommunityWhySection from '../components/CommunityWhySection.astro';
-import CommunityOriginSection from '../components/CommunityOriginSection.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SetupCard from '../components/SetupCard.astro';
+import CommunityResourcesSection from '../components/CommunityResourcesSection.astro';
 import { siteContent } from '../data/site-content';
 import { pagePaths } from '../data/i18n';
 import CommunityTerminal from '../components/CommunityTerminal';
@@ -25,7 +25,7 @@ const community = pages.community;
   <SiteHeader
     brand={shared.brand}
     nav={shared.nav}
-    cta={shared.primaryCta}
+    ctas={shared.ctaLinks}
     menuLabel={shared.labels.menu}
     navigationLabel={shared.labels.navigation}
   />
@@ -62,7 +62,7 @@ const community = pages.community;
                 },
                 { text: '\n  ✓ Instalando dependencias de cervezas@^1.0.0' },
                 {
-                  text: '\n  ✓ Montando el canal de Whatsapp e Instagram de la comunidad...',
+                  text: '\n  ✓ Montando el canal de Telegram e Instagram de la comunidad...',
                 },
                 { text: '\n  ✓ Sincronizando ideas...' },
                 { text: '\n' },
@@ -83,7 +83,7 @@ const community = pages.community;
 
     <CommunityWhySection purpose={community.purpose} />
 
-    {community.origin && <CommunityOriginSection origin={community.origin} />}
+    <CommunityResourcesSection />
 
     <section class="section section-border">
       <div class="shell space-y-10">

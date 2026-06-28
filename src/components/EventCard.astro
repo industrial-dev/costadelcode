@@ -21,15 +21,8 @@ const titleClass = variant === 'highlight' ? 'text-3xl' : 'text-2xl';
 
 <article class={`${cardClass} space-y-5`}>
   <div class="flex flex-wrap items-center gap-2">
-    <span class="tag">{event.meta}</span>
+    <span class="tag tag-accent">{event.meta}</span>
     {event.tags.map((tag: string) => <span class="tag tag-accent">{tag}</span>)}
-    {
-      event.pending && (
-        <span class="tag border-[rgb(243_212_88/0.5)] bg-[rgb(243_212_88/0.18)] text-ink-800">
-          {metaLabels.pendingDate}
-        </span>
-      )
-    }
   </div>
   <div>
     <h3
