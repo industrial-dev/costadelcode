@@ -11,6 +11,7 @@ type TerminalProps = {
   steps: TerminalStep[];
   pulseInterval?: number;
   stepInterval?: number;
+  ariaLabel?: string;
 };
 
 function MacControls() {
@@ -29,6 +30,7 @@ const CommunityTerminal = ({
   steps,
   pulseInterval = 60,
   stepInterval = 500,
+  ariaLabel = 'Terminal animation',
 }: TerminalProps) => {
   const typingLen = command.length;
   const revealLen = steps.length;
@@ -96,7 +98,7 @@ const CommunityTerminal = ({
     >
       <pre
         aria-live="polite"
-        aria-label="Terminal animation"
+        aria-label={ariaLabel}
         className="bg-ink-950 w-full overflow-hidden rounded-xl border border-[rgb(255_255_255/0.1)] text-[11px] shadow-lg sm:text-[12px] md:text-[13px]"
       >
         <div className="bg-[rgb(255_255_255/0.06)] flex flex-row items-center gap-2 border-b border-[rgb(255_255_255/0.1)] px-3 py-2 sm:px-4">

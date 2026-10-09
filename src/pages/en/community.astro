@@ -1,21 +1,21 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import CommunityMosaicSection from '../components/CommunityMosaicSection.astro';
-import JoinCta from '../components/JoinCta.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import CommunityWhySection from '../components/CommunityWhySection.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SetupCard from '../components/SetupCard.astro';
-import CommunityResourcesSection from '../components/CommunityResourcesSection.astro';
-import { siteContent } from '../data/site-content';
-import { pagePaths } from '../data/i18n';
-import CommunityTerminal from '../components/CommunityTerminal';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CommunityMosaicSection from '../../components/CommunityMosaicSection.astro';
+import JoinCta from '../../components/JoinCta.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import CommunityWhySection from '../../components/CommunityWhySection.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SetupCard from '../../components/SetupCard.astro';
+import CommunityResourcesSection from '../../components/CommunityResourcesSection.astro';
+import { siteContentByLocale } from '../../data/site-content';
+import { pagePaths } from '../../data/i18n';
+import CommunityTerminal from '../../components/CommunityTerminal';
 
-const content = siteContent;
+const content = siteContentByLocale.en;
 const { shared, pages } = content;
 const community = pages.community;
-const locale = 'es' as const;
+const locale = 'en' as const;
 ---
 
 <BaseLayout
@@ -33,7 +33,7 @@ const locale = 'es' as const;
     navigationLabel={shared.labels.navigation}
     locale={locale}
     pageKey="community"
-    languageLabel="Idioma"
+    languageLabel="Language"
   />
 
   <main class="relative">
@@ -60,25 +60,25 @@ const locale = 'es' as const;
               command="$ npx create-costadelcode"
               steps={[
                 {
-                  text: '\n  ⠿ Escaneando la Costa del Sol en busca de devs...',
+                  text: '\n  ⠿ Scanning the Costa del Sol for developers...',
                 },
-                { text: '\n  ✓ Encontrados 4251 desarrolladores' },
+                { text: '\n  ✓ Found 4,251 developers' },
                 {
-                  text: '\n  ✓ Reservando lugar con terraza y buena cobertura WiFi...',
+                  text: '\n  ✓ Finding a spot with a terrace and great WiFi...',
                 },
-                { text: '\n  ✓ Instalando dependencias de cervezas@^1.0.0' },
+                { text: '\n  ✓ Installing dependencies cervezas@^1.0.0' },
                 {
-                  text: '\n  ✓ Montando el canal de Telegram e Instagram de la comunidad...',
+                  text: '\n  ✓ Setting up the community Telegram and Instagram channels...',
                 },
-                { text: '\n  ✓ Sincronizando ideas...' },
+                { text: '\n  ✓ Syncing ideas...' },
                 { text: '\n' },
                 {
-                  text: '\n  🚀 Push a producción. Comunidad lista.',
+                  text: '\n  🚀 Pushing to production. Community is ready.',
                   bold: true,
                 },
               ]}
               pulseInterval={55}
-              ariaLabel="Animación de terminal"
+              ariaLabel="Terminal animation"
               stepInterval={1200}
             />
           </div>

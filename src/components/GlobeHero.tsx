@@ -2,7 +2,11 @@ import { useEffect, useRef } from 'react';
 import createGlobe from 'cobe';
 import { useSpring } from '@react-spring/web';
 
-export default function GlobeHero() {
+export default function GlobeHero({
+  label = 'Globo terráqueo interactivo mostrando la ubicación de Costa del Sol',
+}: {
+  label?: string;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerInteracting = useRef<number | null>(null);
   const pointerInteractionMovement = useRef<number>(0);
@@ -84,7 +88,7 @@ export default function GlobeHero() {
       <canvas
         ref={canvasRef}
         role="img"
-        aria-label="Globo terráqueo interactivo mostrando la ubicación de Costa del Sol"
+        aria-label={label}
         onPointerDown={(e) => {
           pointerInteracting.current =
             e.clientX - pointerInteractionMovement.current;
