@@ -621,4 +621,358 @@ const esContent: SiteContent = {
   },
 };
 
+const enContent: SiteContent = {
+  shared: {
+    ...esContent.shared,
+    tagline: 'Developers on the Costa del Sol. Connected.',
+    nav: buildNav({
+      home: 'Home',
+      community: 'Community',
+      events: 'Events',
+      faq: 'FAQ',
+    }),
+    primaryCta: { ...esContent.shared.primaryCta, label: 'Join Telegram' },
+    ctaLinks: buildSocialCtaLinks().map((link) => ({
+      ...link,
+      label:
+        link.platform === 'telegram' ? 'Join Telegram' : 'Follow on Instagram',
+    })),
+    labels: {
+      date: 'Date',
+      time: 'Time',
+      location: 'Location',
+      menu: 'Menu',
+      navigation: 'Main navigation',
+      pendingDate: 'Date to be confirmed',
+    },
+    social: [
+      { label: 'Telegram', href: sharedLinks.telegram, note: 'Main group' },
+      {
+        label: 'Instagram',
+        href: sharedLinks.instagram,
+        note: 'Behind the scenes',
+      },
+      { label: 'GitHub', href: sharedLinks.github, note: 'Open source' },
+    ],
+    footer: {
+      note: 'An open software development community.',
+      legal: 'Costa del Code · 2026',
+      navTitle: 'Sections',
+      socialTitle: 'Join us',
+    },
+    join: {
+      eyebrow: 'Join the conversation',
+      code: 'git switch -c costadelcode;',
+      title: 'The first step is easy.',
+      description:
+        'The next meetup is announced on Telegram before anywhere else. Join now so you don’t miss it.',
+    },
+  },
+  pages: {
+    home: {
+      meta: {
+        title: 'Costa del Code | Developer community on the Costa del Sol',
+        description:
+          'Local connections, talks and open source projects for developers on the Costa del Sol.',
+      },
+      hero: {
+        eyebrow: 'Costa del Code',
+        code: 'git switch -c costadelcode;',
+        title: 'A local developer community on the Costa del Sol.',
+        intro: 'We’re close by. We just need to connect.',
+        description: [
+          'Living on the Costa del Sol and working remotely is a privilege, but it can also feel isolating. Costa del Code brings together people who share the same corner of the world.',
+        ],
+        stats: [
+          { value: 'Costa del Sol', label: 'Our area' },
+          { value: 'Coming soon', label: 'Getting started' },
+          { value: '100% free', label: 'To join', badge: 'Always' },
+        ],
+        primaryCta: {
+          ...esContent.pages.home.hero.primaryCta,
+          label: 'Join us on Telegram',
+        },
+        secondaryCta: {
+          ...esContent.pages.home.hero.secondaryCta,
+          label: 'See Instagram',
+        },
+        tertiaryCta: {
+          ...esContent.pages.home.hero.tertiaryCta,
+          label: 'See GitHub',
+        },
+      },
+      pillars: {
+        eyebrow: 'Why join?',
+        title: 'What brings us together.',
+        items: [
+          {
+            title: 'Networking',
+            description: 'Meet tech professionals nearby.',
+            icon: 'networking',
+          },
+          {
+            title: 'Collaboration',
+            description: 'Take part in open source projects.',
+            icon: 'collaboration',
+          },
+          {
+            title: 'What’s new',
+            description: 'Share talks, tools and trends.',
+            icon: 'trends',
+          },
+          {
+            title: 'Feedback',
+            description:
+              'Test ideas, show your work and hear what others think.',
+            icon: 'feedback',
+          },
+          {
+            title: 'Opportunities',
+            description:
+              'Find people to collaborate with and potential clients.',
+            icon: 'opportunities',
+          },
+          {
+            title: 'Resources',
+            description: 'Discover tools used by the community.',
+            icon: 'resources',
+          },
+        ],
+      },
+      eventHighlight: {
+        eyebrow: 'Next meetup',
+        title: 'A living calendar, relaxed events.',
+        intro:
+          'We’ll post the next meetup here as soon as the date is set. Have a topic in mind? Let us know.',
+        event: {
+          title: 'What is Costa del Code?',
+          date: 'To be confirmed',
+          time: 'After work',
+          location: 'Costa del Sol (location to be confirmed)',
+          meta: 'Relaxed format',
+          description:
+            'A meetup to talk about Costa del Code, share real world stories, useful tips and the tools you use (or don’t) every day.',
+          tags: ['Introduction'],
+          ctaLabel: 'I’d like to join',
+          ctaHref: sharedLinks.telegram,
+          pending: true,
+        },
+      },
+    },
+    community: {
+      meta: {
+        title: 'Community | Costa del Code',
+        description:
+          'Discover the purpose, story and values behind the local developer community on the Costa del Sol.',
+      },
+      hero: {
+        eyebrow: 'Community',
+        title: 'A real meeting place for people who live nearby.',
+        intro:
+          'From Estepona and nearby. Junior, mid-level or senior—it doesn’t matter. If you code and live around here, this is for you.',
+        description: [
+          'Costa del Code is just getting started. We’re a group of developers from the area, at every experience level, keen to meet up, talk code and connect with people who share our day-to-day.',
+        ],
+      },
+      founderCard: {
+        eyebrow: 'Who started this project?',
+        title: 'Dani made the first commit; the community keeps it alive.',
+        description: [
+          'Costa del Code is an excuse to get out, meet people and share what we know.',
+        ],
+        highlights: {
+          offline:
+            'In-person meetups on the Costa del Sol. Get out and meet other local developers.',
+          sync: 'Real GitHub projects where you can learn, collaborate and let your code be seen.',
+          push: 'Bring your ideas to the repository. The community can review them and help them grow.',
+          feedback: 'Get honest feedback from peers who speak your language.',
+          community:
+            'Open to everyone. No fees or requirements—just a willingness to connect and share.',
+        },
+        mosaic: {
+          headline: 'Daniel Núñez',
+          connectLabel: 'connect()',
+          connectDescription: 'Quick coffees and easygoing conversations',
+          offlineTitle: 'Meetups',
+          docTitle: 'Projects',
+          communityTitle: 'Community',
+          pushCommand: '> gh repo clone industrial-dev/costadelcode',
+          feedbackCommand: 'feedback --honest',
+        },
+      },
+      purpose: {
+        eyebrow: 'Why we’re here',
+        title: 'Bring talent closer and build a real community.',
+        description:
+          'You don’t need to move to a big city to grow. What was missing was a place to connect the people who are already here.',
+        points: [
+          'Reduce the isolation of remote work.',
+          'Showcase local talent and create real opportunities.',
+          'Start open source projects right here in the area.',
+        ],
+      },
+      origin: {
+        eyebrow: 'Our story',
+        title: 'An engineer from Estepona who came home.',
+        description:
+          'Dani grew up in Estepona, studied elsewhere and spent years working in different cities and abroad. When he came back, something was missing, and he wondered: are there many developers here? He works remotely now and knows he isn’t the only one asking. Costa del Code is his way of finding out.',
+        founderNote:
+          'I don’t want to build an organisation. I want people here to know they’re not alone when they open their laptop.',
+        founderPortfolio: 'https://industrial-dev.github.io/portfolio/',
+      },
+      setups: {
+        eyebrow: 'Setups',
+        title: 'Community setups roasted by AI.',
+        items: [
+          {
+            title: 'Setup #01 · The ducks do it all',
+            name: 'Dani (GitHub: @industrial-dev)',
+            role: 'Founder · Full Stack Developer',
+            imageSrc: '/images/setups/setup-01.jpg',
+            imageAlt:
+              'Daniel N.’s setup with two large monitors, a laptop on a standing desk and rubber ducks on the desk',
+            roast:
+              'Three screens, a standing desk and a team of rubber ducks more reliable than any sprint planning.',
+            highlights: [
+              'Three screens (2 monitors + laptop)',
+              'Standing desk',
+              'Ultra-slim mechanical keyboard',
+            ],
+          },
+          {
+            title: 'Setup #02 · The junior with a Targaryen setup',
+            name: 'Javi (GitHub: @javi12ms)',
+            role: 'Junior · Full Stack Developer',
+            imageSrc: '/images/setups/setup-02.jpeg',
+            imageAlt:
+              'Javi’s setup with two curved monitors, an RGB gaming tower, mechanical keyboard, PS4 controller and a Game of Thrones goblet',
+            roast:
+              'A senior setup funded by House Targaryen: two curved monitors, a tower with more RGB than a fairground and a Game of Thrones goblet for coffee. The PS4 controller is purely decorative.',
+            highlights: [
+              '2 curved monitors',
+              'RGB gaming tower',
+              'Gaming mechanical keyboard',
+              'PS4 controller on the desk',
+              'Game of Thrones goblet',
+            ],
+          },
+        ],
+      },
+    },
+    events: {
+      meta: {
+        title: 'Events | Costa del Code',
+        description:
+          'A local calendar of meetups, talks and relaxed events for developers on the Costa del Sol.',
+      },
+      hero: {
+        eyebrow: 'Events',
+        title: 'Small meetups, big impact.',
+        titleHighlight: 'big impact.',
+        description:
+          'No mega-events or star speakers. We get together for a drink, share what we’re working on and see where the conversation goes.',
+        intro:
+          'Come just for a coffee and a chat about code if you like—every experience level is welcome.',
+        formatAttributes: [
+          { value: '~90 min', label: 'duration' },
+          { value: 'Informal', label: 'format' },
+          { value: 'Costa del Sol', label: 'location' },
+        ],
+      },
+      upcoming: {
+        eyebrow: 'Calendar',
+        title: 'Coming up.',
+        intro:
+          'We’ll share the place and date on Telegram and Instagram as soon as they’re set. Want to suggest a topic? Get in touch.',
+        items: [
+          {
+            title: 'What is Costa del Code?',
+            date: 'To be confirmed',
+            time: 'After work',
+            location: 'Costa del Sol (location to be confirmed)',
+            meta: 'Relaxed format',
+            description:
+              'A meetup to talk about Costa del Code, share real world stories, useful tips and the tools you use (or don’t) every day.',
+            tags: ['Introduction'],
+            ctaLabel: 'I’d like to join',
+            ctaHref: sharedLinks.telegram,
+            pending: true,
+          },
+        ],
+      },
+      speakers: {
+        eyebrow: 'Speakers',
+        title: 'Want to give a talk?',
+        description:
+          'We’re looking for short, practical talks without the hype. If you have something to share, tell us on Telegram or Instagram and we’ll shape it together.',
+        cta: {
+          label: 'Pitch a talk',
+          href: sharedLinks.telegram,
+          variant: 'secondary',
+        },
+      },
+    },
+    faq: {
+      meta: {
+        title: 'FAQ | Costa del Code',
+        description:
+          'Answers to common questions, plus open channels to connect with us.',
+      },
+      hero: {
+        eyebrow: 'FAQ',
+        title: 'Questions and answers.',
+        intro:
+          'Here are answers to the questions we hear most. If yours isn’t here, send us a message and we’ll get back to you.',
+      },
+      questions: {
+        items: [
+          {
+            question: 'Does it cost anything to take part?',
+            answer:
+              'No, it’s completely free and open to everyone. Just bring a good attitude and a willingness to learn and share.',
+          },
+          {
+            question: 'What technical level do I need?',
+            answer:
+              'Everyone is welcome: juniors, seniors and curious people who want to learn.',
+          },
+          {
+            question: 'Where do meetups take place?',
+            answer:
+              'For now, in Estepona. We’ll share the place, time and exact location of the next meetup in the community group and on Instagram.',
+          },
+          {
+            question: 'Can I suggest a topic or a talk?',
+            answer:
+              'Absolutely. We’d love to hear your ideas. Get in touch and we’ll work out the details.',
+          },
+          {
+            question: 'Can I come if I’m not a developer?',
+            answer: 'Whoever you are, you’re welcome in the community.',
+          },
+          {
+            question: 'Can I take part on Telegram without attending events?',
+            answer:
+              'Of course. The Telegram group is the community’s daily hub for questions, resources and conversations. Events are a bonus, not a requirement.',
+          },
+          {
+            question: 'How often do you meet?',
+            answer:
+              'We’re just getting started, so we don’t have a regular schedule yet. The goal is to meet once a month. We announce everything on Telegram and Instagram.',
+          },
+          {
+            question: 'Is there a particular stack or programming language?',
+            answer:
+              'No. We have people in frontend, backend, full stack, desktop, web and mobile. Conversations tend to focus on tools, projects and experiences rather than specific technologies.',
+          },
+        ],
+      },
+    },
+  },
+};
+
+export const siteContentByLocale: Record<'es' | 'en', SiteContent> = {
+  es: esContent,
+  en: enContent,
+};
 export const siteContent: SiteContent = esContent;

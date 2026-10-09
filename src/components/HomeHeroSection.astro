@@ -4,9 +4,10 @@ import GlobeHero from './GlobeHero';
 
 interface Props {
   hero: HomePage['hero'];
+  locale?: 'es' | 'en';
 }
 
-const { hero } = Astro.props as Props;
+const { hero, locale = 'es' } = Astro.props as Props;
 ---
 
 <section class="section relative overflow-hidden pt-14">
@@ -125,7 +126,12 @@ const { hero } = Astro.props as Props;
         </div>
       </div>
       <div class="w-full max-w-xs shrink-0 md:w-100 md:max-w-none">
-        <GlobeHero client:visible />
+        <GlobeHero
+          client:visible
+          label={locale === 'en'
+            ? 'Interactive globe showing the location of the Costa del Sol'
+            : 'Globo terráqueo interactivo mostrando la ubicación de Costa del Sol'}
+        />
       </div>
     </div>
   </div>

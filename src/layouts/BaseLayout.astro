@@ -1,6 +1,12 @@
 ---
 import '../styles/global.css';
-import { siteLocale } from '../data/i18n';
+import {
+  localeConfig,
+  locales,
+  localizedPath,
+  type Locale,
+  type PageKey,
+} from '../data/i18n';
 import { withBasePath } from '../utils/paths';
 
 interface Props {
@@ -9,6 +15,8 @@ interface Props {
   canonicalPath: string;
   robots?: string;
   showIntro?: boolean;
+  locale?: Locale;
+  pageKey?: PageKey;
 }
 
 const {
@@ -17,10 +25,15 @@ const {
   canonicalPath,
   robots = 'index,follow',
   showIntro = false,
+  locale = 'es',
+  pageKey = 'home',
 } = Astro.props;
+const siteLocale = localeConfig[locale];
+const localizedCanonicalPath = localizedPath(locale, pageKey);
 
 const canonicalUrl = Astro.site
-  ? new URL(withBasePath(canonicalPath), Astro.site).href
+  ? new URL(withBasePath(localizedCanonicalPath || canonicalPath), Astro.site)
+      .href
   : null;
 const faviconPath = withBasePath('/favicon.svg');
 const introVideoPath = withBasePath('/intro/costa-del-code-intro.mp4');
@@ -111,6 +124,32 @@ const introPlaybackScript = `
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    {
+      Astro.site &&
+        locales.map((alternateLocale) => (
+          <link
+            rel="alternate"
+            hreflang={localeConfig[alternateLocale].htmlLang}
+            href={
+              new URL(
+                withBasePath(localizedPath(alternateLocale, pageKey)),
+                Astro.site
+              ).href
+            }
+          />
+        ))
+    }
+    {
+      Astro.site && (
+        <link
+          rel="alternate"
+          hreflang="x-default"
+          href={
+            new URL(withBasePath(localizedPath('es', pageKey)), Astro.site).href
+          }
+        />
+      )
+    }
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={siteLocale.ogLocale} />

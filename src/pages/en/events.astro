@@ -1,17 +1,17 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import EventCard from '../components/EventCard.astro';
-import JoinCta from '../components/JoinCta.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import { siteContent } from '../data/site-content';
-import { pagePaths } from '../data/i18n';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EventCard from '../../components/EventCard.astro';
+import JoinCta from '../../components/JoinCta.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import { siteContentByLocale } from '../../data/site-content';
+import { pagePaths } from '../../data/i18n';
 
-const content = siteContent;
+const content = siteContentByLocale.en;
 const { shared, pages } = content;
 const events = pages.events;
-const locale = 'es' as const;
+const locale = 'en' as const;
 ---
 
 <BaseLayout
@@ -29,7 +29,7 @@ const locale = 'es' as const;
     navigationLabel={shared.labels.navigation}
     locale={locale}
     pageKey="events"
-    languageLabel="Idioma / Language"
+    languageLabel="Language"
   />
 
   <main class="relative">

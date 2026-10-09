@@ -1,19 +1,19 @@
 ---
-import HomeEventSection from '../components/HomeEventSection.astro';
-import HomeHeroSection from '../components/HomeHeroSection.astro';
-import HomePillarsSection from '../components/HomePillarsSection.astro';
-import CommunityOriginSection from '../components/CommunityOriginSection.astro';
-import JoinCta from '../components/JoinCta.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { pagePaths } from '../data/i18n';
-import { siteContent } from '../data/site-content';
+import HomeEventSection from '../../components/HomeEventSection.astro';
+import HomeHeroSection from '../../components/HomeHeroSection.astro';
+import HomePillarsSection from '../../components/HomePillarsSection.astro';
+import CommunityOriginSection from '../../components/CommunityOriginSection.astro';
+import JoinCta from '../../components/JoinCta.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { pagePaths } from '../../data/i18n';
+import { siteContentByLocale } from '../../data/site-content';
 
-const { shared, pages } = siteContent;
+const { shared, pages } = siteContentByLocale.en;
 const home = pages.home;
 const community = pages.community;
-const locale = 'es' as const;
+const locale = 'en' as const;
 ---
 
 <BaseLayout
@@ -32,7 +32,7 @@ const locale = 'es' as const;
     navigationLabel={shared.labels.navigation}
     locale={locale}
     pageKey="home"
-    languageLabel="Idioma"
+    languageLabel="Language"
   />
 
   <main class="relative">
